@@ -50,13 +50,13 @@ export default function AboutHeroSection() {
           RTL row: first child → RIGHT side, second child → LEFT side.
           Content (text) first → RIGHT ✓ | Image second → LEFT ✓
         */}
-        <div className="flex flex-row justify-between items-center gap-24 w-full">
+        <div className="flex flex-row justify-between items-center w-full">
 
           {/* ══ CONTENT — right side in RTL ══ */}
-          <div className="flex flex-col items-end pl-10 pr-0 w-[670px] h-[500px] justify-center flex-grow mr-[-40px]">
+          <div className="flex flex-col items-end justify-center max-w-[540px]">
 
             {/* Heading + description */}
-            <div className="flex flex-col items-end gap-8 max-w-[530px]">
+            <div className="flex flex-col items-end gap-8 w-full">
               <h1
                 className="text-[64px] leading-[72px] font-bold text-[#1E3A5F] text-right w-full"
                 style={{ letterSpacing: "-1.8px" }}
@@ -74,7 +74,7 @@ export default function AboutHeroSection() {
             </div>
 
             {/* Organizations */}
-            <div className="flex flex-col items-end pt-8 w-full max-w-[530px]">
+            <div className="flex flex-col items-end pt-8 w-full">
               <p
                 className="text-[20px] leading-8 text-right text-[rgba(30,58,95,0.9)] w-full"
                 style={{ fontWeight: 800, letterSpacing: "-0.6px" }}
@@ -93,7 +93,7 @@ export default function AboutHeroSection() {
           {/* ══ IMAGE CARD — left side in RTL ══ */}
           <div
             className="relative flex-shrink-0"
-            style={{ width: 360, height: 500 }}
+            style={{ width: 400, height: 500 }}
           >
             {/* Layer 1: Elegant background shape — slight clockwise skew */}
             <div
