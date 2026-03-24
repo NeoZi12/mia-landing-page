@@ -258,9 +258,10 @@ export default function HeroSection() {
             whiteSpace: "nowrap",
           }}
         >
-          הכירו אותנו בסרטון קצר
+          גלו עוד עלינו
         </span>
-        <div
+        <a
+          href="#about"
           className="flex items-center justify-center"
           style={{
             width: 40,
@@ -269,6 +270,7 @@ export default function HeroSection() {
             borderRadius: "50%",
             animation: "bounce-arrow 2s ease-in-out infinite",
           }}
+          aria-label="גלול לקטע עלינו"
         >
           <svg
             width="12"
@@ -285,7 +287,7 @@ export default function HeroSection() {
               strokeLinejoin="round"
             />
           </svg>
-        </div>
+        </a>
       </div>
     </section>
   );

@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 const heebo = Heebo({
   variable: "--font-heebo",
   subsets: ["hebrew", "latin"],
-  weight: ["300", "400", "700", "800"],
+  weight: ["300", "400", "600", "700", "800"],
   display: "swap",
 });
 
