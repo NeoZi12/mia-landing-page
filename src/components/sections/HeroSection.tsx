@@ -17,7 +17,7 @@ export default function HeroSection() {
   return (
     <section
       className="relative flex flex-col items-center justify-center overflow-hidden isolate w-full"
-      style={{ height: "100vh", padding: "100px 24px 130px" }}
+      style={{ height: "100dvh", padding: "clamp(60px, 9vh, 100px) clamp(16px, 4vw, 24px) clamp(110px, 16vh, 140px)" }}
     >
       {/* ── Layer 0: Background image ── */}
       <div
@@ -103,7 +103,7 @@ export default function HeroSection() {
       {/* ── Layer 4: Hero content ── */}
       <div
         className="relative flex flex-col items-center"
-        style={{ gap: 28, width: 896, maxWidth: "100%", zIndex: 4 }}
+        style={{ gap: "clamp(14px, 2.5vh, 28px)", width: 896, maxWidth: "100%", zIndex: 4 }}
       >
         {/* Eyebrow badge */}
         <div
@@ -138,9 +138,9 @@ export default function HeroSection() {
             style={{
               fontFamily: "var(--font-heebo), sans-serif",
               fontWeight: 800,
-              fontSize: 80,
-              lineHeight: "82px",
-              letterSpacing: "-2.4px",
+              fontSize: "clamp(36px, min(7vw, 9vh), 80px)",
+              lineHeight: 1.05,
+              letterSpacing: "-0.03em",
             }}
           >
             {/* Line 1 — white */}
@@ -187,8 +187,8 @@ export default function HeroSection() {
             style={{
               fontFamily: "var(--font-heebo), sans-serif",
               fontWeight: 300,
-              fontSize: 20,
-              lineHeight: "28px",
+              fontSize: "clamp(14px, 2vw, 20px)",
+              lineHeight: 1.5,
               color: "rgba(226,232,240,0.85)",
               textShadow: "0 1px 12px rgba(0,0,0,0.35)",
             }}
@@ -201,21 +201,21 @@ export default function HeroSection() {
         {/* CTA button */}
         <div
           className="flex items-center justify-center"
-          style={{ paddingTop: 16, width: "100%" }}
+          style={{ paddingTop: "clamp(8px, 1.5vh, 16px)", width: "100%" }}
         >
           <Link
             href="/contact"
             className="relative flex items-center justify-center"
             style={{
-              width: 213,
-              height: 68,
-              padding: "20px 40px",
+              width: "clamp(160px, 18vw, 213px)",
+              height: "clamp(50px, 6vh, 68px)",
+              padding: "clamp(14px, 2vh, 20px) clamp(28px, 3vw, 40px)",
               background: "linear-gradient(135deg, #002069 0%, #00339a 100%)",
               borderRadius: 12,
               fontFamily: "var(--font-heebo), sans-serif",
               fontWeight: 700,
-              fontSize: 18,
-              lineHeight: "28px",
+              fontSize: "clamp(15px, 1.5vw, 18px)",
+              lineHeight: 1.5,
               color: "#ffffff",
               whiteSpace: "nowrap",
               textDecoration: "none",
@@ -251,8 +251,8 @@ export default function HeroSection() {
           style={{
             fontFamily: "var(--font-heebo), sans-serif",
             fontWeight: 400,
-            fontSize: 20,
-            lineHeight: "26px",
+            fontSize: "clamp(14px, 1.8vw, 20px)",
+            lineHeight: 1.4,
             letterSpacing: "-0.1px",
             color: "rgba(226,232,240,0.6)",
             whiteSpace: "nowrap",

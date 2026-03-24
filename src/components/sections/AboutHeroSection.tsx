@@ -4,7 +4,7 @@ export default function AboutHeroSection() {
   return (
     <section
       className="relative w-full bg-[#F7F9FB] overflow-hidden flex flex-col justify-center items-center isolate"
-      style={{ height: "100vh" }}
+      style={{ height: "100dvh", padding: "104px 0 clamp(110px, 16vh, 140px)" }}
     >
       {/* ── Decorative background gradient ── */}
       <div
@@ -45,26 +45,34 @@ export default function AboutHeroSection() {
       />
 
       {/* ── Main content container ── */}
-      <div className="relative z-[3] w-full max-w-[1280px] px-6">
+      <div className="relative z-[3] w-full max-w-[1280px] px-6 md:px-10 lg:px-6">
         {/*
           RTL row: first child → RIGHT side, second child → LEFT side.
-          Content (text) first → RIGHT ✓ | Image second → LEFT ✓
+          On mobile: stacks vertically (col-reverse so text is on top).
         */}
-        <div className="flex flex-row justify-between items-center w-full">
+        <div className="flex flex-col-reverse md:flex-row justify-between items-center w-full gap-8 md:gap-10">
 
           {/* ══ CONTENT — right side in RTL ══ */}
-          <div className="flex flex-col items-end justify-center max-w-[540px]">
+          <div className="flex flex-col items-end justify-center w-full md:max-w-[540px]">
 
             {/* Heading + description */}
-            <div className="flex flex-col items-end gap-8 w-full">
+            <div className="flex flex-col items-end gap-5 md:gap-8 w-full">
               <h1
-                className="text-[64px] leading-[72px] font-bold text-[#1E3A5F] text-right w-full"
-                style={{ letterSpacing: "-1.8px" }}
+                className="font-bold text-[#1E3A5F] text-right w-full"
+                style={{
+                  fontSize: "clamp(32px, min(5vw, 8vh), 64px)",
+                  lineHeight: 1.15,
+                  letterSpacing: "-0.03em",
+                }}
               >
                 קצת עלינו
               </h1>
               <p
-                className="text-[20px] leading-8 font-normal text-[#496177] text-right w-full"
+                className="font-normal text-[#496177] text-right w-full"
+                style={{
+                  fontSize: "clamp(14px, 1.8vw, 20px)",
+                  lineHeight: 1.6,
+                }}
               >
                 משרד ייעוץ מס דיגיטלי עם ניסיון של למעלה מ־30 שנה, המתמחה בניהול
                 והתנהלות מול כל הרשויות — ללא ניירת, ללא כאב ראש. אנחנו משלבים
@@ -74,26 +82,66 @@ export default function AboutHeroSection() {
             </div>
 
             {/* Organizations */}
-            <div className="flex flex-col items-end pt-8 w-full">
+            <div className="flex flex-col items-end pt-5 md:pt-8 w-full">
               <p
-                className="text-[20px] leading-8 text-right text-[rgba(30,58,95,0.9)] w-full"
-                style={{ fontWeight: 800, letterSpacing: "-0.6px" }}
+                className="text-right text-[rgba(30,58,95,0.9)] w-full"
+                style={{
+                  fontWeight: 800,
+                  letterSpacing: "-0.6px",
+                  fontSize: "clamp(14px, 1.8vw, 20px)",
+                  lineHeight: 1.6,
+                }}
               >
                 עובדים מול הגופים המובילים בישראל
               </p>
               <p
-                className="text-[20px] leading-8 text-right text-[rgba(30,58,95,0.8)] w-full"
-                style={{ fontWeight: 600, letterSpacing: "-0.6px" }}
+                className="text-right text-[rgba(30,58,95,0.8)] w-full"
+                style={{
+                  fontWeight: 600,
+                  letterSpacing: "-0.6px",
+                  fontSize: "clamp(14px, 1.8vw, 20px)",
+                  lineHeight: 1.6,
+                }}
               >
                 רשות המסים · ביטוח לאומי · משרד האוצר
               </p>
             </div>
           </div>
 
-          {/* ══ IMAGE CARD — left side in RTL ══ */}
+          {/* ══ IMAGE — mobile: simple rounded card, md+: full tilted card ══ */}
+
+          {/* Mobile only — simple card, no tilt */}
           <div
-            className="relative flex-shrink-0"
-            style={{ width: 400, height: 500 }}
+            className="relative flex-shrink-0 block md:hidden rounded-[32px] overflow-hidden shadow-xl border border-[rgba(255,255,255,0.4)]"
+            style={{ width: "min(200px, 55vw)", height: "min(250px, 68.75vw)" }}
+          >
+            <div
+              aria-hidden="true"
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `url('${PHOTO_PATH}')`,
+                backgroundSize: "cover",
+                backgroundPosition: "center top",
+              }}
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 z-10"
+              style={{
+                background:
+                  "linear-gradient(0deg, rgba(0, 51, 153, 0.2) 0%, rgba(0, 51, 153, 0) 100%)",
+              }}
+            />
+          </div>
+
+          {/* Tablet/Desktop — full tilted card */}
+          <div
+            className="relative flex-shrink-0 hidden md:block"
+            style={{
+              width: "clamp(220px, 24vw, 320px)",
+              height: "clamp(275px, 30vw, 400px)",
+              marginLeft: "clamp(24px, 5vw, 80px)",
+            }}
           >
             {/* Layer 1: Elegant background shape — slight clockwise skew */}
             <div
@@ -151,8 +199,12 @@ export default function AboutHeroSection() {
         style={{ bottom: 48, gap: 8 }}
       >
         <span
-          className="text-[20px] leading-[26px] text-[#161C2D] text-center whitespace-nowrap"
-          style={{ letterSpacing: "-0.1px" }}
+          className="text-[#161C2D] text-center whitespace-nowrap"
+          style={{
+            fontSize: "clamp(14px, 1.8vw, 20px)",
+            lineHeight: 1.4,
+            letterSpacing: "-0.1px",
+          }}
         >
           הכירו אותנו בסרטון קצר
         </span>
