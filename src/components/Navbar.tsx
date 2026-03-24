@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 function WhatsAppIcon() {
   return (
@@ -95,14 +96,15 @@ export default function Navbar() {
         <div className="flex flex-row-reverse md:flex-row justify-between items-center w-full h-full px-5 md:px-8">
 
           {/* ── Logo — right side in RTL ── */}
-          <div
-            className="flex-shrink-0 rounded-xl border border-[rgba(196,197,213,0.3)] bg-[#F0F4F8] flex items-center justify-center"
-            style={{ width: 48, height: 48 }}
-            aria-label="לוגו"
-          >
-            <span style={{ fontFamily: "var(--font-heebo), sans-serif", fontWeight: 800, fontSize: 18, color: "#003399" }}>
-              מיה
-            </span>
+          <div className="flex-shrink-0" aria-label="לוגו">
+            <Image
+              src="/images/maya logo 2.png"
+              alt="לוגו מיה"
+              width={48}
+              height={48}
+              className="object-contain"
+              priority
+            />
           </div>
 
           {/* ── Nav links — desktop only ── */}

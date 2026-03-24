@@ -1,6 +1,18 @@
+import type { HomePageData } from "@/lib/queries";
+
 const PHOTO_PATH = "/images/miaprofile.jpg";
 
-export default function AboutHeroSection() {
+interface AboutHeroSectionProps {
+  /** Content from Sanity. Falls back to hardcoded strings when null/undefined. */
+  data?: HomePageData | null;
+}
+
+export default function AboutHeroSection({ data }: AboutHeroSectionProps = {}) {
+  const heading     = data?.aboutHeading     ?? "קצת עלינו";
+  const body        = data?.aboutBody        ?? "משרד ייעוץ מס דיגיטלי עם ניסיון של למעלה מ־30 שנה, המתמחה בניהול והתנהלות מול כל הרשויות — ללא ניירת, ללא כאב ראש. אנחנו משלבים ניסיון מקצועי עשיר עם פתרונות מתקדמים, כדי לחסוך לכם זמן, לייעל תהליכים, ולדאוג שהכל מתנהל בצורה מדויקת, שקופה ונוחה.";
+  const orgsLabel   = data?.aboutOrgsLabel   ?? "עובדים מול הגופים המובילים בישראל";
+  const orgs        = data?.aboutOrgs        ?? "רשות המסים · ביטוח לאומי · משרד האוצר";
+  const scrollLabel = data?.aboutScrollLabel ?? "הכירו אותנו בסרטון קצר";
   return (
     <section
       className="relative w-full bg-[#F7F9FB] overflow-hidden flex flex-col justify-center items-center isolate"
@@ -65,7 +77,7 @@ export default function AboutHeroSection() {
                   letterSpacing: "-0.03em",
                 }}
               >
-                קצת עלינו
+                {heading}
               </h1>
               <p
                 className="font-normal text-[#496177] text-right w-full"
@@ -74,10 +86,7 @@ export default function AboutHeroSection() {
                   lineHeight: 1.6,
                 }}
               >
-                משרד ייעוץ מס דיגיטלי עם ניסיון של למעלה מ־30 שנה, המתמחה בניהול
-                והתנהלות מול כל הרשויות — ללא ניירת, ללא כאב ראש. אנחנו משלבים
-                ניסיון מקצועי עשיר עם פתרונות מתקדמים, כדי לחסוך לכם זמן, לייעל
-                תהליכים, ולדאוג שהכל מתנהל בצורה מדויקת, שקופה ונוחה.
+                {body}
               </p>
             </div>
 
@@ -92,7 +101,7 @@ export default function AboutHeroSection() {
                   lineHeight: 1.6,
                 }}
               >
-                עובדים מול הגופים המובילים בישראל
+                {orgsLabel}
               </p>
               <p
                 className="text-right text-[rgba(30,58,95,0.8)] w-full"
@@ -103,7 +112,7 @@ export default function AboutHeroSection() {
                   lineHeight: 1.6,
                 }}
               >
-                רשות המסים · ביטוח לאומי · משרד האוצר
+                {orgs}
               </p>
             </div>
           </div>
@@ -206,7 +215,7 @@ export default function AboutHeroSection() {
             letterSpacing: "-0.1px",
           }}
         >
-          הכירו אותנו בסרטון קצר
+          {scrollLabel}
         </span>
         <a
           href="#about-me"

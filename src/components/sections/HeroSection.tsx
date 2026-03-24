@@ -4,8 +4,23 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { generatePapers, type PaperConfig } from "@/lib/papers";
 import styles from "./HeroSection.module.css";
+import type { HomePageData } from "@/lib/queries";
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  /** Content from Sanity. Falls back to hardcoded strings when null/undefined. */
+  data?: HomePageData | null;
+}
+
+export default function HeroSection({ data }: HeroSectionProps = {}) {
+  const badge       = data?.heroBadge       ?? "משרד ללא נייר";
+  const line1       = data?.heroLine1       ?? "ניהול מס חכם";
+  const line2       = data?.heroLine2       ?? "בלי ניירת";
+  const line3       = data?.heroLine3       ?? "בלי כאב ראש";
+  const subtitle    = data?.heroSubtitle    ?? "משרד ייעוץ מס דיגיטלי שמטפל בכל ההתנהלות מול הרשויות ללא ניירת.\nאנחנו חוסכים לכם זמן ומתמודדים עם הבירוקרטיה בשבילכם.";
+  const ctaLabel    = data?.heroCtaLabel    ?? "יצירת קשר";
+  const ctaUrl      = data?.heroCtaUrl      ?? "/contact";
+  const scrollLabel = data?.heroScrollLabel ?? "גלו עוד עלינו";
+
   const [papers, setPapers] = useState<PaperConfig[]>([]);
 
   // Defer paper generation to client-only to avoid SSR/hydration mismatch
@@ -127,7 +142,7 @@ export default function HeroSection() {
               whiteSpace: "nowrap",
             }}
           >
-            משרד ללא נייר
+            {badge}
           </span>
         </div>
 
@@ -151,7 +166,7 @@ export default function HeroSection() {
                   "0 2px 24px rgba(0,0,0,0.45), 0 1px 6px rgba(0,0,0,0.3)",
               }}
             >
-              ניהול מס חכם
+              {line1}
             </span>
             {/* Line 2 — blue gradient */}
             <span
@@ -163,7 +178,7 @@ export default function HeroSection() {
                 filter: "drop-shadow(0 2px 16px rgba(59,130,246,0.35))",
               }}
             >
-              בלי ניירת
+              {line2}
             </span>
             {/* Line 3 — blue gradient */}
             <span
@@ -175,7 +190,7 @@ export default function HeroSection() {
                 filter: "drop-shadow(0 2px 16px rgba(59,130,246,0.35))",
               }}
             >
-              בלי כאב ראש
+              {line3}
             </span>
           </h1>
         </div>
@@ -193,8 +208,7 @@ export default function HeroSection() {
               textShadow: "0 1px 12px rgba(0,0,0,0.35)",
             }}
           >
-            משרד ייעוץ מס דיגיטלי שמטפל בכל ההתנהלות מול הרשויות ללא ניירת.
-            אנחנו חוסכים לכם זמן ומתמודדים עם הבירוקרטיה בשבילכם.
+            {subtitle}
           </p>
         </div>
 
@@ -204,7 +218,7 @@ export default function HeroSection() {
           style={{ paddingTop: "clamp(8px, 1.5vh, 16px)", width: "100%" }}
         >
           <Link
-            href="/contact"
+            href={ctaUrl}
             className="relative flex items-center justify-center"
             style={{
               width: "clamp(160px, 18vw, 213px)",
@@ -231,7 +245,7 @@ export default function HeroSection() {
                 "linear-gradient(135deg, #002069 0%, #00339a 100%)";
             }}
           >
-            יצירת קשר
+            {ctaLabel}
           </Link>
         </div>
       </div>
@@ -258,7 +272,7 @@ export default function HeroSection() {
             whiteSpace: "nowrap",
           }}
         >
-          גלו עוד עלינו
+          {scrollLabel}
         </span>
         <a
           href="#about"
