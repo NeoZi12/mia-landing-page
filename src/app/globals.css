@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #F7F9FB;
   --foreground: #171717;
 }
 
@@ -15,6 +15,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -27,4 +28,36 @@ body {
 @keyframes bounce-arrow {
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(5px); }
+}
+
+/* ── Navbar link hover pill ── */
+.nav-link-bg {
+  background: rgba(0, 32, 105, 0.07);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.nav-link:hover .nav-link-bg {
+  opacity: 1;
+}
+
+/* ── Service card hover ── */
+.service-card {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.35s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0px 22px 44px -8px rgba(0, 32, 105, 0.18) !important;
+}
+
+.service-card-featured {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.35s ease;
+}
+
+.service-card-featured:hover {
+  transform: translateY(-7px);
+  box-shadow: 0px 28px 52px -8px rgba(0, 15, 60, 0.48) !important;
 }

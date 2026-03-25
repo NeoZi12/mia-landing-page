@@ -268,7 +268,7 @@ export default function HeroSection({ data }: HeroSectionProps = {}) {
             fontSize: "clamp(14px, 1.8vw, 20px)",
             lineHeight: 1.4,
             letterSpacing: "-0.1px",
-            color: "rgba(226,232,240,0.6)",
+            color: "#ffffff",
             whiteSpace: "nowrap",
           }}
         >
@@ -280,7 +280,7 @@ export default function HeroSection({ data }: HeroSectionProps = {}) {
           style={{
             width: 40,
             height: 40,
-            border: "2px solid rgba(226,232,240,0.6)",
+            border: "2px solid #ffffff",
             borderRadius: "50%",
             animation: "bounce-arrow 2s ease-in-out infinite",
           }}
@@ -295,7 +295,7 @@ export default function HeroSection({ data }: HeroSectionProps = {}) {
           >
             <path
               d="M1 1L6 6L11 1"
-              stroke="rgba(226,232,240,0.6)"
+              stroke="#ffffff"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"

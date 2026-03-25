@@ -218,7 +218,7 @@ export default function AboutHeroSection({ data }: AboutHeroSectionProps = {}) {
           {scrollLabel}
         </span>
         <a
-          href="#about-me"
+          href="#intro-video"
           className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-[#1E3A5F]"
           style={{ animation: "bounce-arrow 2s ease-in-out infinite" }}
           aria-label="גלול למטה"

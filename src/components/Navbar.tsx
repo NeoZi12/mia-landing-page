@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 function WhatsAppIcon() {
@@ -13,29 +12,75 @@ function WhatsAppIcon() {
 }
 
 const NAV_LINKS = [
-  { label: "ראשי",    href: "#hero"    },
-  { label: "עלינו",   href: "#about"   },
-  { label: "שירותים", href: "#services" },
-  { label: "צור קשר", href: "#contact" },
+  { label: "ראשי",    id: "hero",     url: "/"         },
+  { label: "עלינו",   id: "about",    url: "/about-us" },
+  { label: "שירותים", id: "services", url: "/services" },
+  { label: "צור קשר", id: "contact",  url: "/contact"  },
 ];
 
 const GLASS: React.CSSProperties = {
-  background:          "rgba(255,255,255,0.7)",
-  backdropFilter:      "blur(12px)",
-  WebkitBackdropFilter:"blur(12px)",
+  background:           "rgba(255,255,255,0.7)",
+  backdropFilter:       "blur(12px)",
+  WebkitBackdropFilter: "blur(12px)",
 };
 
 export default function Navbar() {
   const [visible,       setVisible]       = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const [menuOpen,      setMenuOpen]      = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
+  const [indicator,     setIndicator]     = useState({ left: 0, width: 0, ready: false });
 
-  // ── Show / hide based on scroll position ──────────────────────────────────
+  const menuRef  = useRef<HTMLDivElement>(null);
+  const navRef   = useRef<HTMLElement>(null);
+  const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+
+  /* ── Measure & move the sliding indicator ──────────────────────────────── */
+  const updateIndicator = useCallback(() => {
+    const idx = NAV_LINKS.findIndex((l) => l.id === activeSection);
+    const el  = linkRefs.current[idx];
+    const nav = navRef.current;
+    if (!el || !nav) return;
+    const navRect = nav.getBoundingClientRect();
+    const elRect  = el.getBoundingClientRect();
+    setIndicator({ left: elRect.left - navRect.left, width: elRect.width, ready: true });
+  }, [activeSection]);
+
+  useEffect(() => {
+    updateIndicator();
+  }, [updateIndicator, visible]); // re-measure when navbar fades in
+
+  useEffect(() => {
+    window.addEventListener("resize", updateIndicator, { passive: true });
+    return () => window.removeEventListener("resize", updateIndicator);
+  }, [updateIndicator]);
+
+  /* ── URL sync ────────────────────────────────────────────────────────────── */
+  useEffect(() => {
+    window.history.replaceState(null, "", NAV_LINKS.find((l) => l.id === activeSection)?.url ?? "/");
+  }, [activeSection]);
+
+  /* ── On direct load to a path (e.g. /services), scroll to that section ─── */
+  useEffect(() => {
+    const pathToId: Record<string, string> = {
+      "/about-us": "about",
+      "/services":  "services",
+      "/contact":   "contact",
+    };
+    const id = pathToId[window.location.pathname];
+    if (!id) return;
+    const go = () => {
+      const el = document.getElementById(id);
+      if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY, behavior: "smooth" });
+    };
+    // Small delay lets the page fully render before scrolling
+    const t = setTimeout(go, 300);
+    return () => clearTimeout(t);
+  }, []);
+
+  /* ── Show / hide navbar ─────────────────────────────────────────────────── */
   useEffect(() => {
     const onScroll = () => {
       setVisible(window.scrollY > window.innerHeight * 0.85);
-      // close mobile menu when scrolling back to hero
       if (window.scrollY <= window.innerHeight * 0.85) setMenuOpen(false);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -43,11 +88,10 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // ── Active section tracking via IntersectionObserver ──────────────────────
+  /* ── Active section tracking ────────────────────────────────────────────── */
   useEffect(() => {
     const ids = ["hero", "about", "services", "contact"];
     const observers: IntersectionObserver[] = [];
-
     ids.forEach((id) => {
       const el = document.getElementById(id);
       if (!el) return;
@@ -58,20 +102,24 @@ export default function Navbar() {
       obs.observe(el);
       observers.push(obs);
     });
-
     return () => observers.forEach((o) => o.disconnect());
   }, []);
 
-  // ── Close menu on outside click ───────────────────────────────────────────
+  /* ── Close menu on outside click ────────────────────────────────────────── */
   useEffect(() => {
     const onOutside = (e: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-        setMenuOpen(false);
-      }
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) setMenuOpen(false);
     };
     if (menuOpen) document.addEventListener("mousedown", onOutside);
     return () => document.removeEventListener("mousedown", onOutside);
   }, [menuOpen]);
+
+  /* ── Reliable scroll-to: always lands at the section's top ─────────────── */
+  const scrollToSection = useCallback((id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY, behavior: "smooth" });
+  }, []);
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -95,7 +143,7 @@ export default function Navbar() {
       >
         <div className="flex flex-row-reverse md:flex-row justify-between items-center w-full h-full px-5 md:px-8">
 
-          {/* ── Logo — right side in RTL ── */}
+          {/* ── Logo ── */}
           <div className="flex-shrink-0" aria-label="לוגו">
             <Image
               src="/images/maya logo 2.png"
@@ -107,38 +155,65 @@ export default function Navbar() {
             />
           </div>
 
-          {/* ── Nav links — desktop only ── */}
-          <nav className="hidden md:flex flex-row items-center gap-6 lg:gap-8" dir="rtl">
-            {NAV_LINKS.map(({ label, href }) => {
-              const sectionId = href.replace("#", "");
-              const isActive  = activeSection === sectionId;
+          {/* ── Nav links — desktop ── */}
+          <nav
+            ref={navRef}
+            className="hidden md:flex flex-row items-center gap-1 relative"
+            dir="rtl"
+          >
+            {/* Sliding active indicator */}
+            <span
+              aria-hidden="true"
+              className="absolute bottom-0 h-[2px] rounded-full bg-[#003399] pointer-events-none"
+              style={{
+                left:       indicator.left,
+                width:      indicator.width,
+                opacity:    indicator.ready ? 1 : 0,
+                transition: "left 0.4s cubic-bezier(0.22,1,0.36,1), width 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.2s",
+              }}
+            />
+
+            {NAV_LINKS.map(({ label, id }, i) => {
+              const isActive = activeSection === id;
               return (
-                <Link
-                  key={href}
-                  href={href}
-                  className="whitespace-nowrap transition-colors duration-150"
+                <a
+                  key={id}
+                  ref={(el) => { linkRefs.current[i] = el; }}
+                  href={`#${id}`}
+                  onClick={(e) => { e.preventDefault(); scrollToSection(id); }}
+                  className="nav-link relative flex items-center rounded-lg cursor-pointer select-none"
                   style={{
-                    fontFamily:     "var(--font-heebo), sans-serif",
-                    fontWeight:     600,
-                    fontSize:       14,
-                    lineHeight:     "20px",
-                    letterSpacing:  "-0.35px",
-                    color:          isActive ? "#003399" : "#475569",
-                    borderBottom:   isActive ? "2px solid #003399" : "2px solid transparent",
-                    paddingBottom:  4,
+                    padding:        "6px 12px",
+                    paddingBottom:  "8px",
                     textDecoration: "none",
                   }}
                 >
-                  {label}
-                </Link>
+                  {/* Hover pill — shown via CSS .nav-link:hover */}
+                  <span aria-hidden="true" className="nav-link-bg absolute inset-0 rounded-lg pointer-events-none" />
+                  <span
+                    className="relative z-10"
+                    style={{
+                      fontFamily:    "var(--font-heebo), sans-serif",
+                      fontWeight:    600,
+                      fontSize:      14,
+                      lineHeight:    "20px",
+                      letterSpacing: "-0.35px",
+                      color:         isActive ? "#003399" : "#475569",
+                      transition:    "color 0.25s ease",
+                      whiteSpace:    "nowrap",
+                    }}
+                  >
+                    {label}
+                  </span>
+                </a>
               );
             })}
           </nav>
 
-          {/* ── Right side: CTA (desktop) + Hamburger (mobile) ── */}
+          {/* ── Right side: CTA + Hamburger ── */}
           <div className="flex items-center gap-3">
 
-            {/* WhatsApp CTA — desktop only */}
+            {/* WhatsApp CTA — desktop */}
             <a
               href="https://wa.me/972584087061"
               target="_blank"
@@ -163,7 +238,7 @@ export default function Navbar() {
               שלחו לנו הודעה
             </a>
 
-            {/* Hamburger button — mobile only */}
+            {/* Hamburger — mobile */}
             <button
               onClick={() => setMenuOpen((o) => !o)}
               className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-lg gap-[5px] transition-colors duration-150"
@@ -171,36 +246,19 @@ export default function Navbar() {
               aria-label={menuOpen ? "סגור תפריט" : "פתח תפריט"}
               aria-expanded={menuOpen}
             >
-              {/* Three bars → X animation */}
-              <span
-                className="block w-5 h-[2px] rounded-full transition-all duration-300 origin-center"
-                style={{
-                  background:  "#1E3A5F",
-                  transform:   menuOpen ? "translateY(7px) rotate(45deg)" : "none",
-                }}
-              />
-              <span
-                className="block w-5 h-[2px] rounded-full transition-all duration-300"
-                style={{
-                  background: "#1E3A5F",
-                  opacity:    menuOpen ? 0 : 1,
-                  transform:  menuOpen ? "scaleX(0)" : "scaleX(1)",
-                }}
-              />
-              <span
-                className="block w-5 h-[2px] rounded-full transition-all duration-300 origin-center"
-                style={{
-                  background: "#1E3A5F",
-                  transform:  menuOpen ? "translateY(-7px) rotate(-45deg)" : "none",
-                }}
-              />
+              <span className="block w-5 h-[2px] rounded-full transition-all duration-300 origin-center"
+                style={{ background: "#1E3A5F", transform: menuOpen ? "translateY(7px) rotate(45deg)" : "none" }} />
+              <span className="block w-5 h-[2px] rounded-full transition-all duration-300"
+                style={{ background: "#1E3A5F", opacity: menuOpen ? 0 : 1, transform: menuOpen ? "scaleX(0)" : "scaleX(1)" }} />
+              <span className="block w-5 h-[2px] rounded-full transition-all duration-300 origin-center"
+                style={{ background: "#1E3A5F", transform: menuOpen ? "translateY(-7px) rotate(-45deg)" : "none" }} />
             </button>
 
           </div>
         </div>
       </div>
 
-      {/* ══ Mobile dropdown menu ════════════════════════════════════════════ */}
+      {/* ══ Mobile dropdown ═════════════════════════════════════════════════ */}
       <div
         className={[
           "md:hidden w-full mt-2 rounded-xl border border-[rgba(196,197,213,0.15)]",
@@ -213,16 +271,15 @@ export default function Navbar() {
         style={GLASS}
       >
         <nav dir="rtl" className="flex flex-col px-5 py-3">
-          {NAV_LINKS.map(({ label, href }, i) => {
-            const sectionId = href.replace("#", "");
-            const isActive  = activeSection === sectionId;
-            const isLast    = i === NAV_LINKS.length - 1;
+          {NAV_LINKS.map(({ label, id }, i) => {
+            const isActive = activeSection === id;
+            const isLast   = i === NAV_LINKS.length - 1;
             return (
-              <Link
-                key={href}
-                href={href}
-                onClick={closeMenu}
-                className="flex items-center justify-start transition-colors duration-150"
+              <a
+                key={id}
+                href={`#${id}`}
+                onClick={(e) => { e.preventDefault(); scrollToSection(id); closeMenu(); }}
+                className="flex items-center justify-between transition-colors duration-150"
                 style={{
                   fontFamily:     "var(--font-heebo), sans-serif",
                   fontWeight:     600,
@@ -237,16 +294,12 @@ export default function Navbar() {
               >
                 {label}
                 {isActive && (
-                  <span
-                    className="inline-block w-1.5 h-1.5 rounded-full mr-2 flex-shrink-0"
-                    style={{ background: "#003399" }}
-                  />
+                  <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: "#003399" }} />
                 )}
-              </Link>
+              </a>
             );
           })}
 
-          {/* WhatsApp CTA inside mobile menu */}
           <div className="pt-3 pb-2">
             <a
               href="https://wa.me/972584087061"

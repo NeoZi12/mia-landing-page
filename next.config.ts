@@ -8,6 +8,13 @@ const nextConfig: NextConfig = {
      */
     remotePatterns: [new URL('https://cdn.sanity.io/**')],
   },
+  async rewrites() {
+    return [
+      { source: "/about-us", destination: "/" },
+      { source: "/services",  destination: "/" },
+      { source: "/contact",   destination: "/" },
+    ];
+  },
 };
 
 export default nextConfig;
