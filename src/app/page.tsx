@@ -11,6 +11,8 @@ import HeroSection from "@/components/sections/HeroSection";
 import AboutHeroSection from "@/components/sections/AboutHeroSection";
 import VideoIntroSection from "@/components/sections/VideoIntroSection";
 import ServicesSection from "@/components/sections/ServicesSection";
+import ContactSection from "@/components/sections/ContactSection";
+import SiteFooter from "@/components/SiteFooter";
 import Navbar from "@/components/Navbar";
 import { client } from "@/lib/sanity";
 import { HOME_PAGE_QUERY, type HomePageData } from "@/lib/queries";
@@ -43,6 +45,10 @@ export default async function HomePage() {
       </div>
       <div id="services">
         <ServicesSection />
+      </div>
+      <div id="contact" style={{ height: "100dvh", display: "flex", flexDirection: "column" }}>
+        <ContactSection />
+        <SiteFooter />
       </div>
     </>
   );
