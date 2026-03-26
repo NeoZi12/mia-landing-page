@@ -208,11 +208,12 @@ export default function AboutHeroSection({ data }: AboutHeroSectionProps = {}) {
         style={{ bottom: 48, gap: 8 }}
       >
         <span
-          className="text-[#161C2D] text-center whitespace-nowrap"
+          className="text-center whitespace-nowrap"
           style={{
             fontSize: "clamp(14px, 1.8vw, 20px)",
             lineHeight: 1.4,
             letterSpacing: "-0.1px",
+            color: "#1E3A5F",
           }}
         >
           {scrollLabel}

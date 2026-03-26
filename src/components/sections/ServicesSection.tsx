@@ -1,4 +1,8 @@
+"use client";
+
 import type { ReactNode } from "react";
+import Link from "next/link";
+import { FadeUpItem, StaggerContainer } from "@/components/motion";
 
 /* ─── Icon SVGs ─────────────────────────────────────────────── */
 
@@ -70,10 +74,8 @@ function IconCustomConsultation({ color = "#FFFFFF" }: { color?: string }) {
 
 function LearnMore({ color = "#002069" }: { color?: string }) {
   return (
-    <a
-      href="#"
+    <div
       className="flex items-center gap-2 mt-auto"
-      style={{ textDecoration: "none" }}
     >
       <span
         style={{
@@ -90,7 +92,7 @@ function LearnMore({ color = "#002069" }: { color?: string }) {
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M10 12L6 8L10 4" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
-    </a>
+    </div>
   );
 }
 
@@ -100,10 +102,15 @@ interface CardProps {
   icon: ReactNode;
   title: string;
   body: string;
+  slug: string;
 }
 
-function ServiceCard({ icon, title, body }: CardProps) {
+function ServiceCard({ icon, title, body, slug }: CardProps) {
   return (
+    <Link
+      href={`/services/${slug}`}
+      style={{ textDecoration: "none", display: "block", height: "100%" }}
+    >
     <div
       className="service-card flex flex-col items-start h-full rounded-lg bg-white cursor-pointer overflow-hidden"
       style={{
@@ -153,6 +160,7 @@ function ServiceCard({ icon, title, body }: CardProps) {
 
       <LearnMore color="#002069" />
     </div>
+    </Link>
   );
 }
 
@@ -160,6 +168,7 @@ function ServiceCard({ icon, title, body }: CardProps) {
 
 function FeaturedCard() {
   return (
+    <Link href="/services/custom-consultation" style={{ textDecoration: "none", display: "block", height: "100%" }}>
     <div
       className="service-card-featured relative flex flex-col items-start h-full rounded-lg overflow-hidden isolate cursor-pointer"
       style={{
@@ -242,6 +251,7 @@ function FeaturedCard() {
         <LearnMore color="#FFFFFF" />
       </div>
     </div>
+    </Link>
   );
 }
 
@@ -298,72 +308,94 @@ export default function ServicesSection() {
           gap: "clamp(16px, 3vh, 40px)",
         }}
       >
-        {/* ── Header ── */}
+        {/* ── Header — choreographed: heading first, subtitle second ── */}
         <div className="flex flex-col items-center" style={{ gap: 12 }}>
-          {/* Heading */}
-          <h2
-            className="text-[#1E3A5F] text-center"
-            style={{
-              fontFamily: "var(--font-heebo), sans-serif",
-              fontWeight: 800,
-              fontSize: "clamp(32px, 4.7vw, 60px)",
-              lineHeight: 1,
-              letterSpacing: "-1.5px",
-            }}
-          >
-            השירותים שלנו
-          </h2>
+          <FadeUpItem standalone delay={0}>
+            <h2
+              className="text-[#1E3A5F] text-center"
+              style={{
+                fontFamily: "var(--font-heebo), sans-serif",
+                fontWeight: 800,
+                fontSize: "clamp(32px, 4.7vw, 60px)",
+                lineHeight: 1,
+                letterSpacing: "-1.5px",
+              }}
+            >
+              השירותים שלנו
+            </h2>
+          </FadeUpItem>
 
-          {/* Subtitle */}
-          <p
-            className="text-[#496177] text-center max-w-[768px]"
-            style={{
-              fontFamily: "var(--font-heebo), sans-serif",
-              fontWeight: 400,
-              fontSize: "clamp(14px, 1.4vw, 20px)",
-              lineHeight: "32px",
-            }}
-          >
-            פתרונות מס מתקדמים בהתאמה אישית, עם ניסיון רב וגישה טכנולוגית לביטחון פיננסי מקסימלי.
-          </p>
+          <FadeUpItem standalone delay={0.14}>
+            <p
+              className="text-[#496177] text-center max-w-[768px]"
+              style={{
+                fontFamily: "var(--font-heebo), sans-serif",
+                fontWeight: 400,
+                fontSize: "clamp(14px, 1.4vw, 20px)",
+                lineHeight: "32px",
+              }}
+            >
+              פתרונות מס מתקדמים בהתאמה אישית, עם ניסיון רב וגישה טכנולוגית לביטחון פיננסי מקסימלי.
+            </p>
+          </FadeUpItem>
         </div>
 
-        {/* ── Services Grid ── */}
+        {/* ── Services Grid — cards cascade after the header settles ── */}
         {/*
           dir="rtl" is global, so grid flows right → left.
           JSX order: top-right, top-center, top-left, bottom-right, bottom-center, bottom-left(featured)
+          delayChildren: cards begin after heading + subtitle have had time to register.
         */}
-        <div
+        <StaggerContainer
           className="grid grid-cols-1 md:grid-cols-3"
           style={{ gap: "clamp(12px, 1.5vw, 20px)" }}
+          delayChildren={0.32}
+          staggerChildren={0.13}
         >
-          <ServiceCard
-            icon={<IconAnnualReports />}
-            title="דוחות שנתיים"
-            body="הכנה והגשת דוחות שנתיים ליחידים ולחברות, תוך אופטימיזציה מלאה של הטבות המס המגיעות לך."
-          />
-          <ServiceCard
-            icon={<IconCorporateTax />}
-            title="מיסוי תאגידי"
-            body="תכנון מס אסטרטגי לחברות, ליווי עסקאות מורכבות וניהול שוטף מול רשויות המס בארץ ובעולם."
-          />
-          <ServiceCard
-            icon={<IconTaxRefunds />}
-            title="החזרי מס"
-            body="בדיקת זכאות מקיפה להחזרי מס לשכירים ובעלי שליטה, כולל טיפול בתיקונים רטרואקטיביים."
-          />
-          <ServiceCard
-            icon={<IconBookkeeping />}
-            title="הנהלת חשבונות"
-            body="שירותי הנהלת חשבונות כפולה וחד-צידית לעסקים קטנים ובינוניים בדיוק מרבי ובטכנולוגיה עננית."
-          />
-          <ServiceCard
-            icon={<IconTaxRepresentation />}
-            title="ייצוג ברשויות המס"
-            body="ייצוג מקצועי מול אגף המכס, המע״מ ומס הכנסה, טיפול בדיווחים תקופתיים והשגות על קביעות מס."
-          />
-          <FeaturedCard />
-        </div>
+          <FadeUpItem duration={0.8}>
+            <ServiceCard
+              icon={<IconAnnualReports />}
+              title="דוחות שנתיים"
+              body="הכנה והגשת דוחות שנתיים ליחידים ולחברות, תוך אופטימיזציה מלאה של הטבות המס המגיעות לך."
+              slug="annual-reports"
+            />
+          </FadeUpItem>
+          <FadeUpItem duration={0.8}>
+            <ServiceCard
+              icon={<IconCorporateTax />}
+              title="מיסוי תאגידי"
+              body="תכנון מס אסטרטגי לחברות, ליווי עסקאות מורכבות וניהול שוטף מול רשויות המס בארץ ובעולם."
+              slug="corporate-tax"
+            />
+          </FadeUpItem>
+          <FadeUpItem duration={0.8}>
+            <ServiceCard
+              icon={<IconTaxRefunds />}
+              title="החזרי מס"
+              body="בדיקת זכאות מקיפה להחזרי מס לשכירים ובעלי שליטה, כולל טיפול בתיקונים רטרואקטיביים."
+              slug="tax-refunds"
+            />
+          </FadeUpItem>
+          <FadeUpItem duration={0.8}>
+            <ServiceCard
+              icon={<IconBookkeeping />}
+              title="הנהלת חשבונות"
+              body="שירותי הנהלת חשבונות כפולה וחד-צידית לעסקים קטנים ובינוניים בדיוק מרבי ובטכנולוגיה עננית."
+              slug="bookkeeping"
+            />
+          </FadeUpItem>
+          <FadeUpItem duration={0.8}>
+            <ServiceCard
+              icon={<IconTaxRepresentation />}
+              title="ייצוג ברשויות המס"
+              body="ייצוג מקצועי מול אגף המכס, המע״מ ומס הכנסה, טיפול בדיווחים תקופתיים והשגות על קביעות מס."
+              slug="tax-representation"
+            />
+          </FadeUpItem>
+          <FadeUpItem duration={0.8}>
+            <FeaturedCard />
+          </FadeUpItem>
+        </StaggerContainer>
       </div>
     </section>
   );

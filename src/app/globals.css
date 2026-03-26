@@ -71,3 +71,18 @@ body {
   transform: translateY(-2px);
   box-shadow: 0px 8px 20px -4px rgba(0, 32, 105, 0.12) !important;
 }
+
+/* ── Reduced motion: disable all CSS animations and transitions ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}

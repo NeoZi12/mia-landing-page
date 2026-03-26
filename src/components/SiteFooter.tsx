@@ -1,12 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 const NAV_LINKS = [
-  { label: "ראשי",    href: "#hero"     },
-  { label: "עלינו",   href: "#about"    },
-  { label: "שירותים", href: "#services" },
-  { label: "צור קשר", href: "#contact"  },
+  { label: "ראשי",    href: "/"          },
+  { label: "עלינו",   href: "/#about"    },
+  { label: "שירותים", href: "/#services" },
+  { label: "צור קשר", href: "/#contact"  },
 ];
 
 export default function SiteFooter() {
@@ -21,10 +22,15 @@ export default function SiteFooter() {
       }}
     >
       <div
-        className="flex flex-row items-center justify-between w-full h-full max-w-[1280px] mx-auto px-6"
+        className="relative flex flex-row items-center justify-between w-full h-full max-w-[1280px] mx-auto px-6"
       >
         {/* Logo — right (RTL start) */}
-        <div className="flex items-center gap-3 flex-shrink-0">
+        <Link
+          href="/#about"
+          className="flex items-center gap-3 flex-shrink-0"
+          style={{ textDecoration: "none" }}
+          aria-label="עבור לעמוד עלינו"
+        >
           <Image
             src="/images/maya logo 2.png"
             alt="לוגו מיה"
@@ -41,12 +47,12 @@ export default function SiteFooter() {
               letterSpacing: "-0.3px",
             }}
           >
-            מיה
+            מיה - ייעוץ מס והנהלת חשבונות
           </span>
-        </div>
+        </Link>
 
-        {/* Nav links — center */}
-        <nav className="hidden md:flex flex-row items-center gap-6">
+        {/* Nav links — absolutely centered */}
+        <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 flex-row items-center gap-6">
           {NAV_LINKS.map(({ label, href }) => (
             <a
               key={href}

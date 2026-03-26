@@ -12,10 +12,10 @@ function WhatsAppIcon() {
 }
 
 const NAV_LINKS = [
-  { label: "ראשי",    id: "hero",     url: "/"         },
-  { label: "עלינו",   id: "about",    url: "/about-us" },
-  { label: "שירותים", id: "services", url: "/services" },
-  { label: "צור קשר", id: "contact",  url: "/contact"  },
+  { label: "ראשי",    id: "hero",     url: "/",         hash: "/"         },
+  { label: "עלינו",   id: "about",    url: "/about-us", hash: "/#about"   },
+  { label: "שירותים", id: "services", url: "/services", hash: "/#services" },
+  { label: "צור קשר", id: "contact",  url: "/contact",  hash: "/#contact"  },
 ];
 
 const GLASS: React.CSSProperties = {
@@ -24,9 +24,9 @@ const GLASS: React.CSSProperties = {
   WebkitBackdropFilter: "blur(12px)",
 };
 
-export default function Navbar() {
-  const [visible,       setVisible]       = useState(false);
-  const [activeSection, setActiveSection] = useState("hero");
+export default function Navbar({ alwaysVisible = false, standalone = false }: { alwaysVisible?: boolean; standalone?: boolean }) {
+  const [visible,       setVisible]       = useState(alwaysVisible);
+  const [activeSection, setActiveSection] = useState(standalone ? "" : "hero");
   const [menuOpen,      setMenuOpen]      = useState(false);
   const [indicator,     setIndicator]     = useState({ left: 0, width: 0, ready: false });
 
@@ -56,8 +56,9 @@ export default function Navbar() {
 
   /* ── URL sync ────────────────────────────────────────────────────────────── */
   useEffect(() => {
+    if (standalone) return;
     window.history.replaceState(null, "", NAV_LINKS.find((l) => l.id === activeSection)?.url ?? "/");
-  }, [activeSection]);
+  }, [activeSection, standalone]);
 
   /* ── On direct load to a path (e.g. /services), scroll to that section ─── */
   useEffect(() => {
@@ -79,6 +80,7 @@ export default function Navbar() {
 
   /* ── Show / hide navbar ─────────────────────────────────────────────────── */
   useEffect(() => {
+    if (alwaysVisible) return;
     const onScroll = () => {
       setVisible(window.scrollY > window.innerHeight * 0.85);
       if (window.scrollY <= window.innerHeight * 0.85) setMenuOpen(false);
@@ -86,10 +88,11 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [alwaysVisible]);
 
   /* ── Active section tracking ────────────────────────────────────────────── */
   useEffect(() => {
+    if (standalone) return;
     const ids = ["hero", "about", "services", "contact"];
     const observers: IntersectionObserver[] = [];
     ids.forEach((id) => {
@@ -103,7 +106,7 @@ export default function Navbar() {
       observers.push(obs);
     });
     return () => observers.forEach((o) => o.disconnect());
-  }, []);
+  }, [standalone]);
 
   /* ── Close menu on outside click ────────────────────────────────────────── */
   useEffect(() => {
@@ -144,16 +147,19 @@ export default function Navbar() {
         <div className="flex flex-row-reverse md:flex-row justify-between items-center w-full h-full px-5 md:px-8">
 
           {/* ── Logo ── */}
-          <div className="flex-shrink-0" aria-label="לוגו">
-            <Image
-              src="/images/maya logo 2.png"
-              alt="לוגו מיה"
-              width={48}
-              height={48}
-              className="object-contain"
-              priority
-            />
-          </div>
+          {standalone ? (
+            <a href="/#about" aria-label="עבור לעמוד עלינו" className="flex-shrink-0">
+              <Image src="/images/maya logo 2.png" alt="לוגו מיה" width={48} height={48} className="object-contain" priority />
+            </a>
+          ) : (
+            <button
+              onClick={() => scrollToSection("about")}
+              className="flex-shrink-0 cursor-pointer bg-transparent border-none p-0"
+              aria-label="עבור לעמוד עלינו"
+            >
+              <Image src="/images/maya logo 2.png" alt="לוגו מיה" width={48} height={48} className="object-contain" priority />
+            </button>
+          )}
 
           {/* ── Nav links — desktop ── */}
           <nav
@@ -173,14 +179,14 @@ export default function Navbar() {
               }}
             />
 
-            {NAV_LINKS.map(({ label, id }, i) => {
+            {NAV_LINKS.map(({ label, id, hash }, i) => {
               const isActive = activeSection === id;
               return (
                 <a
                   key={id}
                   ref={(el) => { linkRefs.current[i] = el; }}
-                  href={`#${id}`}
-                  onClick={(e) => { e.preventDefault(); scrollToSection(id); }}
+                  href={standalone ? hash : `#${id}`}
+                  onClick={standalone ? undefined : (e) => { e.preventDefault(); scrollToSection(id); }}
                   className="nav-link relative flex items-center rounded-lg cursor-pointer select-none"
                   style={{
                     padding:        "6px 12px",
@@ -271,14 +277,14 @@ export default function Navbar() {
         style={GLASS}
       >
         <nav dir="rtl" className="flex flex-col px-5 py-3">
-          {NAV_LINKS.map(({ label, id }, i) => {
+          {NAV_LINKS.map(({ label, id, hash }, i) => {
             const isActive = activeSection === id;
             const isLast   = i === NAV_LINKS.length - 1;
             return (
               <a
                 key={id}
-                href={`#${id}`}
-                onClick={(e) => { e.preventDefault(); scrollToSection(id); closeMenu(); }}
+                href={standalone ? hash : `#${id}`}
+                onClick={standalone ? closeMenu : (e) => { e.preventDefault(); scrollToSection(id); closeMenu(); }}
                 className="flex items-center justify-between transition-colors duration-150"
                 style={{
                   fontFamily:     "var(--font-heebo), sans-serif",
