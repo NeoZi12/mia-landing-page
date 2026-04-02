@@ -18,7 +18,7 @@ import { client } from "@/lib/sanity";
 import { HOME_PAGE_QUERY, type HomePageData } from "@/lib/queries";
 
 async function getHomePageData(): Promise<HomePageData | null> {
-  if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) return null;
+  if (!client) return null;
 
   try {
     return await client.fetch<HomePageData>(HOME_PAGE_QUERY);
