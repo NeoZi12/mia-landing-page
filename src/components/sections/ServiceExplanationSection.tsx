@@ -13,26 +13,6 @@ function PlayIcon() {
   );
 }
 
-
-/* ─── "Learn more" arrow icon ───────────────────────────────── */
-function ArrowLeftIcon() {
-  return (
-    <svg width="27" height="16" viewBox="0 0 27 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M26 8H1M1 8L8 1M1 8L8 15" stroke="#002069" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-/* ─── Bullet icons ───────────────────────────────────────────── */
-function BulletCheckIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <circle cx="10" cy="10" r="9" stroke="#002069" strokeWidth="1.5" />
-      <path d="M6 10L9 13L14 7" stroke="#002069" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
 /* ─── Main Component ─────────────────────────────────────────── */
 
 interface Props {
@@ -40,7 +20,7 @@ interface Props {
 }
 
 export default function ServiceExplanationSection({ service }: Props) {
-  const { title, videoTitle, primaryText, secondaryText, bullets } = service;
+  const { title, videoTitle, primaryText, secondaryText } = service;
 
   return (
     <section
@@ -70,8 +50,25 @@ export default function ServiceExplanationSection({ service }: Props) {
           className="flex flex-col lg:flex-row-reverse items-start lg:items-center w-full"
           style={{ gap: "clamp(40px, 6vw, 96px)" }}
         >
-          {/* ── Left column (video + bullets) ── */}
+          {/* ── Left column (video) ── */}
           <div className="flex flex-col w-full lg:w-[53%] flex-shrink-0" style={{ gap: 0 }}>
+
+            {/* Video title — above the player */}
+            <span
+              className="text-right w-full"
+              style={{
+                fontFamily: "var(--font-heebo), sans-serif",
+                fontWeight: 700,
+                fontSize: "clamp(16px, 1.6vw, 24px)",
+                lineHeight: "32px",
+                letterSpacing: "0.6px",
+                color: "#002069",
+                display: "block",
+                marginBottom: 12,
+              }}
+            >
+              {videoTitle}
+            </span>
 
             {/* Video player container */}
             <div
@@ -108,114 +105,8 @@ export default function ServiceExplanationSection({ service }: Props) {
                 </div>
               </div>
 
-              {/* Bottom gradient overlay */}
-              <div
-                className="absolute z-[2] pointer-events-none"
-                style={{
-                  left: 1,
-                  right: 1,
-                  top: "50%",
-                  bottom: 0,
-                  background:
-                    "linear-gradient(0deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%)",
-                }}
-              />
-
-              {/* Video title — bottom right */}
-              <div
-                className="absolute z-[3] flex items-center"
-                style={{ right: 32, bottom: 32, left: 32 }}
-              >
-                <span
-                  className="text-white text-right w-full"
-                  style={{
-                    fontFamily: "var(--font-heebo), sans-serif",
-                    fontWeight: 700,
-                    fontSize: "clamp(16px, 1.6vw, 24px)",
-                    lineHeight: "32px",
-                    letterSpacing: "0.6px",
-                  }}
-                >
-                  {videoTitle}
-                </span>
-              </div>
             </div>
 
-            {/* Bullets bar */}
-            <div style={{ paddingTop: 40 }}>
-              <div
-                className="relative w-full flex flex-col items-center justify-center"
-                style={{
-                  background: "rgba(255, 255, 255, 0.5)",
-                  border: "1px solid rgba(196, 197, 213, 0.2)",
-                  backdropFilter: "blur(2px)",
-                  WebkitBackdropFilter: "blur(2px)",
-                  borderRadius: 16,
-                  height: 138,
-                  gap: 12,
-                }}
-              >
-                {/* Row 1: first two bullets */}
-                <div className="flex flex-row items-center justify-center" style={{ gap: 0 }}>
-                  {/* Bullet 1 */}
-                  <div className="flex flex-row items-center" style={{ gap: 10, padding: "0 20px" }}>
-                    <span
-                      style={{
-                        fontFamily: "var(--font-heebo), sans-serif",
-                        fontWeight: 700,
-                        fontSize: 14,
-                        lineHeight: "20px",
-                        letterSpacing: "0.35px",
-                        color: "#191C1E",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      {bullets[0].label}
-                    </span>
-                    <BulletCheckIcon />
-                  </div>
-
-                  {/* Vertical divider */}
-                  <div style={{ width: 1, height: 24, background: "rgba(196, 197, 213, 0.3)", flexShrink: 0 }} />
-
-                  {/* Bullet 2 */}
-                  <div className="flex flex-row items-center" style={{ gap: 10, padding: "0 20px" }}>
-                    <span
-                      style={{
-                        fontFamily: "var(--font-heebo), sans-serif",
-                        fontWeight: 700,
-                        fontSize: 14,
-                        lineHeight: "20px",
-                        letterSpacing: "0.35px",
-                        color: "#191C1E",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      {bullets[1].label}
-                    </span>
-                    <BulletCheckIcon />
-                  </div>
-                </div>
-
-                {/* Row 2: third bullet centered */}
-                <div className="flex flex-row items-center justify-center" style={{ gap: 10 }}>
-                  <span
-                    style={{
-                      fontFamily: "var(--font-heebo), sans-serif",
-                      fontWeight: 700,
-                      fontSize: 14,
-                      lineHeight: "20px",
-                      letterSpacing: "0.35px",
-                      color: "#191C1E",
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    {bullets[2].label}
-                  </span>
-                  <BulletCheckIcon />
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* ── Right column (content) ── */}
@@ -269,7 +160,7 @@ export default function ServiceExplanationSection({ service }: Props) {
                   style={{
                     width: 80,
                     height: 6,
-                    background: "#00339A",
+                    background: "#002069",
                     borderRadius: 12,
                     alignSelf: "flex-start",
                   }}
@@ -318,27 +209,38 @@ export default function ServiceExplanationSection({ service }: Props) {
                 </p>
               </div>
 
-              {/* "Learn more" link → WhatsApp */}
+              {/* CTA button */}
               <div className="flex justify-start w-full">
                 <a
                   href="https://wa.me/972584087061"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex flex-row items-center"
-                  style={{ gap: 12, textDecoration: "none" }}
+                  className="relative flex items-center justify-center"
+                  style={{
+                    height: "clamp(50px, 6vh, 68px)",
+                    padding: "clamp(14px, 2vh, 20px) clamp(20px, 2vw, 30px)",
+                    background: "linear-gradient(135deg, #002069 0%, #00339a 100%)",
+                    borderRadius: 12,
+                    fontFamily: "var(--font-heebo), sans-serif",
+                    fontWeight: 700,
+                    fontSize: "clamp(15px, 1.5vw, 18px)",
+                    lineHeight: 1.5,
+                    color: "#ffffff",
+                    whiteSpace: "nowrap",
+                    textDecoration: "none",
+                    boxShadow: "0px 20px 40px -10px rgba(0,32,105,0.3)",
+                    transition: "background 0.2s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.background =
+                      "linear-gradient(135deg, #001850 0%, #002d87 100%)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.background =
+                      "linear-gradient(135deg, #002069 0%, #00339a 100%)";
+                  }}
                 >
-                  <span
-                    style={{
-                      fontFamily: "var(--font-heebo), sans-serif",
-                      fontWeight: 700,
-                      fontSize: "clamp(15px, 1.2vw, 18px)",
-                      lineHeight: "28px",
-                      color: "#002069",
-                    }}
-                  >
-                    גלו עוד על התהליך שלנו
-                  </span>
-                  <ArrowLeftIcon />
+                  גלו עוד על התהליך שלנו
                 </a>
               </div>
             </div>
