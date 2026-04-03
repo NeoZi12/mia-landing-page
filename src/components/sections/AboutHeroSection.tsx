@@ -15,8 +15,8 @@ export default function AboutHeroSection({ data }: AboutHeroSectionProps = {}) {
   const scrollLabel = data?.aboutScrollLabel ?? "הכירו אותנו בסרטון קצר";
   return (
     <section
-      className="relative w-full bg-[#F7F9FB] overflow-hidden flex flex-col justify-center items-center isolate"
-      style={{ height: "100dvh", padding: "104px 0 clamp(110px, 16vh, 140px)" }}
+      className="relative w-full bg-[#F7F9FB] overflow-hidden flex flex-col justify-center items-center isolate h-auto md:h-[100dvh]"
+      style={{ padding: "104px 0 clamp(48px, 8vh, 140px)" }}
     >
       {/* ── Decorative background gradient ── */}
       <div
@@ -205,7 +205,7 @@ export default function AboutHeroSection({ data }: AboutHeroSectionProps = {}) {
       {/* ── Scroll indicator — dark colors, bottom center ── */}
       <div
         className="absolute left-1/2 -translate-x-1/2 z-[4] flex flex-col items-center"
-        style={{ bottom: 48, gap: 8 }}
+        style={{ bottom: "clamp(16px, 4vh, 48px)", gap: 8 }}
       >
         <span
           className="text-center whitespace-nowrap"
@@ -220,7 +220,7 @@ export default function AboutHeroSection({ data }: AboutHeroSectionProps = {}) {
         </span>
         <a
           href="#intro-video"
-          className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-[#1E3A5F]"
+          className="flex items-center justify-center w-11 h-11 rounded-full border-2 border-[#1E3A5F]"
           style={{ animation: "bounce-arrow 2s ease-in-out infinite" }}
           aria-label="גלול למטה"
         >

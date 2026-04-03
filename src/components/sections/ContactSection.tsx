@@ -63,7 +63,7 @@ function ProfessionalismCard() {
         src="/images/mia-office-pic.jpeg"
         alt=""
         fill
-        sizes="476px"
+        sizes="(max-width: 768px) 100vw, 476px"
         className="object-cover pointer-events-none select-none"
         style={{ mixBlendMode: "overlay", opacity: 0.25 }}
         aria-hidden="true"
@@ -499,7 +499,7 @@ export default function ContactSection() {
             style={{
               fontFamily: "var(--font-heebo), sans-serif",
               fontWeight: 800,
-              fontSize: "clamp(40px, 4.7vw, 60px)",
+              fontSize: "clamp(26px, 6vw, 60px)",
               lineHeight: "1.2",
               letterSpacing: "-1.8px",
               color: "#1E3A5F",

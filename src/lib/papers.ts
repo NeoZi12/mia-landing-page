@@ -35,20 +35,25 @@ function pick<T>(arr: readonly T[]): T {
 // ── Depth layer config tables ──────────────────────────────────────────────
 const LAYER_CONFIG = [
   // Layer 0 — far/small
-  { count: 9, wMin: 44, wMax: 72,   durMin: 11.0, durMax: 16.5, blurMin: 1.8, blurMax: 3.6, opMin: 0.04, opMax: 0.10, brtMin: 0.50, brtMax: 0.65, zMin: 1, zMax: 3  },
+  { wMin: 44, wMax: 72,   durMin: 11.0, durMax: 16.5, blurMin: 1.8, blurMax: 3.6, opMin: 0.04, opMax: 0.10, brtMin: 0.50, brtMax: 0.65, zMin: 1, zMax: 3  },
   // Layer 1 — mid
-  { count: 8, wMin: 68, wMax: 98,   durMin: 8.0,  durMax: 12.0, blurMin: 0.4, blurMax: 1.6, opMin: 0.07, opMax: 0.15, brtMin: 0.68, brtMax: 0.82, zMin: 4, zMax: 6  },
+  { wMin: 68, wMax: 98,   durMin: 8.0,  durMax: 12.0, blurMin: 0.4, blurMax: 1.6, opMin: 0.07, opMax: 0.15, brtMin: 0.68, brtMax: 0.82, zMin: 4, zMax: 6  },
   // Layer 2 — near/large
-  { count: 5, wMin: 100, wMax: 142, durMin: 6.2,  durMax: 9.5,  blurMin: 0.0, blurMax: 0.5, opMin: 0.12, opMax: 0.22, brtMin: 0.88, brtMax: 1.00, zMin: 7, zMax: 10 },
+  { wMin: 100, wMax: 142, durMin: 6.2,  durMax: 9.5,  blurMin: 0.0, blurMax: 0.5, opMin: 0.12, opMax: 0.22, brtMin: 0.88, brtMax: 1.00, zMin: 7, zMax: 10 },
 ] as const;
 
-export function generatePapers(): PaperConfig[] {
+// Desktop: [9, 8, 5] = 22 papers. Mobile: [4, 3, 1] = 8 papers.
+const DESKTOP_COUNTS: [number, number, number] = [9, 8, 5];
+const MOBILE_COUNTS:  [number, number, number] = [4, 3, 1];
+
+export function generatePapers({ mobile = false }: { mobile?: boolean } = {}): PaperConfig[] {
   const papers: PaperConfig[] = [];
   let id = 0;
+  const COUNTS = mobile ? MOBILE_COUNTS : DESKTOP_COUNTS;
 
   for (const [layerIdx, cfg] of LAYER_CONFIG.entries()) {
     const layer = layerIdx as 0 | 1 | 2;
-    const n = cfg.count;
+    const n = COUNTS[layerIdx];
 
     // ── Zone spread: divide usable viewport into n zones ──────────────────
     const MARGIN = 2;   // % — left/right margin so papers aren't clipped

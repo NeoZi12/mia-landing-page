@@ -18,11 +18,10 @@ export default function SiteFooter() {
       style={{
         background: "#002069",
         borderTop: "1px solid rgba(255,255,255,0.08)",
-        height: 80,
       }}
     >
       <div
-        className="relative flex flex-row items-center justify-between w-full h-full max-w-[1280px] mx-auto px-6"
+        className="relative flex flex-col md:flex-row items-center justify-between w-full max-w-[1280px] mx-auto px-6 py-4 md:py-0 md:h-[80px] gap-2 md:gap-0"
       >
         {/* Logo — right (RTL start) */}
         <Link
@@ -39,6 +38,7 @@ export default function SiteFooter() {
             className="object-contain brightness-0 invert"
           />
           <span
+            className="hidden sm:inline"
             style={{
               fontFamily: "var(--font-heebo), sans-serif",
               fontWeight: 700,

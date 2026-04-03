@@ -24,9 +24,10 @@ export default function HeroSection({ data }: HeroSectionProps = {}) {
   const [papers, setPapers] = useState<PaperConfig[]>([]);
 
   // Defer paper generation to client-only to avoid SSR/hydration mismatch
-  // (Math.random() produces different values on server vs client)
+  // (Math.random() produces different values on server vs client).
+  // On mobile (<768px) we use fewer papers to reduce GPU load on iPhone.
   useEffect(() => {
-    setPapers(generatePapers());
+    setPapers(generatePapers({ mobile: window.innerWidth < 768 }));
   }, []);
 
   return (
@@ -61,9 +62,11 @@ export default function HeroSection({ data }: HeroSectionProps = {}) {
       />
 
       {/* ── Layer 2: Falling papers ── */}
+      {/* overflow-hidden is required here: iOS Safari does not clip preserve-3d   */}
+      {/* children through an ancestor's overflow:hidden, so we clip at this level. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none overflow-hidden"
         style={{
           zIndex: 2,
           perspective: "600px",
@@ -103,8 +106,8 @@ export default function HeroSection({ data }: HeroSectionProps = {}) {
         aria-hidden="true"
         className="absolute pointer-events-none"
         style={{
-          width: 600,
-          height: 600,
+          width: "min(600px, 80vw)",
+          height: "min(600px, 80vw)",
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
@@ -278,8 +281,8 @@ export default function HeroSection({ data }: HeroSectionProps = {}) {
           href="#about"
           className="flex items-center justify-center"
           style={{
-            width: 40,
-            height: 40,
+            width: 44,
+            height: 44,
             border: "2px solid #ffffff",
             borderRadius: "50%",
             animation: "bounce-arrow 2s ease-in-out infinite",

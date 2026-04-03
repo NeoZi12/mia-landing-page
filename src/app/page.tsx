@@ -46,7 +46,7 @@ export default async function HomePage() {
       <div id="services">
         <ServicesSection />
       </div>
-      <div id="contact" style={{ height: "100dvh", display: "flex", flexDirection: "column" }}>
+      <div id="contact" className="flex flex-col min-h-[100dvh] md:h-[100dvh]">
         <ContactSection />
         <SiteFooter />
       </div>

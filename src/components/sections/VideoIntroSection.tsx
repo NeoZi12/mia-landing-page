@@ -3,8 +3,7 @@ import type { ReactNode } from "react";
 export default function VideoIntroSection() {
   return (
     <section
-      className="relative w-full bg-[#F7F9FB] overflow-hidden flex flex-col items-center isolate"
-      style={{ height: "100dvh" }}
+      className="relative w-full bg-[#F7F9FB] overflow-hidden flex flex-col items-center isolate h-auto md:h-[100dvh]"
       id="intro-video"
     >
       {/* ── Decorative background gradient (flipped: bottom to top) ── */}
@@ -85,7 +84,7 @@ export default function VideoIntroSection() {
         </div>
 
         {/* ── Video card ── */}
-        <div className="relative flex-1 min-h-0 isolate self-center w-full" style={{ minHeight: 0, maxWidth: 860 }}>
+        <div className="relative flex-1 min-h-0 isolate self-center w-full" style={{ minHeight: "clamp(180px, 35vh, 400px)", maxWidth: 860 }}>
           {/* Decorative blur — top-right of card */}
           <div
             aria-hidden="true"
@@ -248,7 +247,7 @@ function InfoItem({ icon, heading, body }: InfoItemProps) {
         style={{
           fontFamily: "var(--font-heebo), sans-serif",
           fontWeight: 600,
-          fontSize: 20,
+          fontSize: "clamp(16px, 1.5vw, 20px)",
           lineHeight: "28px",
         }}
       >
@@ -261,7 +260,7 @@ function InfoItem({ icon, heading, body }: InfoItemProps) {
         style={{
           fontFamily: "var(--font-heebo), sans-serif",
           fontWeight: 400,
-          fontSize: 16,
+          fontSize: "clamp(13px, 1.2vw, 16px)",
           lineHeight: "26px",
         }}
       >
