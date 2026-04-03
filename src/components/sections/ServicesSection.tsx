@@ -502,7 +502,7 @@ export default function ServicesSection() {
           delayChildren: cards begin after heading + subtitle have had time to register.
         */}
         <StaggerContainer
-          className="grid grid-cols-1 md:grid-cols-3"
+          className="grid grid-cols-2 md:grid-cols-3"
           style={{ gap: "clamp(12px, 1.5vw, 20px)" }}
           delayChildren={0.32}
           staggerChildren={0.13}
