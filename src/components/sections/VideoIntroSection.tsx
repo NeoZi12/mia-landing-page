@@ -112,10 +112,11 @@ export default function VideoIntroSection() {
             }}
           />
 
-          {/* Card */}
+          {/* Card — minHeight ensures visibility when parent flex-1 has no bounded height (mobile) */}
           <div
             className="relative w-full h-full rounded-xl overflow-hidden z-[2]"
             style={{
+              minHeight: "clamp(180px, 35vh, 400px)",
               background: "linear-gradient(135deg, #334155 0%, #1e293b 100%)",
               border: "1px solid rgba(196, 197, 213, 0.1)",
               boxShadow: "0px 40px 80px -20px rgba(0, 32, 105, 0.12)",
