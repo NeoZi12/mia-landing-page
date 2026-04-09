@@ -1,49 +1,15 @@
+"use client";
+
 import type { ReactNode } from "react";
+import { motion } from "framer-motion";
+import { fadeUp, stagger, viewport } from "@/lib/motion";
 
 export default function VideoIntroSection() {
   return (
     <section
-      className="relative w-full bg-[#F7F9FB] overflow-hidden flex flex-col items-center isolate h-auto md:h-[100dvh]"
+      className="relative w-full bg-[#F7F9FB] overflow-hidden flex flex-col items-center isolate h-auto lg:h-[100dvh]"
       id="intro-video"
     >
-      {/* ── Decorative background gradient (flipped: bottom to top) ── */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 z-0"
-        style={{
-          background:
-            "radial-gradient(115.14% 128.27% at 10% 80%, rgba(220, 225, 255, 0.4) 0%, #F7F9FB 90%)",
-        }}
-      />
-
-      {/* ── Blur overlay 1 — bottom-right ── */}
-      <div
-        aria-hidden="true"
-        className="absolute z-[1] rounded-xl pointer-events-none"
-        style={{
-          left: "50%",
-          right: "-10%",
-          top: "60%",
-          bottom: "-20%",
-          background: "rgba(0, 51, 153, 0.05)",
-          filter: "blur(60px)",
-        }}
-      />
-
-      {/* ── Blur overlay 2 — top-left ── */}
-      <div
-        aria-hidden="true"
-        className="absolute z-[2] rounded-xl pointer-events-none"
-        style={{
-          left: "-10%",
-          right: "70%",
-          top: "-10%",
-          bottom: "70%",
-          background: "rgba(0, 66, 93, 0.05)",
-          filter: "blur(50px)",
-        }}
-      />
-
       {/* ── Main content ── */}
       <div
         className="relative z-[3] flex flex-col w-full max-w-[1088px] px-6 lg:px-0 flex-1 min-h-0"
@@ -54,23 +20,32 @@ export default function VideoIntroSection() {
         }}
       >
         {/* ── Header ── */}
-        <div className="flex flex-col items-center" style={{ gap: 16 }}>
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={viewport}
+          className="flex flex-col items-center"
+          style={{ gap: 16 }}
+        >
           {/* Heading */}
-          <h2
+          <motion.h2
+            variants={fadeUp}
             className="text-[#1E3A5F] text-center"
             style={{
               fontFamily: "var(--font-heebo), sans-serif",
               fontWeight: 800,
-              fontSize: "clamp(28px, 4.7vw, 60px)",
+              fontSize: "clamp(26px, 3.2vw, 42px)",
               lineHeight: 1,
               letterSpacing: "-1.5px",
             }}
           >
             הכירו את מיה ייעוץ מס
-          </h2>
+          </motion.h2>
 
           {/* Subtitle */}
-          <p
+          <motion.p
+            variants={fadeUp}
             className="text-[#496177] text-center max-w-[672px]"
             style={{
               fontFamily: "var(--font-heebo), sans-serif",
@@ -80,11 +55,18 @@ export default function VideoIntroSection() {
             }}
           >
             צפו בסרטון היכרות קצר עם שירותי ייעוץ המס שלנו.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* ── Video card ── */}
-        <div className="relative flex-1 min-h-0 isolate self-center w-full" style={{ minHeight: "clamp(180px, 35vh, 400px)", maxWidth: 860 }}>
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={viewport}
+          className="relative flex-1 min-h-0 isolate self-center w-full"
+          style={{ minHeight: "clamp(180px, 35vh, 400px)", maxWidth: 860 }}
+        >
           {/* Decorative blur — top-right of card */}
           <div
             aria-hidden="true"
@@ -173,48 +155,61 @@ export default function VideoIntroSection() {
               </button>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* ── Info grid ── */}
-        <div className="grid grid-cols-1 md:grid-cols-3 self-center w-full" style={{ gap: "clamp(16px, 2vw, 24px)", maxWidth: 860 }}>
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={viewport}
+          className="grid grid-cols-1 lg:grid-cols-3 self-center w-full"
+          style={{ gap: "clamp(16px, 2vw, 24px)", maxWidth: 860 }}
+        >
 
           {/* Item — ניסיון של עשורים (left column in Figma) */}
-          <InfoItem
-            icon={
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="10" cy="10" r="8.5" stroke="#002069" strokeWidth="1.5" />
-                <path d="M10 5.5V10.5L13.5 12.5" stroke="#002069" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            }
-            heading="ניסיון של עשורים"
-            body="למעלה מ־30 שנות ניסיון בליווי עסקים ועצמאים, עם הבנה עמוקה של המערכת ופתרונות שעובדים בפועל."
-          />
+          <motion.div variants={fadeUp}>
+            <InfoItem
+              icon={
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="10" cy="10" r="8.5" stroke="#002069" strokeWidth="1.5" />
+                  <path d="M10 5.5V10.5L13.5 12.5" stroke="#002069" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              }
+              heading="ניסיון של עשורים"
+              body="למעלה מ־30 שנות ניסיון בליווי עסקים ועצמאים, עם הבנה עמוקה של המערכת ופתרונות שעובדים בפועל."
+            />
+          </motion.div>
 
           {/* Item — אסטרטגיה מנצחת (center column) */}
-          <InfoItem
-            icon={
-              <svg width="22" height="17" viewBox="0 0 22 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 16L7 9L11 13L16 6L21 1" stroke="#002069" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M17 1H21V5" stroke="#002069" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            }
-            heading="אסטרטגיה מנצחת"
-            body="תכנון מס נכון וחשיבה קדימה שמאפשרים לכם להתנהל בצורה יעילה, לחסוך ולהימנע מהפתעות."
-          />
+          <motion.div variants={fadeUp}>
+            <InfoItem
+              icon={
+                <svg width="22" height="17" viewBox="0 0 22 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 16L7 9L11 13L16 6L21 1" stroke="#002069" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M17 1H21V5" stroke="#002069" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              }
+              heading="אסטרטגיה מנצחת"
+              body="תכנון מס נכון וחשיבה קדימה שמאפשרים לכם להתנהל בצורה יעילה, לחסוך ולהימנע מהפתעות."
+            />
+          </motion.div>
 
           {/* Item — ליווי אישי ומקצועי (right column in Figma) */}
-          <InfoItem
-            icon={
-              <svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="8" cy="5" r="4" stroke="#002069" strokeWidth="1.5" />
-                <path d="M1 19C1 15.134 4.134 12 8 12C11.866 12 15 15.134 15 19" stroke="#002069" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
-            }
-            heading="ליווי אישי ומקצועי"
-            body="ליווי מקצועי המבוסס על ניסיון מעשי והיכרות עמוקה עם דרישות הרשויות והמערכת בישראל."
-          />
+          <motion.div variants={fadeUp}>
+            <InfoItem
+              icon={
+                <svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="8" cy="5" r="4" stroke="#002069" strokeWidth="1.5" />
+                  <path d="M1 19C1 15.134 4.134 12 8 12C11.866 12 15 15.134 15 19" stroke="#002069" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+              }
+              heading="ליווי אישי ומקצועי"
+              body="ליווי מקצועי המבוסס על ניסיון מעשי והיכרות עמוקה עם דרישות הרשויות והמערכת בישראל."
+            />
+          </motion.div>
 
-        </div>
+        </motion.div>
       </div>
     </section>
   );

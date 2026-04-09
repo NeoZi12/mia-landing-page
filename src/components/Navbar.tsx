@@ -14,8 +14,9 @@ function WhatsAppIcon() {
 const NAV_LINKS = [
   { label: "ראשי",    id: "hero",     url: "/",         hash: "/"         },
   { label: "עלינו",   id: "about",    url: "/about-us", hash: "/#about"   },
-  { label: "שירותים", id: "services", url: "/services", hash: "/#services" },
-  { label: "צור קשר", id: "contact",  url: "/contact",  hash: "/#contact"  },
+  { label: "שירותים",   id: "services", url: "/services", hash: "/#services" },
+  { label: "למה אנחנו", id: "why-us",  url: "/why-us",  hash: "/#why-us"   },
+  { label: "צור קשר",   id: "contact",  url: "/contact",  hash: "/#contact"  },
 ];
 
 const GLASS: React.CSSProperties = {
@@ -65,6 +66,7 @@ export default function Navbar({ alwaysVisible = false, standalone = false }: { 
     const pathToId: Record<string, string> = {
       "/about-us": "about",
       "/services":  "services",
+      "/why-us":    "why-us",
       "/contact":   "contact",
     };
     const id = pathToId[window.location.pathname];
@@ -93,7 +95,7 @@ export default function Navbar({ alwaysVisible = false, standalone = false }: { 
   /* ── Active section tracking ────────────────────────────────────────────── */
   useEffect(() => {
     if (standalone) return;
-    const ids = ["hero", "about", "services", "contact"];
+    const ids = ["hero", "about", "services", "why-us", "contact"];
     const observers: IntersectionObserver[] = [];
     ids.forEach((id) => {
       const el = document.getElementById(id);
@@ -144,7 +146,7 @@ export default function Navbar({ alwaysVisible = false, standalone = false }: { 
         className="w-full rounded-xl border border-[rgba(196,197,213,0.15)] shadow-[0px_8px_32px_rgba(25,28,30,0.06)]"
         style={{ ...GLASS, height: 72 }}
       >
-        <div className="flex flex-row-reverse md:flex-row justify-between items-center w-full h-full px-5 md:px-8">
+        <div className="flex flex-row-reverse lg:flex-row justify-between items-center w-full h-full px-5 lg:px-8">
 
           {/* ── Logo ── */}
           {standalone ? (
@@ -164,7 +166,7 @@ export default function Navbar({ alwaysVisible = false, standalone = false }: { 
           {/* ── Nav links — desktop ── */}
           <nav
             ref={navRef}
-            className="hidden md:flex flex-row items-center gap-1 relative"
+            className="hidden lg:flex flex-row items-center gap-1 relative"
             dir="rtl"
           >
             {/* Sliding active indicator */}
@@ -224,9 +226,9 @@ export default function Navbar({ alwaysVisible = false, standalone = false }: { 
               href="https://wa.me/972584087061"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:flex flex-shrink-0 items-center gap-2 rounded-xl transition-colors duration-150"
+              className="hidden lg:flex flex-shrink-0 items-center gap-2 rounded-xl transition-colors duration-150"
               style={{
-                background:     "#003399",
+                background:     "#3B6FD8",
                 padding:        "10px 18px",
                 height:         40,
                 fontFamily:     "var(--font-heebo), sans-serif",
@@ -237,8 +239,8 @@ export default function Navbar({ alwaysVisible = false, standalone = false }: { 
                 whiteSpace:     "nowrap",
                 textDecoration: "none",
               }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#002080"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#003399"; }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#2E5CB8"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#3B6FD8"; }}
             >
               <WhatsAppIcon />
               שלחו לנו הודעה
@@ -247,7 +249,7 @@ export default function Navbar({ alwaysVisible = false, standalone = false }: { 
             {/* Hamburger — mobile */}
             <button
               onClick={() => setMenuOpen((o) => !o)}
-              className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-lg gap-[5px] transition-colors duration-150"
+              className="lg:hidden flex flex-col justify-center items-center w-11 h-11 rounded-lg gap-[5px] transition-colors duration-150"
               style={{ background: menuOpen ? "rgba(0,51,153,0.06)" : "transparent" }}
               aria-label={menuOpen ? "סגור תפריט" : "פתח תפריט"}
               aria-expanded={menuOpen}
@@ -267,7 +269,7 @@ export default function Navbar({ alwaysVisible = false, standalone = false }: { 
       {/* ══ Mobile dropdown ═════════════════════════════════════════════════ */}
       <div
         className={[
-          "md:hidden w-full mt-2 rounded-xl border border-[rgba(196,197,213,0.15)]",
+          "lg:hidden w-full mt-2 rounded-xl border border-[rgba(196,197,213,0.15)]",
           "shadow-[0px_8px_32px_rgba(25,28,30,0.08)] overflow-hidden",
           "transition-all duration-300 ease-in-out",
           menuOpen
@@ -314,7 +316,7 @@ export default function Navbar({ alwaysVisible = false, standalone = false }: { 
               onClick={closeMenu}
               className="flex items-center justify-center gap-2 w-full rounded-xl transition-colors duration-150"
               style={{
-                background:     "#003399",
+                background:     "#3B6FD8",
                 padding:        "12px 24px",
                 fontFamily:     "var(--font-heebo), sans-serif",
                 fontWeight:     600,

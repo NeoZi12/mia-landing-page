@@ -21,7 +21,7 @@ export default function SiteFooter() {
       }}
     >
       <div
-        className="relative flex flex-col md:flex-row items-center justify-between w-full max-w-[1280px] mx-auto px-6 py-4 md:py-0 md:h-[80px] gap-2 md:gap-0"
+        className="relative flex flex-col lg:flex-row items-center justify-between w-full max-w-[1280px] mx-auto px-6 py-4 lg:py-0 lg:h-[80px] gap-2 lg:gap-0"
       >
         {/* Logo — right (RTL start) */}
         <Link
@@ -52,7 +52,7 @@ export default function SiteFooter() {
         </Link>
 
         {/* Nav links — absolutely centered */}
-        <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 flex-row items-center gap-6">
+        <nav className="hidden lg:flex absolute left-1/2 -translate-x-1/2 flex-row items-center gap-6">
           {NAV_LINKS.map(({ label, href }) => (
             <a
               key={href}

@@ -9,8 +9,9 @@
  */
 import HeroSection from "@/components/sections/HeroSection";
 import AboutHeroSection from "@/components/sections/AboutHeroSection";
-import VideoIntroSection from "@/components/sections/VideoIntroSection";
 import ServicesSection from "@/components/sections/ServicesSection";
+import HowItWorksSection from "@/components/sections/HowItWorksSection";
+import WhyUsSection from "@/components/sections/WhyUsSection";
 import ContactSection from "@/components/sections/ContactSection";
 import SiteFooter from "@/components/SiteFooter";
 import Navbar from "@/components/Navbar";
@@ -40,13 +41,16 @@ export default async function HomePage() {
       <div id="about">
         <AboutHeroSection data={data} />
       </div>
-      <div id="intro-video">
-        <VideoIntroSection />
-      </div>
       <div id="services">
         <ServicesSection />
       </div>
-      <div id="contact" className="flex flex-col min-h-[100dvh] md:h-[100dvh]">
+      <div id="how-it-works">
+        <HowItWorksSection />
+      </div>
+      <div id="why-us">
+        <WhyUsSection />
+      </div>
+      <div id="contact">
         <ContactSection />
         <SiteFooter />
       </div>

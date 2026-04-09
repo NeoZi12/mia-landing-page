@@ -1,3 +1,8 @@
+"use client";
+
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { fadeRight, fadeLeft, viewport } from "@/lib/motion";
 import type { HomePageData } from "@/lib/queries";
 
 const PHOTO_PATH = "/images/miaprofile.jpg";
@@ -8,76 +13,44 @@ interface AboutHeroSectionProps {
 }
 
 export default function AboutHeroSection({ data }: AboutHeroSectionProps = {}) {
-  const heading     = data?.aboutHeading     ?? "קצת עלינו";
+  const heading     = data?.aboutHeading     ?? null;
   const body        = data?.aboutBody        ?? "משרד ייעוץ מס דיגיטלי עם ניסיון של למעלה מ־30 שנה, המתמחה בניהול והתנהלות מול כל הרשויות — ללא ניירת, ללא כאב ראש. אנחנו משלבים ניסיון מקצועי עשיר עם פתרונות מתקדמים, כדי לחסוך לכם זמן, לייעל תהליכים, ולדאוג שהכל מתנהל בצורה מדויקת, שקופה ונוחה.";
   const orgsLabel   = data?.aboutOrgsLabel   ?? "עובדים מול הגופים המובילים בישראל";
   const orgs        = data?.aboutOrgs        ?? "רשות המסים · ביטוח לאומי · משרד האוצר";
-  const scrollLabel = data?.aboutScrollLabel ?? "הכירו אותנו בסרטון קצר";
   return (
     <section
-      className="relative w-full bg-[#F7F9FB] overflow-hidden flex flex-col justify-center items-center isolate h-auto md:h-[100dvh]"
+      className="relative w-full bg-[#F7F9FB] overflow-hidden flex flex-col justify-center items-center isolate h-auto lg:h-[100dvh]"
       style={{ padding: "104px 0 clamp(48px, 8vh, 140px)" }}
     >
-      {/* ── Decorative background gradient ── */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 z-0"
-        style={{
-          background:
-            "radial-gradient(115.14% 128.27% at 10% 20%, rgba(220, 225, 255, 0.4) 0%, #F7F9FB 90%)",
-        }}
-      />
-
-      {/* ── Blur overlay 1 — top-right ── */}
-      <div
-        aria-hidden="true"
-        className="absolute z-[1] rounded-xl pointer-events-none"
-        style={{
-          left: "50%",
-          right: "-10%",
-          top: "-20%",
-          bottom: "60%",
-          background: "rgba(0, 51, 153, 0.05)",
-          filter: "blur(60px)",
-        }}
-      />
-
-      {/* ── Blur overlay 2 — bottom-left ── */}
-      <div
-        aria-hidden="true"
-        className="absolute z-[2] rounded-xl pointer-events-none"
-        style={{
-          left: "-10%",
-          right: "70%",
-          top: "70%",
-          bottom: "-10%",
-          background: "rgba(0, 66, 93, 0.05)",
-          filter: "blur(50px)",
-        }}
-      />
-
       {/* ── Main content container ── */}
-      <div className="relative z-[3] w-full max-w-[1280px] px-6 md:px-10 lg:px-6">
+      <div className="relative z-[3] w-full max-w-[1280px] px-6 sm:px-10 lg:px-[60px] xl:px-[130px]">
         {/*
           RTL row: first child → RIGHT side, second child → LEFT side.
           On mobile: stacks vertically (col-reverse so text is on top).
         */}
-        <div className="flex flex-col-reverse md:flex-row justify-between items-center w-full gap-8 md:gap-10">
+        <div className="flex flex-col-reverse lg:flex-row justify-between items-center w-full gap-8 lg:gap-10">
 
           {/* ══ CONTENT — right side in RTL ══ */}
-          <div className="flex flex-col items-end justify-center w-full md:max-w-[540px]">
+          <motion.div
+            variants={fadeRight}
+            initial="hidden"
+            whileInView="show"
+            viewport={viewport}
+            className="flex flex-col items-end justify-center w-full lg:max-w-[540px]"
+          >
 
             {/* Heading + description */}
-            <div className="flex flex-col items-end gap-5 md:gap-8 w-full">
+            <div className="flex flex-col items-end gap-5 lg:gap-8 w-full">
               <h1
                 className="font-bold text-[#1E3A5F] text-right w-full"
                 style={{
-                  fontSize: "clamp(32px, min(5vw, 8vh), 64px)",
+                  fontSize: "clamp(26px, 3.2vw, 42px)",
                   lineHeight: 1.15,
                   letterSpacing: "-0.03em",
                 }}
               >
-                {heading}
+                הניסיון שלנו,{" "}
+                <span style={{ color: "#3B6FD8" }}>השקט שלכם</span>
               </h1>
               <p
                 className="font-normal text-[#496177] text-right w-full"
@@ -91,7 +64,7 @@ export default function AboutHeroSection({ data }: AboutHeroSectionProps = {}) {
             </div>
 
             {/* Organizations */}
-            <div className="flex flex-col items-end pt-5 md:pt-8 w-full">
+            <div className="flex flex-col items-end pt-5 lg:pt-8 w-full">
               <p
                 className="text-right text-[rgba(30,58,95,0.9)] w-full"
                 style={{
@@ -115,23 +88,26 @@ export default function AboutHeroSection({ data }: AboutHeroSectionProps = {}) {
                 {orgs}
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* ══ IMAGE — mobile: simple rounded card, md+: full tilted card ══ */}
 
           {/* Mobile only — simple card, no tilt */}
-          <div
-            className="relative flex-shrink-0 block md:hidden rounded-[32px] overflow-hidden shadow-xl border border-[rgba(255,255,255,0.4)]"
+          <motion.div
+            variants={fadeLeft}
+            initial="hidden"
+            whileInView="show"
+            viewport={viewport}
+            className="relative flex-shrink-0 block lg:hidden rounded-[32px] overflow-hidden shadow-xl border border-[rgba(255,255,255,0.4)]"
             style={{ width: "min(200px, 55vw)", height: "min(250px, 68.75vw)" }}
           >
-            <div
-              aria-hidden="true"
-              className="absolute inset-0"
-              style={{
-                backgroundImage: `url('${PHOTO_PATH}')`,
-                backgroundSize: "cover",
-                backgroundPosition: "center top",
-              }}
+            <Image
+              src={PHOTO_PATH}
+              alt="מיה זינו"
+              fill
+              sizes="(max-width: 1024px) 55vw, 0px"
+              className="object-cover object-top"
+              priority
             />
             <div
               aria-hidden="true"
@@ -141,11 +117,15 @@ export default function AboutHeroSection({ data }: AboutHeroSectionProps = {}) {
                   "linear-gradient(0deg, rgba(0, 51, 153, 0.2) 0%, rgba(0, 51, 153, 0) 100%)",
               }}
             />
-          </div>
+          </motion.div>
 
           {/* Tablet/Desktop — full tilted card */}
-          <div
-            className="relative flex-shrink-0 hidden md:block"
+          <motion.div
+            variants={fadeLeft}
+            initial="hidden"
+            whileInView="show"
+            viewport={viewport}
+            className="relative flex-shrink-0 hidden lg:block"
             style={{
               width: "clamp(220px, 24vw, 320px)",
               height: "clamp(275px, 30vw, 400px)",
@@ -177,14 +157,13 @@ export default function AboutHeroSection({ data }: AboutHeroSectionProps = {}) {
               }}
             >
               {/* Photo — fills the card */}
-              <div
-                aria-hidden="true"
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: `url('${PHOTO_PATH}')`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center top",
-                }}
+              <Image
+                src={PHOTO_PATH}
+                alt="מיה זינו"
+                fill
+                sizes="(max-width: 1024px) 0px, 24vw"
+                className="object-cover object-top"
+                priority
               />
 
               {/* Overlay gradient — dark blue tint at bottom */}
@@ -197,50 +176,11 @@ export default function AboutHeroSection({ data }: AboutHeroSectionProps = {}) {
                 }}
               />
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>
 
-      {/* ── Scroll indicator — dark colors, bottom center ── */}
-      <div
-        className="absolute left-1/2 -translate-x-1/2 z-[4] flex flex-col items-center"
-        style={{ bottom: "clamp(16px, 4vh, 48px)", gap: 8 }}
-      >
-        <span
-          className="text-center whitespace-nowrap"
-          style={{
-            fontSize: "clamp(14px, 1.8vw, 20px)",
-            lineHeight: 1.4,
-            letterSpacing: "-0.1px",
-            color: "#1E3A5F",
-          }}
-        >
-          {scrollLabel}
-        </span>
-        <a
-          href="#intro-video"
-          className="flex items-center justify-center w-11 h-11 rounded-full border-2 border-[#1E3A5F]"
-          style={{ animation: "bounce-arrow 2s ease-in-out infinite" }}
-          aria-label="גלול למטה"
-        >
-          <svg
-            width="12"
-            height="7"
-            viewBox="0 0 12 7"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M1 1L6 6L11 1"
-              stroke="#1E3A5F"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </a>
-      </div>
     </section>
   );
 }

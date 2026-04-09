@@ -37,8 +37,10 @@ body {
   transition: opacity 0.2s ease;
 }
 
-.nav-link:hover .nav-link-bg {
-  opacity: 1;
+@media (hover: hover) and (pointer: fine) {
+  .nav-link:hover .nav-link-bg {
+    opacity: 1;
+  }
 }
 
 /* ── Service card hover ── */
@@ -47,9 +49,16 @@ body {
               box-shadow 0.35s ease;
 }
 
-.service-card:hover {
-  transform: translateY(-7px);
-  box-shadow: 0px 22px 44px -8px rgba(0, 32, 105, 0.18) !important;
+.service-card svg path,
+.service-card svg rect {
+  transition: stroke 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .service-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0px 22px 44px -8px rgba(0, 32, 105, 0.18) !important;
+  }
 }
 
 .service-card-featured {
@@ -57,9 +66,11 @@ body {
               box-shadow 0.35s ease;
 }
 
-.service-card-featured:hover {
-  transform: translateY(-7px);
-  box-shadow: 0px 28px 52px -8px rgba(0, 15, 60, 0.48) !important;
+@media (hover: hover) and (pointer: fine) {
+  .service-card-featured:hover {
+    transform: translateY(-7px);
+    box-shadow: 0px 28px 52px -8px rgba(0, 15, 60, 0.48) !important;
+  }
 }
 
 /* ── Contact info card hover ── */
@@ -67,9 +78,28 @@ body {
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.contact-info-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0px 8px 20px -4px rgba(0, 32, 105, 0.12) !important;
+@media (hover: hover) and (pointer: fine) {
+  .contact-info-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 8px 20px -4px rgba(0, 32, 105, 0.12) !important;
+  }
+}
+
+/* ── Marquee edge-fade mask ── */
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 72px, black calc(100% - 72px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 72px, black calc(100% - 72px), transparent 100%);
+}
+@media (max-width: 639px) {
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40px, black calc(100% - 40px), transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 40px, black calc(100% - 40px), transparent 100%);
+  }
+}
+
+/* ── Keep icons fully visible on touch devices ── */
+@media (hover: none) {
+  .tech-icon { opacity: 1 !important; }
 }
 
 /* ── Reduced motion: disable all CSS animations and transitions ── */

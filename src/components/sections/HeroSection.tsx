@@ -2,9 +2,17 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import { generatePapers, type PaperConfig } from "@/lib/papers";
 import styles from "./HeroSection.module.css";
 import type { HomePageData } from "@/lib/queries";
+import { DUR, EASE } from "@/lib/motion";
+
+const heroInitial = { opacity: 0, y: 16 };
+const heroAnimate = { opacity: 1, y: 0 };
+function heroTransition(delay: number) {
+  return { duration: DUR, ease: EASE, delay };
+}
 
 interface HeroSectionProps {
   /** Content from Sanity. Falls back to hardcoded strings when null/undefined. */
@@ -17,10 +25,11 @@ export default function HeroSection({ data }: HeroSectionProps = {}) {
   const line2       = data?.heroLine2       ?? "בלי ניירת";
   const line3       = data?.heroLine3       ?? "בלי כאב ראש";
   const subtitle    = data?.heroSubtitle    ?? "משרד ייעוץ מס דיגיטלי שמטפל בכל ההתנהלות מול הרשויות ללא ניירת.\nאנחנו חוסכים לכם זמן ומתמודדים עם הבירוקרטיה בשבילכם.";
-  const ctaLabel    = data?.heroCtaLabel    ?? "יצירת קשר";
+  const ctaLabel    = data?.heroCtaLabel    ?? "בואו נתחיל";
   const ctaUrl      = data?.heroCtaUrl      ?? "/contact";
   const scrollLabel = data?.heroScrollLabel ?? "גלו עוד עלינו";
 
+  const prefersReduced = useReducedMotion();
   const [papers, setPapers] = useState<PaperConfig[]>([]);
 
   // Defer paper generation to client-only to avoid SSR/hydration mismatch
@@ -124,7 +133,10 @@ export default function HeroSection({ data }: HeroSectionProps = {}) {
         style={{ gap: "clamp(14px, 2.5vh, 28px)", width: 896, maxWidth: "100%", zIndex: 4 }}
       >
         {/* Eyebrow badge */}
-        <div
+        <motion.div
+          initial={prefersReduced ? undefined : heroInitial}
+          animate={prefersReduced ? undefined : heroAnimate}
+          transition={heroTransition(0.2)}
           className="flex items-center justify-center"
           style={{
             padding: "6px 16px",
@@ -147,10 +159,15 @@ export default function HeroSection({ data }: HeroSectionProps = {}) {
           >
             {badge}
           </span>
-        </div>
+        </motion.div>
 
         {/* Heading */}
-        <div className="flex flex-col items-center w-full">
+        <motion.div
+          initial={prefersReduced ? undefined : heroInitial}
+          animate={prefersReduced ? undefined : heroAnimate}
+          transition={heroTransition(0.42)}
+          className="flex flex-col items-center w-full"
+        >
           <h1
             className="flex flex-col items-center text-center"
             style={{
@@ -196,10 +213,16 @@ export default function HeroSection({ data }: HeroSectionProps = {}) {
               {line3}
             </span>
           </h1>
-        </div>
+        </motion.div>
 
         {/* Subtitle */}
-        <div className="flex flex-col items-center" style={{ maxWidth: 672 }}>
+        <motion.div
+          initial={prefersReduced ? undefined : heroInitial}
+          animate={prefersReduced ? undefined : heroAnimate}
+          transition={heroTransition(0.62)}
+          className="flex flex-col items-center"
+          style={{ maxWidth: 672 }}
+        >
           <p
             className="text-center"
             style={{
@@ -213,15 +236,18 @@ export default function HeroSection({ data }: HeroSectionProps = {}) {
           >
             {subtitle}
           </p>
-        </div>
+        </motion.div>
 
         {/* CTA button */}
-        <div
+        <motion.div
+          initial={prefersReduced ? undefined : heroInitial}
+          animate={prefersReduced ? undefined : heroAnimate}
+          transition={heroTransition(0.8)}
           className="flex items-center justify-center"
           style={{ paddingTop: "clamp(8px, 1.5vh, 16px)", width: "100%" }}
         >
           <Link
-            href={ctaUrl}
+            href="/#contact"
             className="relative flex items-center justify-center"
             style={{
               width: "clamp(160px, 18vw, 213px)",
@@ -248,13 +274,16 @@ export default function HeroSection({ data }: HeroSectionProps = {}) {
                 "linear-gradient(135deg, #002069 0%, #00339a 100%)";
             }}
           >
-            {ctaLabel}
+            בואו נתחיל
           </Link>
-        </div>
+        </motion.div>
       </div>
 
       {/* ── Layer 5: Scroll indicator ── */}
-      <div
+      <motion.div
+        initial={prefersReduced ? undefined : { opacity: 0 }}
+        animate={prefersReduced ? undefined : { opacity: 1 }}
+        transition={heroTransition(1.0)}
         className="absolute flex flex-col items-center"
         style={{
           bottom: 48,
@@ -305,7 +334,7 @@ export default function HeroSection({ data }: HeroSectionProps = {}) {
             />
           </svg>
         </a>
-      </div>
+      </motion.div>
     </section>
   );
 }

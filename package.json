@@ -20,6 +20,14 @@
     "styled-components": "^6.3.12",
     "tailwind-merge": "^3.5.0"
   },
+  "browserslist": [
+    "chrome >= 90",
+    "firefox >= 90",
+    "safari >= 14",
+    "edge >= 90",
+    "not dead",
+    "> 0.5%"
+  ],
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",

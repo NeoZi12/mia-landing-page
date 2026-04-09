@@ -494,7 +494,7 @@ export default function ContactSection() {
 
   return (
     <section
-      className="relative w-full bg-[#F7F9FB] isolate overflow-hidden lg:h-[100dvh]"
+      className="relative w-full bg-[#F7F9FB] isolate overflow-hidden lg:min-h-[100dvh]"
     >
       {/* ── Content ── */}
       <div

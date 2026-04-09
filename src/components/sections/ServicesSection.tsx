@@ -1,10 +1,28 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { FadeUpItem, StaggerContainer } from "@/components/motion";
 
 /* ─── Icon SVGs ─────────────────────────────────────────────── */
+
+function IconSmallBusiness({ color = "#002069" }: { color?: string }) {
+  return (
+    <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* storefront base */}
+      <path d="M3 10V20H21V10" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      {/* awning */}
+      <path d="M1 6H23L21 10H3L1 6Z" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      {/* roofline */}
+      <path d="M1 6L3 2H21L23 6" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      {/* door */}
+      <rect x="9" y="13" width="6" height="7" rx="1" stroke={color} strokeWidth="1.5" />
+      {/* window */}
+      <rect x="15.5" y="12" width="4" height="4" rx="0.75" stroke={color} strokeWidth="1.3" />
+    </svg>
+  );
+}
 
 function IconAnnualReports({ color = "#002069" }: { color?: string }) {
   return (
@@ -182,6 +200,71 @@ function IconTaxRepresentation({ color = "#002069" }: { color?: string }) {
   );
 }
 
+function IconTaxRefundEmployees({ color = "#002069" }: { color?: string }) {
+  return (
+    <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Coin / return circle */}
+      <circle cx="14" cy="13" r="8" stroke={color} strokeWidth="1.5" />
+      {/* Return arrow inside circle */}
+      <path d="M11 10H17M17 10L15 8M17 10L15 12" stroke={color} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+      {/* Shekel-like vertical line */}
+      <path d="M14 15V17" stroke={color} strokeWidth="1.3" strokeLinecap="round" />
+      {/* Person silhouette (employee) */}
+      <circle cx="5" cy="4" r="2.5" stroke={color} strokeWidth="1.3" />
+      <path d="M1 11C1 8.239 2.791 7 5 7C7.209 7 9 8.239 9 11" stroke={color} strokeWidth="1.3" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function IconTaxCoordination({ color = "#002069" }: { color?: string }) {
+  return (
+    <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Document */}
+      <rect x="3" y="1" width="14" height="18" rx="1.5" stroke={color} strokeWidth="1.5" />
+      {/* Lines */}
+      <path d="M7 6H13M7 10H13M7 14H10" stroke={color} strokeWidth="1.3" strokeLinecap="round" />
+      {/* Checkmark badge */}
+      <circle cx="18" cy="16" r="5" fill="white" stroke={color} strokeWidth="1.5" />
+      <path d="M15.5 16L17 17.5L20.5 14" stroke={color} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function IconRetirementPlanning({ color = "#002069" }: { color?: string }) {
+  return (
+    <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Umbrella canopy */}
+      <path d="M2 11C2 6.029 6.477 2 12 2C17.523 2 22 6.029 22 11" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+      {/* Umbrella shaft */}
+      <path d="M12 11V18" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+      {/* Handle curve */}
+      <path d="M12 18C12 19.657 10.657 21 9 21" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+      {/* Center rib line */}
+      <path d="M12 11V2" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+      {/* Left rib */}
+      <path d="M2 11C4 8 7.5 6.5 12 7" stroke={color} strokeWidth="1.2" strokeLinecap="round" />
+      {/* Right rib */}
+      <path d="M22 11C20 8 16.5 6.5 12 7" stroke={color} strokeWidth="1.2" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function IconAuthorizedDealer({ color = "#002069" }: { color?: string }) {
+  return (
+    <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Device screen */}
+      <rect x="1" y="1" width="16" height="12" rx="1.5" stroke={color} strokeWidth="1.5" />
+      {/* Stand */}
+      <path d="M5 13V16M13 13V16M4 16H14" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      {/* Data lines inside screen */}
+      <path d="M4 5H10M4 8H8" stroke={color} strokeWidth="1.3" strokeLinecap="round" />
+      {/* AI spark / checkmark badge */}
+      <circle cx="19" cy="17" r="4" fill="none" stroke={color} strokeWidth="1.5" />
+      <path d="M17 17L18.5 18.5L21 15.5" stroke={color} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 function IconCustomConsultation({ color = "#FFFFFF" }: { color?: string }) {
   return (
     <svg
@@ -211,14 +294,15 @@ function IconCustomConsultation({ color = "#FFFFFF" }: { color?: string }) {
 
 /* ─── Learn More Link ───────────────────────────────────────── */
 
-function LearnMore({ color = "#002069" }: { color?: string }) {
+function LearnMore({ color = "#002069", arrowColor }: { color?: string; arrowColor?: string }) {
+  const arrow = arrowColor ?? color;
   return (
-    <div className="flex items-center gap-2 mt-auto">
+    <div className="flex items-center gap-2 mt-auto w-full">
       <span
         style={{
           fontFamily: "var(--font-heebo), sans-serif",
           fontWeight: 600,
-          fontSize: 16,
+          fontSize: 15,
           lineHeight: "24px",
           color,
         }}
@@ -232,10 +316,11 @@ function LearnMore({ color = "#002069" }: { color?: string }) {
         viewBox="0 0 16 16"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        style={{ transition: "stroke 0.2s ease" }}
       >
         <path
           d="M10 12L6 8L10 4"
-          stroke={color}
+          stroke={arrow}
           strokeWidth="1.8"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -248,13 +333,16 @@ function LearnMore({ color = "#002069" }: { color?: string }) {
 /* ─── Regular Service Card ──────────────────────────────────── */
 
 interface CardProps {
-  icon: ReactNode;
+  icon: (color: string) => ReactNode;
   title: string;
   body: string;
   slug: string;
 }
 
 function ServiceCard({ icon, title, body, slug }: CardProps) {
+  const [hovered, setHovered] = useState(false);
+  const iconColor = hovered ? "#3B6FD8" : "#002069";
+
   return (
     <Link
       href={`/services/${slug}`}
@@ -263,11 +351,13 @@ function ServiceCard({ icon, title, body, slug }: CardProps) {
       <div
         className="service-card flex flex-col items-start h-full rounded-lg bg-white cursor-pointer overflow-hidden"
         style={{
-          border: "1px solid rgba(196, 197, 213, 0.12)",
+          border: "1px solid rgba(196, 197, 213, 0.18)",
           boxShadow: "0px 2px 8px rgba(0, 32, 105, 0.06)",
-          padding: "clamp(12px, 1.8vw, 22px)",
-          gap: "clamp(6px, 0.8vh, 12px)",
+          padding: "clamp(14px, 1.6vw, 24px)",
+          gap: "clamp(8px, 0.8vh, 14px)",
         }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
       >
         {/* Icon badge */}
         <div
@@ -275,10 +365,11 @@ function ServiceCard({ icon, title, body, slug }: CardProps) {
           style={{
             width: 44,
             height: 44,
-            background: "rgba(220, 225, 255, 0.2)",
+            background: "rgba(196, 207, 255, 0.22)",
+            transition: "background 0.2s ease",
           }}
         >
-          {icon}
+          {icon(iconColor)}
         </div>
 
         {/* Title */}
@@ -286,9 +377,9 @@ function ServiceCard({ icon, title, body, slug }: CardProps) {
           className="text-[#002069] w-full text-right"
           style={{
             fontFamily: "var(--font-heebo), sans-serif",
-            fontWeight: 600,
-            fontSize: "clamp(15px, 1.4vw, 20px)",
-            lineHeight: "32px",
+            fontWeight: 700,
+            fontSize: "clamp(15px, 1.2vw, 18px)",
+            lineHeight: "28px",
           }}
         >
           {title}
@@ -300,14 +391,14 @@ function ServiceCard({ icon, title, body, slug }: CardProps) {
           style={{
             fontFamily: "var(--font-heebo), sans-serif",
             fontWeight: 400,
-            fontSize: "clamp(12px, 0.95vw, 14px)",
+            fontSize: "clamp(12px, 0.9vw, 14px)",
             lineHeight: "22px",
           }}
         >
           {body}
         </p>
 
-        <LearnMore color="#002069" />
+        <LearnMore color="#002069" arrowColor={iconColor} />
       </div>
     </Link>
   );
@@ -326,8 +417,8 @@ function FeaturedCard() {
         style={{
           background: "#002069",
           boxShadow: "0px 10px 24px -4px rgba(0,20,80,0.25)",
-          padding: "clamp(12px, 1.8vw, 22px)",
-          gap: "clamp(6px, 0.8vh, 12px)",
+          padding: "clamp(14px, 1.6vw, 24px)",
+          gap: "clamp(8px, 0.8vh, 14px)",
         }}
       >
         {/* Blur blob — bottom-left */}
@@ -362,14 +453,14 @@ function FeaturedCard() {
         {/* Content (above blobs) */}
         <div
           className="relative flex flex-col items-start w-full"
-          style={{ gap: "clamp(6px, 0.8vh, 12px)", zIndex: 2 }}
+          style={{ gap: "clamp(8px, 0.8vh, 14px)", zIndex: 2 }}
         >
           {/* Icon badge */}
           <div
             className="flex items-center justify-center rounded-lg flex-shrink-0"
             style={{
-              width: 56,
-              height: 56,
+              width: 44,
+              height: 44,
               background: "rgba(255, 255, 255, 0.1)",
             }}
           >
@@ -381,9 +472,9 @@ function FeaturedCard() {
             className="w-full text-right text-white"
             style={{
               fontFamily: "var(--font-heebo), sans-serif",
-              fontWeight: 600,
-              fontSize: "clamp(15px, 1.4vw, 20px)",
-              lineHeight: "32px",
+              fontWeight: 700,
+              fontSize: "clamp(15px, 1.2vw, 18px)",
+              lineHeight: "28px",
             }}
           >
             ייעוץ מותאם אישית
@@ -391,11 +482,11 @@ function FeaturedCard() {
 
           {/* Body */}
           <p
-            className="w-full text-right flex-1"
+            className="w-full text-right"
             style={{
               fontFamily: "var(--font-heebo), sans-serif",
               fontWeight: 400,
-              fontSize: "clamp(12px, 0.95vw, 14px)",
+              fontSize: "clamp(12px, 0.9vw, 14px)",
               lineHeight: "22px",
               color: "rgba(220, 225, 255, 0.8)",
             }}
@@ -415,47 +506,9 @@ function FeaturedCard() {
 
 export default function ServicesSection() {
   return (
-    <section className="relative w-full bg-[#F7F9FB] flex flex-col items-center justify-center overflow-hidden md:h-screen isolate">
-      {/* ── Decorative background gradient ── */}
+    <section className="relative w-full bg-[#F7F9FB] flex flex-col items-center justify-center overflow-hidden lg:h-screen isolate">
       <div
-        aria-hidden="true"
-        className="absolute inset-0 z-0"
-        style={{
-          background:
-            "radial-gradient(115.14% 128.27% at 10% 20%, rgba(220, 225, 255, 0.4) 0%, #F7F9FB 90%)",
-        }}
-      />
-
-      {/* ── Blur overlay 1 — top-right ── */}
-      <div
-        aria-hidden="true"
-        className="absolute z-[1] rounded-xl pointer-events-none"
-        style={{
-          left: "50%",
-          right: "-10%",
-          top: "-20%",
-          bottom: "60%",
-          background: "rgba(0, 51, 153, 0.05)",
-          filter: "blur(60px)",
-        }}
-      />
-
-      {/* ── Blur overlay 2 — bottom-left ── */}
-      <div
-        aria-hidden="true"
-        className="absolute z-[2] rounded-xl pointer-events-none"
-        style={{
-          left: "-10%",
-          right: "70%",
-          top: "70%",
-          bottom: "-10%",
-          background: "rgba(0, 66, 93, 0.05)",
-          filter: "blur(50px)",
-        }}
-      />
-
-      <div
-        className="relative z-[3] flex flex-col w-full max-w-[960px] px-6 lg:px-0"
+        className="relative z-[3] flex flex-col w-full max-w-[1280px] mx-auto px-6"
         style={{
           paddingTop: "clamp(96px, 14vh, 128px)",
           paddingBottom: "clamp(16px, 2.5vh, 40px)",
@@ -470,12 +523,14 @@ export default function ServicesSection() {
               style={{
                 fontFamily: "var(--font-heebo), sans-serif",
                 fontWeight: 800,
-                fontSize: "clamp(32px, 4.7vw, 60px)",
+                fontSize: "clamp(26px, 3.2vw, 42px)",
                 lineHeight: 1,
                 letterSpacing: "-1.5px",
               }}
             >
-              השירותים שלנו
+              השירותים{" "}
+              <span style={{ color: "#3B6FD8" }}>המקצועיים</span>{" "}
+              שלנו
             </h2>
           </FadeUpItem>
 
@@ -502,56 +557,63 @@ export default function ServicesSection() {
           delayChildren: cards begin after heading + subtitle have had time to register.
         */}
         <StaggerContainer
-          className="grid grid-cols-2 md:grid-cols-3"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
           style={{ gap: "clamp(12px, 1.5vw, 20px)" }}
           delayChildren={0.32}
           staggerChildren={0.13}
         >
           <FadeUpItem duration={0.8}>
             <ServiceCard
-              icon={<IconAnnualReports />}
-              title="דוחות שנתיים"
-              body="הכנה והגשת דוחות שנתיים ליחידים ולחברות, תוך אופטימיזציה מלאה של הטבות המס המגיעות לך."
-              slug="annual-reports"
+              icon={(c) => <IconSmallBusiness color={c} />}
+              title="עסק זעיר"
+              body="ניהול עסק זעיר במקום אחד — חיסכון במס והתנהלות דיגיטלית נוחה."
+              slug="small-business"
             />
           </FadeUpItem>
           <FadeUpItem duration={0.8}>
             <ServiceCard
-              icon={<IconCorporateTax />}
-              title="מיסוי תאגידי"
-              body="תכנון מס אסטרטגי לחברות, ליווי עסקאות מורכבות וניהול שוטף מול רשויות המס בארץ ובעולם."
-              slug="corporate-tax"
+              icon={(c) => <IconAuthorizedDealer color={c} />}
+              title="עוסק מורשה"
+              body="ליווי דיגיטלי מקיף לעוסק מורשה — דיווחים שוטפים, ייצוג מול רשויות המס וניהול חכם דרך אפליקציה."
+              slug="authorized-dealer"
             />
           </FadeUpItem>
           <FadeUpItem duration={0.8}>
             <ServiceCard
-              icon={<IconTaxRefunds />}
-              title="החזרי מס"
-              body="בדיקת זכאות מקיפה להחזרי מס לשכירים ובעלי שליטה, כולל טיפול בתיקונים רטרואקטיביים."
-              slug="tax-refunds"
+              icon={(c) => <IconRetirementPlanning color={c} />}
+              title="תכנון פרישה וקיבוע זכויות"
+              body="ליווי אישי ומקצועי לתכנון פרישה חכם — ניתוח פנסיוני, קיבוע זכויות ומיצוי מלא של הטבות מס."
+              slug="retirement-planning"
             />
           </FadeUpItem>
           <FadeUpItem duration={0.8}>
             <ServiceCard
-              icon={<IconBookkeeping />}
-              title="הנהלת חשבונות"
-              body="שירותי הנהלת חשבונות כפולה וחד-צידית לעסקים קטנים ובינוניים בדיוק מרבי ובטכנולוגיה עננית."
-              slug="bookkeeping"
+              icon={(c) => <IconTaxCoordination color={c} />}
+              title="תיאום מס"
+              body="תיאום מס מדויק לשנה קדימה — מניעת ניכוי מס עודף, בדיקת נקודות זיכוי וחיסכון של מאות שקלים."
+              slug="tax-coordination"
             />
           </FadeUpItem>
           <FadeUpItem duration={0.8}>
             <ServiceCard
-              icon={<IconTaxRepresentation />}
-              title="ייצוג ברשויות המס"
-              body="ייצוג מקצועי מול אגף המכס, המע״מ ומס הכנסה, טיפול בדיווחים תקופתיים והשגות על קביעות מס."
-              slug="tax-representation"
+              icon={(c) => <IconTaxRefundEmployees color={c} />}
+              title="החזרי מס לשכירים"
+              body="מיצוי מלא של החזרי מס לשכירים — טיפול מול הרשויות, משיכת טופסי 106 וסימולציה לפני הגשה."
+              slug="tax-refund-employees"
             />
-          </FadeUpItem>
-          <FadeUpItem duration={0.8}>
-            <FeaturedCard />
           </FadeUpItem>
         </StaggerContainer>
       </div>
+
+      {/* ── Edge feather — blends top/bottom into adjacent sections ── */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          zIndex: 10,
+          background: "linear-gradient(to bottom, #F7F9FB 0%, transparent 6%, transparent 94%, #F7F9FB 100%)",
+        }}
+      />
     </section>
   );
 }
