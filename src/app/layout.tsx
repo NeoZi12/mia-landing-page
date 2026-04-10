@@ -1,17 +1,7 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono, Heebo } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Heebo } from "next/font/google";
 import "./globals.css";
 import MotionProvider from "@/components/MotionProvider";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 const heebo = Heebo({
   variable: "--font-heebo",
@@ -25,7 +15,14 @@ export const metadata: Metadata = {
     default: "מיה",
     template: "%s | מיה",
   },
-  description: "",
+  description:
+    "משרד ייעוץ מס דיגיטלי ללא ניירת — ניהול מס חכם, חיסכון בזמן וטיפול מלא מול הרשויות.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#002069",
 };
 
 export default function RootLayout({
@@ -37,16 +34,8 @@ export default function RootLayout({
     <html
       lang="he"
       dir="rtl"
-      className={`${geistSans.variable} ${geistMono.variable} ${heebo.variable} h-full antialiased`}
+      className={`${heebo.variable} h-full antialiased`}
     >
-      <head>
-        <link
-          rel="preload"
-          as="image"
-          href="/images/papers%20start.png"
-          fetchPriority="high"
-        />
-      </head>
       <body className="flex min-h-full flex-col">
         <MotionProvider>{children}</MotionProvider>
       </body>

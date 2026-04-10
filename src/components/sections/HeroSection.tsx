@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { generatePapers, type PaperConfig } from "@/lib/papers";
@@ -47,17 +48,24 @@ export default function HeroSection({ data }: HeroSectionProps = {}) {
       {/* ── Layer 0: Background image ── */}
       <div
         aria-hidden="true"
-        className="absolute inset-0"
-        style={{
-          backgroundImage: "url('/images/papers%20start.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          filter: "blur(3px) brightness(0.55) saturate(0.75)",
-          transform: "scale(1.06)",
-          zIndex: 0,
-        }}
-      />
+        className="absolute inset-0 overflow-hidden"
+        style={{ zIndex: 0 }}
+      >
+        <Image
+          src="/images/papers-start.png"
+          alt=""
+          fill
+          priority
+          quality={70}
+          sizes="100vw"
+          aria-hidden="true"
+          className="object-cover"
+          style={{
+            filter: "blur(3px) brightness(0.55) saturate(0.75)",
+            transform: "scale(1.06)",
+          }}
+        />
+      </div>
 
       {/* ── Layer 1: Dark blue gradient overlay ── */}
       <div

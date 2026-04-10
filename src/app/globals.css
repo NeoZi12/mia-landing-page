@@ -8,8 +8,6 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
   --font-heebo: var(--font-heebo);
 }
 
@@ -50,6 +48,7 @@ body {
   .service-card-featured, .service-card-featured *,
   .contact-info-card, .contact-info-card *,
   .professionalism-card, .professionalism-card *,
+  .navy-info-card, .navy-info-card *,
   .whatsapp-cta, .whatsapp-cta *,
   .cta-card, .cta-card *
 ) {

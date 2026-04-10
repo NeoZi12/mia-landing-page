@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 import { fadeUp, fadeLeft, fadeRight, stagger, viewport } from "@/lib/motion";
 
@@ -21,10 +20,10 @@ function PaperPlaneIcon() {
   );
 }
 
-function PhoneIcon() {
+function PhoneIcon({ color = "#002069" }: { color?: string }) {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z" stroke="#002069" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   );
 }
@@ -37,54 +36,76 @@ function WhatsAppIconWhite() {
   );
 }
 
-function EnvelopeIcon() {
+function EnvelopeIcon({ color = "#002069" }: { color?: string }) {
   return (
     <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect x="1" y="1" width="18" height="14" rx="2" stroke="#002069" strokeWidth="1.5"/>
-      <path d="M1 4L10 9.5L19 4" stroke="#002069" strokeWidth="1.5" strokeLinecap="round"/>
+      <rect x="1" y="1" width="18" height="14" rx="2" stroke={color} strokeWidth="1.5"/>
+      <path d="M1 4L10 9.5L19 4" stroke={color} strokeWidth="1.5" strokeLinecap="round"/>
     </svg>
   );
 }
 
-function InstagramIcon() {
+function InstagramIcon({ color = "#002069" }: { color?: string }) {
   return (
     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect x="1" y="1" width="20" height="20" rx="5" stroke="#002069" strokeWidth="1.5"/>
-      <circle cx="11" cy="11" r="4" stroke="#002069" strokeWidth="1.5"/>
-      <circle cx="16.5" cy="5.5" r="1" fill="#002069"/>
+      <rect x="1" y="1" width="20" height="20" rx="5" stroke={color} strokeWidth="1.5"/>
+      <circle cx="11" cy="11" r="4" stroke={color} strokeWidth="1.5"/>
+      <circle cx="16.5" cy="5.5" r="1" fill={color}/>
     </svg>
   );
 }
 
-/* ─── Professionalism Card ──────────────────────────────────── */
+/* ─── Info Stack (consolidated navy card) ───────────────────── */
 
-function ProfessionalismCard() {
+const NAVY_ROW_STYLE: React.CSSProperties = {
+  position: "relative",
+  zIndex: 1,
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  padding: "clamp(10px, 1.2vh, 16px) clamp(12px, 1.5vw, 18px)",
+  gap: "clamp(12px, 1.5vw, 16px)",
+  borderRadius: 12,
+  textDecoration: "none",
+  background: "rgba(13,32,73,0.55)",
+  backdropFilter: "blur(2px)",
+  WebkitBackdropFilter: "blur(2px)",
+  transition: "background 0.2s ease",
+};
+
+function InfoStack() {
+  const rows = [
+    { icon: <PhoneIcon color="white" />, label: "טלפון", sublabel: "058-408-7061", href: "tel:0584087061" },
+    { icon: <EnvelopeIcon color="white" />, label: "אימייל", sublabel: "maya@ethikaltd.co.il", href: "mailto:maya@ethikaltd.co.il" },
+    { icon: <InstagramIcon color="white" />, label: "אינסטגרם", sublabel: "_mayazino@", href: "https://www.instagram.com/mayazino_" },
+  ];
+
   return (
     <div
-      className="professionalism-card relative overflow-hidden rounded-2xl isolate flex-shrink-0"
+      className="navy-info-card relative flex flex-col w-full h-full overflow-hidden isolate"
       style={{
-        background: "#002069",
-        boxShadow: "0px 0px 0px 1px rgba(255,255,255,0.1), 0px 25px 50px -12px rgba(0,32,105,0.2)",
-        height: "clamp(180px, 22vh, 260px)",
+        background: "#0D2049",
+        borderRadius: 20,
+        padding: "clamp(14px, 1.8vh, 22px) clamp(14px, 1.8vw, 20px)",
+        gap: "clamp(7px, 0.9vh, 12px)",
+        boxShadow: "0px 4px 6px -1px rgba(0,0,0,0.12), 0px 2px 4px -2px rgba(0,0,0,0.08)",
       }}
     >
-      {/* Office photo overlay */}
+      {/* Office photo as full-card background */}
       <Image
-        src="/images/office-pic1.jpg"
+        src="/images/office-pic1.webp"
         alt=""
         fill
-        sizes="(max-width: 768px) 100vw, 476px"
-        priority
+        sizes="(max-width: 1024px) 100vw, 476px"
+        loading="lazy"
+        quality={60}
         className="object-cover pointer-events-none select-none"
         style={{ mixBlendMode: "overlay", opacity: 0.25 }}
         aria-hidden="true"
       />
 
-      {/* Content */}
-      <div
-        className="relative z-[1] flex flex-col justify-center items-end w-full h-full"
-        style={{ padding: "clamp(20px, 3vh, 40px)" }}
-      >
+      {/* Heading block — flex-1 pushes rows+button to bottom */}
+      <div className="relative z-[1] w-full flex-1" style={{ padding: "clamp(6px, 1vh, 14px) clamp(4px, 0.6vw, 8px) clamp(2px, 0.6vh, 6px)" }}>
         <h3
           className="w-full text-right text-white"
           style={{
@@ -103,125 +124,43 @@ function ProfessionalismCard() {
             fontFamily: "var(--font-heebo), sans-serif",
             fontWeight: 500,
             fontSize: "clamp(13px, 1.4vw, 18px)",
-            lineHeight: "28px",
-            color: "rgba(219,234,254,0.8)",
+            lineHeight: "1.5",
+            color: "rgba(219,234,254,0.85)",
           }}
         >
           פגישת ייעוץ ראשונית ללא התחייבות
         </p>
       </div>
-    </div>
-  );
-}
 
-/* ─── Glass Info Card ───────────────────────────────────────── */
-
-interface InfoCardProps {
-  icon: React.ReactNode;
-  iconBg: string;
-  label: string;
-  sublabel: string;
-  href: string;
-}
-
-const GLASS_STYLE: React.CSSProperties = {
-  background: "rgba(255,255,255,0.8)",
-  border: "1px solid rgba(255,255,255,0.3)",
-  backdropFilter: "blur(6px)",
-  WebkitBackdropFilter: "blur(6px)",
-  boxShadow: "0px 1px 2px rgba(0,0,0,0.05)",
-  borderRadius: 16,
-};
-
-function ContactInfoCard({ icon, iconBg, label, sublabel, href }: InfoCardProps) {
-  return (
-    <a
-      href={href}
-      target={href.startsWith("http") ? "_blank" : undefined}
-      rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-      className="flex flex-row items-center w-full contact-info-card"
-      dir="rtl"
-      style={{
-        ...GLASS_STYLE,
-        padding: "clamp(14px, 1.8vh, 24px) clamp(16px, 2vw, 24px)",
-        textDecoration: "none",
-        height: "clamp(72px, 9vh, 90px)",
-        gap: "clamp(12px, 1.5vw, 16px)",
-      }}
-    >
-      {/* Icon badge — first in RTL flow = visually RIGHT */}
-      <div
-        className="flex items-center justify-center flex-shrink-0 rounded-xl"
-        style={{ width: 48, height: 48, background: iconBg }}
-      >
-        {icon}
-      </div>
-
-      {/* Text — second in RTL flow = visually LEFT */}
-      <div className="flex flex-col items-start flex-1" dir="rtl" style={{ gap: 2 }}>
-        <span
-          style={{
-            fontFamily: "var(--font-heebo), sans-serif",
-            fontWeight: 700,
-            fontSize: "clamp(15px, 1.4vw, 18px)",
-            lineHeight: "28px",
-            color: "#002069",
-            textAlign: "right",
-            direction: "rtl",
-          }}
+      {rows.map(({ icon, label, sublabel, href }) => (
+        <a
+          key={href}
+          href={href}
+          dir="rtl"
+          target={href.startsWith("http") ? "_blank" : undefined}
+          rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+          style={NAVY_ROW_STYLE}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "rgba(13,32,73,0.75)"; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "rgba(13,32,73,0.55)"; }}
         >
-          {label}
-        </span>
-        <span
-          style={{
-            fontFamily: "var(--font-heebo), sans-serif",
-            fontWeight: 400,
-            fontSize: "clamp(11px, 1vw, 14px)",
-            lineHeight: "20px",
-            color: "#496177",
-            textAlign: "right",
-            direction: "rtl",
-          }}
-        >
-          {sublabel}
-        </span>
-      </div>
-    </a>
-  );
-}
+          <div
+            className="flex items-center justify-center flex-shrink-0 rounded-xl"
+            style={{ width: 40, height: 40, background: "rgba(255,255,255,0.1)" }}
+          >
+            {icon}
+          </div>
+          <div className="flex flex-col items-start flex-1" dir="rtl" style={{ gap: 2 }}>
+            <span style={{ fontFamily: "var(--font-heebo), sans-serif", fontWeight: 700, fontSize: "clamp(14px, 1.3vw, 17px)", lineHeight: "24px", color: "#FFFFFF", direction: "rtl" }}>
+              {label}
+            </span>
+            <span style={{ fontFamily: "var(--font-heebo), sans-serif", fontWeight: 400, fontSize: "clamp(11px, 1vw, 13px)", lineHeight: "18px", color: "rgba(219,234,254,0.75)", direction: "rtl" }}>
+              {sublabel}
+            </span>
+          </div>
+        </a>
+      ))}
 
-/* ─── Info Stack ────────────────────────────────────────────── */
-
-function InfoStack() {
-  return (
-    <div
-      className="flex flex-col w-full"
-      style={{ gap: "clamp(8px, 1vh, 16px)" }}
-    >
-      <ProfessionalismCard />
-      <ContactInfoCard
-        icon={<PhoneIcon />}
-        iconBg="rgba(0,32,105,0.05)"
-        label="טלפון"
-        sublabel="058-408-7061"
-        href="tel:0584087061"
-      />
-      <ContactInfoCard
-        icon={<EnvelopeIcon />}
-        iconBg="rgba(0,32,105,0.05)"
-        label="אימייל"
-        sublabel="maya@ethikaltd.co.il"
-        href="mailto:maya@ethikaltd.co.il"
-      />
-      <ContactInfoCard
-        icon={<InstagramIcon />}
-        iconBg="rgba(0,32,105,0.05)"
-        label="אינסטגרם"
-        sublabel="_mayazino@"
-        href="https://www.instagram.com/mayazino_"
-      />
-
-      {/* WhatsApp CTA button */}
+      {/* WhatsApp outline CTA */}
       <a
         href="https://wa.me/972584087061"
         target="_blank"
@@ -229,27 +168,21 @@ function InfoStack() {
         dir="rtl"
         className="whatsapp-cta flex items-center justify-center w-full gap-3"
         style={{
-          background: "#25D366",
-          borderRadius: 16,
-          height: "clamp(56px, 7vh, 72px)",
+          position: "relative",
+          zIndex: 1,
+          background: "transparent",
+          border: "1.5px solid rgba(255,255,255,0.6)",
+          borderRadius: 14,
+          height: "clamp(50px, 6.2vh, 64px)",
           textDecoration: "none",
           flexShrink: 0,
-          transition: "background 0.2s ease, box-shadow 0.2s ease",
-          boxShadow: "0px 4px 16px -4px rgba(37,211,102,0.4)",
+          transition: "background 0.2s ease, border-color 0.2s ease",
         }}
-        onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#1db954"; }}
-        onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#25D366"; }}
+        onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.08)"; (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.9)"; }}
+        onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "transparent"; (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.6)"; }}
       >
         <WhatsAppIconWhite />
-        <span
-          style={{
-            fontFamily: "var(--font-heebo), sans-serif",
-            fontWeight: 800,
-            fontSize: "clamp(15px, 1.4vw, 18px)",
-            color: "#FFFFFF",
-            whiteSpace: "nowrap",
-          }}
-        >
+        <span style={{ fontFamily: "var(--font-heebo), sans-serif", fontWeight: 800, fontSize: "clamp(14px, 1.3vw, 17px)", color: "#FFFFFF", whiteSpace: "nowrap" }}>
           פנייה בוואטסאפ
         </span>
       </a>
@@ -270,18 +203,19 @@ interface FieldGroupProps {
   grow?: boolean;
   error?: string;
   onBlur?: () => void;
+  maxLength?: number;
 }
 
-function FieldGroup({ id, label, value, onChange, placeholder, type = "text", isTextarea, grow, error, onBlur }: FieldGroupProps) {
+function FieldGroup({ id, label, value, onChange, placeholder, type = "text", isTextarea, grow, error, onBlur, maxLength }: FieldGroupProps) {
   const [focused, setFocused] = useState(false);
 
-  const borderColor = focused ? "#002069" : error ? "#dc2626" : "#E2E8F0";
+  const borderColor = focused ? "#002069" : error ? "#dc2626" : "#CBD5E1";
 
   const inputStyle: React.CSSProperties = {
     width: "100%",
-    background: "transparent",
-    border: "none",
-    borderBottom: `1px solid ${borderColor}`,
+    background: "#F8FAFC",
+    border: `1.5px solid ${borderColor}`,
+    borderRadius: 10,
     outline: "none",
     textAlign: "right",
     direction: "rtl",
@@ -290,9 +224,9 @@ function FieldGroup({ id, label, value, onChange, placeholder, type = "text", is
     fontSize: "clamp(15px, 1.4vw, 18px)",
     lineHeight: "22px",
     color: "#1E3A5F",
-    padding: "clamp(12px, 1.5vh, 19px) 0",
+    padding: "clamp(12px, 1.5vh, 19px) 12px",
     resize: "none" as const,
-    transition: "border-bottom-color 0.2s ease",
+    transition: "border-color 0.2s ease",
     ...(grow ? { flex: 1, height: "100%" } : {}),
   };
 
@@ -315,19 +249,33 @@ function FieldGroup({ id, label, value, onChange, placeholder, type = "text", is
       </label>
 
       {isTextarea ? (
-        <textarea
-          id={id}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder={placeholder}
-          rows={grow ? undefined : 2}
-          onFocus={() => setFocused(true)}
-          onBlur={() => { setFocused(false); onBlur?.(); }}
-          style={{
-            ...inputStyle,
-            paddingBottom: "clamp(16px, 2vh, 28px)",
-          }}
-        />
+        <>
+          <textarea
+            id={id}
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+            placeholder={placeholder}
+            rows={grow ? undefined : 2}
+            maxLength={maxLength}
+            onFocus={() => setFocused(true)}
+            onBlur={() => { setFocused(false); onBlur?.(); }}
+            style={inputStyle}
+          />
+          {maxLength !== undefined && (
+            <span
+              style={{
+                fontFamily: "var(--font-heebo), sans-serif",
+                fontSize: 12,
+                color: value.length >= maxLength ? "#dc2626" : "#96a3b0",
+                textAlign: "left",
+                direction: "ltr",
+                marginTop: 2,
+              }}
+            >
+              {value.length}/{maxLength}
+            </span>
+          )}
+        </>
       ) : (
         <input
           id={id}
@@ -366,7 +314,7 @@ interface FormCardProps {
   setForm: (f: { name: string; email: string; phone: string; message: string }) => void;
   onSubmit: (e: React.FormEvent) => void;
   isLoading: boolean;
-  status: "idle" | "success" | "error";
+  status: "idle" | "success" | "error" | "rate_limited";
   isFormValid: boolean;
   touched: Record<string, boolean>;
   onFieldBlur: (field: string) => void;
@@ -443,6 +391,7 @@ function ContactFormCard({ form, setForm, onSubmit, isLoading, status, isFormVal
             placeholder="ספרו לנו במה נוכל לעזור..."
             isTextarea
             grow
+            maxLength={MESSAGE_MAX}
             error={errors.message}
             onBlur={() => onFieldBlur("message")}
           />
@@ -464,6 +413,14 @@ function ContactFormCard({ form, setForm, onSubmit, isLoading, status, isFormVal
               style={{ fontFamily: "var(--font-heebo), sans-serif", fontSize: 14, color: "#dc2626" }}
             >
               שגיאה בשליחה. אנא נסה שנית או צור קשר ישירות.
+            </p>
+          )}
+          {status === "rate_limited" && (
+            <p
+              className="text-right"
+              style={{ fontFamily: "var(--font-heebo), sans-serif", fontSize: 14, color: "#d97706" }}
+            >
+              נא להמתין מעט לפני שליחה נוספת.
             </p>
           )}
           <div className="flex justify-end">
@@ -509,24 +466,30 @@ function ContactFormCard({ form, setForm, onSubmit, isLoading, status, isFormVal
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RE = /^[\d\-+\s()]{7,15}$/;
+const MESSAGE_MAX = 200;
+const RATE_LIMIT_MS = 30_000;
+
+let lastSubmitAt = 0;
 
 export default function ContactSection() {
   const [form, setForm]       = useState({ name: "", email: "", phone: "", message: "" });
   const [isLoading, setIsLoading] = useState(false);
-  const [status, setStatus]   = useState<"idle" | "success" | "error">("idle");
+  const [status, setStatus]   = useState<"idle" | "success" | "error" | "rate_limited">("idle");
   const [touched, setTouched] = useState<Record<string, boolean>>({});
 
   const isFormValid =
     form.name.trim().length > 0 &&
     EMAIL_RE.test(form.email.trim()) &&
     PHONE_RE.test(form.phone.trim()) &&
-    form.message.trim().length > 0;
+    form.message.trim().length > 0 &&
+    form.message.length <= MESSAGE_MAX;
 
   const errors: Record<string, string> = {
-    ...(touched.name && form.name.trim() === ""             ? { name: "שדה חובה" } : {}),
-    ...(touched.email && !EMAIL_RE.test(form.email.trim())  ? { email: "כתובת אימייל לא תקינה" } : {}),
-    ...(touched.phone && !PHONE_RE.test(form.phone.trim())  ? { phone: "מספר טלפון לא תקין" } : {}),
-    ...(touched.message && form.message.trim() === ""       ? { message: "שדה חובה" } : {}),
+    ...(touched.name && form.name.trim() === ""                              ? { name: "שדה חובה" } : {}),
+    ...(touched.email && !EMAIL_RE.test(form.email.trim())                   ? { email: "כתובת אימייל לא תקינה" } : {}),
+    ...(touched.phone && !PHONE_RE.test(form.phone.trim())                   ? { phone: "מספר טלפון לא תקין" } : {}),
+    ...(touched.message && form.message.trim() === ""                        ? { message: "שדה חובה" } : {}),
+    ...(touched.message && form.message.length > MESSAGE_MAX                 ? { message: `מקסימום ${MESSAGE_MAX} תווים` } : {}),
   };
 
   const handleFieldBlur = (field: string) =>
@@ -536,18 +499,23 @@ export default function ContactSection() {
     e.preventDefault();
     setTouched({ name: true, email: true, phone: true, message: true });
     if (!isFormValid) return;
+    if (Date.now() - lastSubmitAt < RATE_LIMIT_MS) { setStatus("rate_limited"); return; }
     if (!SVC_ID) { setStatus("error"); return; }
 
     setIsLoading(true);
     setStatus("idle");
 
     try {
+      // Dynamic import keeps the ~10 KB EmailJS client out of the initial bundle;
+      // it only loads the first time the user actually submits the form.
+      const { default: emailjs } = await import("@emailjs/browser");
       await emailjs.send(
         SVC_ID,
         TPL_ID,
         { from_name: form.name, reply_to: form.email, phone: form.phone, message: form.message },
         PUB_KEY
       );
+      lastSubmitAt = Date.now();
       setStatus("success");
       setForm({ name: "", email: "", phone: "", message: "" });
       setTouched({});

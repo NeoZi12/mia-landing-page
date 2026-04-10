@@ -257,7 +257,7 @@ export default function ServiceExplanationSection({ service }: Props) {
       <div className="relative w-full overflow-hidden" style={{ background: "#002069", paddingBottom: 64 }}>
         {/* Office background image */}
         <Image
-          src="/images/office-pic2.jpg"
+          src="/images/office-pic2.webp"
           alt=""
           fill
           sizes="100vw"
@@ -548,7 +548,7 @@ export default function ServiceExplanationSection({ service }: Props) {
                 }}
               >
                 <Image
-                  src="/images/office-pic3.jpg"
+                  src="/images/office-pic3.webp"
                   alt=""
                   fill
                   sizes="380px"

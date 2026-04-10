@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
      * Using the URL constructor syntax supported in Next.js 16.
      */
     remotePatterns: [new URL('https://cdn.sanity.io/**')],
+    // Prefer AVIF (smallest) then WebP for all optimised images.
+    formats: ['image/avif', 'image/webp'],
+    // Cache optimised variants for 1 year.
+    minimumCacheTTL: 31536000,
   },
   async rewrites() {
     return [
