@@ -61,7 +61,7 @@ function InstagramIcon() {
 function ProfessionalismCard() {
   return (
     <div
-      className="relative overflow-hidden rounded-2xl isolate flex-shrink-0"
+      className="professionalism-card relative overflow-hidden rounded-2xl isolate flex-shrink-0"
       style={{
         background: "#002069",
         boxShadow: "0px 0px 0px 1px rgba(255,255,255,0.1), 0px 25px 50px -12px rgba(0,32,105,0.2)",
@@ -70,7 +70,7 @@ function ProfessionalismCard() {
     >
       {/* Office photo overlay */}
       <Image
-        src="/images/mia-office-pic.jpeg"
+        src="/images/office-pic1.jpg"
         alt=""
         fill
         sizes="(max-width: 768px) 100vw, 476px"
@@ -210,8 +210,8 @@ function InfoStack() {
         icon={<EnvelopeIcon />}
         iconBg="rgba(0,32,105,0.05)"
         label="אימייל"
-        sublabel="ethika@ltd.co.il"
-        href="mailto:ethika@ltd.co.il"
+        sublabel="maya@ethikaltd.co.il"
+        href="mailto:maya@ethikaltd.co.il"
       />
       <ContactInfoCard
         icon={<InstagramIcon />}
@@ -227,7 +227,7 @@ function InfoStack() {
         target="_blank"
         rel="noopener noreferrer"
         dir="rtl"
-        className="flex items-center justify-center w-full gap-3"
+        className="whatsapp-cta flex items-center justify-center w-full gap-3"
         style={{
           background: "#25D366",
           borderRadius: 16,
@@ -268,16 +268,20 @@ interface FieldGroupProps {
   type?: string;
   isTextarea?: boolean;
   grow?: boolean;
+  error?: string;
+  onBlur?: () => void;
 }
 
-function FieldGroup({ id, label, value, onChange, placeholder, type = "text", isTextarea, grow }: FieldGroupProps) {
+function FieldGroup({ id, label, value, onChange, placeholder, type = "text", isTextarea, grow, error, onBlur }: FieldGroupProps) {
   const [focused, setFocused] = useState(false);
+
+  const borderColor = focused ? "#002069" : error ? "#dc2626" : "#E2E8F0";
 
   const inputStyle: React.CSSProperties = {
     width: "100%",
     background: "transparent",
     border: "none",
-    borderBottom: `1px solid ${focused ? "#002069" : "#E2E8F0"}`,
+    borderBottom: `1px solid ${borderColor}`,
     outline: "none",
     textAlign: "right",
     direction: "rtl",
@@ -318,7 +322,7 @@ function FieldGroup({ id, label, value, onChange, placeholder, type = "text", is
           placeholder={placeholder}
           rows={grow ? undefined : 2}
           onFocus={() => setFocused(true)}
-          onBlur={() => setFocused(false)}
+          onBlur={() => { setFocused(false); onBlur?.(); }}
           style={{
             ...inputStyle,
             paddingBottom: "clamp(16px, 2vh, 28px)",
@@ -332,9 +336,24 @@ function FieldGroup({ id, label, value, onChange, placeholder, type = "text", is
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
           onFocus={() => setFocused(true)}
-          onBlur={() => setFocused(false)}
+          onBlur={() => { setFocused(false); onBlur?.(); }}
           style={inputStyle}
         />
+      )}
+
+      {error && (
+        <span
+          style={{
+            fontFamily: "var(--font-heebo), sans-serif",
+            fontSize: 12,
+            color: "#dc2626",
+            textAlign: "right",
+            direction: "rtl",
+            marginTop: 2,
+          }}
+        >
+          {error}
+        </span>
       )}
     </div>
   );
@@ -343,14 +362,19 @@ function FieldGroup({ id, label, value, onChange, placeholder, type = "text", is
 /* ─── Contact Form Card ─────────────────────────────────────── */
 
 interface FormCardProps {
-  form: { name: string; email: string; message: string };
-  setForm: (f: { name: string; email: string; message: string }) => void;
+  form: { name: string; email: string; phone: string; message: string };
+  setForm: (f: { name: string; email: string; phone: string; message: string }) => void;
   onSubmit: (e: React.FormEvent) => void;
   isLoading: boolean;
   status: "idle" | "success" | "error";
+  isFormValid: boolean;
+  touched: Record<string, boolean>;
+  onFieldBlur: (field: string) => void;
+  errors: Record<string, string>;
 }
 
-function ContactFormCard({ form, setForm, onSubmit, isLoading, status }: FormCardProps) {
+function ContactFormCard({ form, setForm, onSubmit, isLoading, status, isFormValid, onFieldBlur, errors }: FormCardProps) {
+  const isDisabled = isLoading || !isFormValid;
   return (
     <div
       className="relative w-full overflow-hidden isolate flex flex-col"
@@ -384,24 +408,43 @@ function ContactFormCard({ form, setForm, onSubmit, isLoading, status }: FormCar
             label="שם מלא"
             value={form.name}
             onChange={(v) => setForm({ ...form, name: v })}
-            placeholder="ישראל ישראלי"
+            placeholder="השם המלא שלך"
+            error={errors.name}
+            onBlur={() => onFieldBlur("name")}
           />
-          <FieldGroup
-            id="contact-email"
-            label="כתובת אימייל"
-            type="email"
-            value={form.email}
-            onChange={(v) => setForm({ ...form, email: v })}
-            placeholder="name@example.co.il"
-          />
+          {/* Email + Phone — side by side to avoid adding height */}
+          <div className="flex flex-col sm:flex-row w-full" style={{ gap: "clamp(16px, 2.5vh, 24px)" }}>
+            <FieldGroup
+              id="contact-email"
+              label="כתובת אימייל"
+              type="email"
+              value={form.email}
+              onChange={(v) => setForm({ ...form, email: v })}
+              placeholder="your@email.co.il"
+              error={errors.email}
+              onBlur={() => onFieldBlur("email")}
+            />
+            <FieldGroup
+              id="contact-phone"
+              label="טלפון"
+              type="tel"
+              value={form.phone}
+              onChange={(v) => setForm({ ...form, phone: v })}
+              placeholder="05X-XXX-XXXX"
+              error={errors.phone}
+              onBlur={() => onFieldBlur("phone")}
+            />
+          </div>
           <FieldGroup
             id="contact-message"
             label="הודעה"
             value={form.message}
             onChange={(v) => setForm({ ...form, message: v })}
-            placeholder="כיצד נוכל לעזור לך היום?"
+            placeholder="ספרו לנו במה נוכל לעזור..."
             isTextarea
             grow
+            error={errors.message}
+            onBlur={() => onFieldBlur("message")}
           />
         </div>
 
@@ -426,20 +469,20 @@ function ContactFormCard({ form, setForm, onSubmit, isLoading, status }: FormCar
           <div className="flex justify-end">
           <button
             type="submit"
-            disabled={isLoading}
+            disabled={isDisabled}
             className="relative flex items-center gap-3 isolate"
             style={{
-              background: isLoading ? "#3355a0" : "#002069",
+              background: isDisabled ? "#3355a0" : "#002069",
               borderRadius: 12,
               padding: "clamp(14px, 1.8vh, 20px) clamp(28px, 3.5vw, 48px)",
               border: "none",
-              cursor: isLoading ? "not-allowed" : "pointer",
+              cursor: isDisabled ? "not-allowed" : "pointer",
               boxShadow: "0px 20px 25px -5px rgba(0,32,105,0.3), 0px 8px 10px -6px rgba(0,32,105,0.3)",
               transition: "background 0.2s ease, opacity 0.2s ease",
-              opacity: isLoading ? 0.75 : 1,
+              opacity: isDisabled ? 0.5 : 1,
             }}
-            onMouseEnter={(e) => { if (!isLoading) (e.currentTarget as HTMLButtonElement).style.background = "#001550"; }}
-            onMouseLeave={(e) => { if (!isLoading) (e.currentTarget as HTMLButtonElement).style.background = "#002069"; }}
+            onMouseEnter={(e) => { if (!isDisabled) (e.currentTarget as HTMLButtonElement).style.background = "#001550"; }}
+            onMouseLeave={(e) => { if (!isDisabled) (e.currentTarget as HTMLButtonElement).style.background = "#002069"; }}
           >
             <span
               style={{
@@ -464,13 +507,35 @@ function ContactFormCard({ form, setForm, onSubmit, isLoading, status }: FormCar
 
 /* ─── Main Section ──────────────────────────────────────────── */
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PHONE_RE = /^[\d\-+\s()]{7,15}$/;
+
 export default function ContactSection() {
-  const [form, setForm]       = useState({ name: "", email: "", message: "" });
+  const [form, setForm]       = useState({ name: "", email: "", phone: "", message: "" });
   const [isLoading, setIsLoading] = useState(false);
   const [status, setStatus]   = useState<"idle" | "success" | "error">("idle");
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+
+  const isFormValid =
+    form.name.trim().length > 0 &&
+    EMAIL_RE.test(form.email.trim()) &&
+    PHONE_RE.test(form.phone.trim()) &&
+    form.message.trim().length > 0;
+
+  const errors: Record<string, string> = {
+    ...(touched.name && form.name.trim() === ""             ? { name: "שדה חובה" } : {}),
+    ...(touched.email && !EMAIL_RE.test(form.email.trim())  ? { email: "כתובת אימייל לא תקינה" } : {}),
+    ...(touched.phone && !PHONE_RE.test(form.phone.trim())  ? { phone: "מספר טלפון לא תקין" } : {}),
+    ...(touched.message && form.message.trim() === ""       ? { message: "שדה חובה" } : {}),
+  };
+
+  const handleFieldBlur = (field: string) =>
+    setTouched((prev) => ({ ...prev, [field]: true }));
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setTouched({ name: true, email: true, phone: true, message: true });
+    if (!isFormValid) return;
     if (!SVC_ID) { setStatus("error"); return; }
 
     setIsLoading(true);
@@ -480,11 +545,12 @@ export default function ContactSection() {
       await emailjs.send(
         SVC_ID,
         TPL_ID,
-        { from_name: form.name, reply_to: form.email, message: form.message },
+        { from_name: form.name, reply_to: form.email, phone: form.phone, message: form.message },
         PUB_KEY
       );
       setStatus("success");
-      setForm({ name: "", email: "", message: "" });
+      setForm({ name: "", email: "", phone: "", message: "" });
+      setTouched({});
     } catch {
       setStatus("error");
     } finally {
@@ -494,7 +560,7 @@ export default function ContactSection() {
 
   return (
     <section
-      className="relative w-full bg-[#F7F9FB] isolate overflow-hidden lg:min-h-[100dvh]"
+      className="relative w-full isolate overflow-hidden lg:min-h-[100dvh]"
     >
       {/* ── Content ── */}
       <div
@@ -578,20 +644,15 @@ export default function ContactSection() {
             onSubmit={handleSubmit}
             isLoading={isLoading}
             status={status}
+            isFormValid={isFormValid}
+            touched={touched}
+            onFieldBlur={handleFieldBlur}
+            errors={errors}
           />
           </motion.div>
         </div>
       </div>
 
-      {/* ── Edge feather — blends top/bottom into adjacent sections ── */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          zIndex: 10,
-          background: "linear-gradient(to bottom, #F7F9FB 0%, transparent 6%, transparent 94%, #F7F9FB 100%)",
-        }}
-      />
     </section>
   );
 }

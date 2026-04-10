@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #F7F9FB;
+  --background: #EEF2F7;
   --foreground: #171717;
 }
 
@@ -16,12 +16,44 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  background-color: #EEF2F7;
+}
+
+input::placeholder,
+textarea::placeholder {
+  font-weight: 400;
+  color: #94a3b8;
 }
 
 body {
-  background: var(--background);
+  background-color: transparent;
   color: var(--foreground);
   font-family: var(--font-heebo), Arial, sans-serif;
+}
+
+/* ── Dotted background: knock out dots behind text via a halo in the base color ──
+   Every text glyph gets a soft halo matching #EEF2F7, which hides the dots that
+   sit directly behind letters. No layout or color change — purely visual. */
+.dotted-bg :is(h1, h2, h3, h4, h5, h6, p, span, li, a, label, strong, em) {
+  text-shadow:
+    0 0 6px #EEF2F7,
+    0 0 14px #EEF2F7,
+    0 0 28px #EEF2F7;
+}
+
+/* Text inside elements that have their own background should NOT get the halo. */
+.dotted-bg :is(
+  button, button *,
+  input, textarea, select,
+  footer, footer *,
+  .service-card, .service-card *,
+  .service-card-featured, .service-card-featured *,
+  .contact-info-card, .contact-info-card *,
+  .professionalism-card, .professionalism-card *,
+  .whatsapp-cta, .whatsapp-cta *,
+  .cta-card, .cta-card *
+) {
+  text-shadow: none;
 }
 
 /* ── Scroll indicator bounce ── */

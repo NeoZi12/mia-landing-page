@@ -195,7 +195,7 @@ export default function HowItWorksSection() {
   return (
     <section
       dir="rtl"
-      className="relative w-full bg-[#F7F9FB] flex flex-col items-center justify-center overflow-hidden lg:h-screen isolate"
+      className="relative w-full flex flex-col items-center justify-center overflow-hidden lg:h-screen isolate"
     >
       <div
         className="flex flex-col w-full max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-[60px] xl:px-[130px] items-center"

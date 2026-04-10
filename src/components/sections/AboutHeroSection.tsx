@@ -19,7 +19,7 @@ export default function AboutHeroSection({ data }: AboutHeroSectionProps = {}) {
   const orgs        = data?.aboutOrgs        ?? "רשות המסים · ביטוח לאומי · משרד האוצר";
   return (
     <section
-      className="relative w-full bg-[#F7F9FB] overflow-hidden flex flex-col justify-center items-center isolate h-auto lg:h-[100dvh]"
+      className="relative w-full overflow-hidden flex flex-col justify-center items-center isolate h-auto lg:h-[100dvh]"
       style={{ padding: "104px 0 clamp(48px, 8vh, 140px)" }}
     >
       {/* ── Main content container ── */}

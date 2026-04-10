@@ -15,6 +15,7 @@ import WhyUsSection from "@/components/sections/WhyUsSection";
 import ContactSection from "@/components/sections/ContactSection";
 import SiteFooter from "@/components/SiteFooter";
 import Navbar from "@/components/Navbar";
+import { DotPattern } from "@/components/ui/dot-pattern";
 import { client } from "@/lib/sanity";
 import { HOME_PAGE_QUERY, type HomePageData } from "@/lib/queries";
 
@@ -38,21 +39,32 @@ export default async function HomePage() {
       <div id="hero">
         <HeroSection data={data} />
       </div>
-      <div id="about">
-        <AboutHeroSection data={data} />
-      </div>
-      <div id="services">
-        <ServicesSection />
-      </div>
-      <div id="how-it-works">
-        <HowItWorksSection />
-      </div>
-      <div id="why-us">
-        <WhyUsSection />
-      </div>
-      <div id="contact">
-        <ContactSection />
-        <SiteFooter />
+      <div className="dotted-bg relative isolate">
+        <DotPattern
+          width={26}
+          height={26}
+          cx={1}
+          cy={1}
+          cr={1.3}
+          glow={true}
+          className="absolute inset-0 h-full w-full -z-10 pointer-events-none"
+        />
+        <div id="about">
+          <AboutHeroSection data={data} />
+        </div>
+        <div id="services">
+          <ServicesSection />
+        </div>
+        <div id="how-it-works">
+          <HowItWorksSection />
+        </div>
+        <div id="why-us">
+          <WhyUsSection />
+        </div>
+        <div id="contact">
+          <ContactSection />
+          <SiteFooter />
+        </div>
       </div>
     </>
   );

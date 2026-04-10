@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { SERVICES, type ServiceData } from "@/lib/servicesData";
+import { DotPattern } from "@/components/ui/dot-pattern";
 
 /* ─── Icon SVGs ─────────────────────────────────────────────── */
 
@@ -252,9 +254,20 @@ export default function ServiceExplanationSection({ service }: Props) {
     <section dir="rtl" className="w-full bg-[#F7F9FB]">
 
       {/* ══ 1. Hero Header ══════════════════════════════════════════ */}
-      <div className="w-full" style={{ background: "#002069", paddingBottom: 64 }}>
+      <div className="relative w-full overflow-hidden" style={{ background: "#002069", paddingBottom: 64 }}>
+        {/* Office background image */}
+        <Image
+          src="/images/office-pic2.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          priority
+          className="object-cover pointer-events-none select-none"
+          style={{ mixBlendMode: "overlay", opacity: 0.2 }}
+          aria-hidden="true"
+        />
         <div
-          className="w-full max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-[60px] xl:px-[130px]"
+          className="relative z-[1] w-full max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-[60px] xl:px-[130px]"
           style={{ paddingTop: 104 }}
         >
           {/* Back link */}
@@ -324,7 +337,19 @@ export default function ServiceExplanationSection({ service }: Props) {
         </div>
       </div>
 
-      {/* ══ 2. Main Two-Column Content ══════════════════════════════ */}
+      {/* ══ 2. Main Two-Column Content + Related Services ══════════ */}
+      <div className="dotted-bg relative isolate">
+        <DotPattern
+          width={26}
+          height={26}
+          cx={1}
+          cy={1}
+          cr={1.3}
+          glow={true}
+          className="absolute inset-0 h-full w-full -z-10 pointer-events-none"
+        />
+
+      {/* ── Main Two-Column Content ─────────────────────────────── */}
       <div
         className="w-full max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-[60px] xl:px-[130px]"
         style={{
@@ -372,7 +397,7 @@ export default function ServiceExplanationSection({ service }: Props) {
             {importantNote && (
               <div
                 style={{
-                  background: "linear-gradient(135deg, rgba(37, 99, 235, 0.06) 0%, rgba(0, 32, 105, 0.04) 100%)",
+                  background: "linear-gradient(135deg, #E8EEFA 0%, #EDF1F8 100%)",
                   border: "1px solid rgba(37, 99, 235, 0.15)",
                   borderRadius: 16,
                   boxShadow: "0px 2px 12px rgba(0, 32, 105, 0.07)",
@@ -515,12 +540,23 @@ export default function ServiceExplanationSection({ service }: Props) {
 
               {/* Dark CTA card */}
               <div
+                className="cta-card relative overflow-hidden"
                 style={{
                   background: "#002069",
                   borderRadius: 16,
                   padding: "clamp(20px, 2vw, 28px)",
                 }}
               >
+                <Image
+                  src="/images/office-pic3.jpg"
+                  alt=""
+                  fill
+                  sizes="380px"
+                  className="object-cover pointer-events-none select-none"
+                  style={{ mixBlendMode: "overlay", opacity: 0.2 }}
+                  aria-hidden="true"
+                />
+                <div className="relative z-[1]">
                 <h3
                   className="text-right"
                   style={{
@@ -592,6 +628,7 @@ export default function ServiceExplanationSection({ service }: Props) {
                     וואטסאפ
                   </a>
                 </div>
+                </div>
               </div>
 
             </div>
@@ -603,7 +640,7 @@ export default function ServiceExplanationSection({ service }: Props) {
       {/* ══ 3. Additional Services ══════════════════════════════════ */}
       <div
         className="w-full"
-        style={{ background: "#F7F9FB", paddingBottom: "clamp(48px, 8vh, 80px)" }}
+        style={{ paddingBottom: "clamp(48px, 8vh, 80px)" }}
       >
         <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-[40px] xl:px-[60px]">
           <h2
@@ -628,6 +665,8 @@ export default function ServiceExplanationSection({ service }: Props) {
           </div>
         </div>
       </div>
+
+      </div>{/* end dotted-bg */}
 
     </section>
   );

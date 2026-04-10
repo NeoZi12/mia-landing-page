@@ -506,7 +506,7 @@ function FeaturedCard() {
 
 export default function ServicesSection() {
   return (
-    <section className="relative w-full bg-[#F7F9FB] flex flex-col items-center justify-center overflow-hidden lg:h-screen isolate">
+    <section className="relative w-full flex flex-col items-center justify-center overflow-hidden lg:h-screen isolate">
       <div
         className="relative z-[3] flex flex-col w-full max-w-[1280px] mx-auto px-6"
         style={{
@@ -605,15 +605,6 @@ export default function ServicesSection() {
         </StaggerContainer>
       </div>
 
-      {/* ── Edge feather — blends top/bottom into adjacent sections ── */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          zIndex: 10,
-          background: "linear-gradient(to bottom, #F7F9FB 0%, transparent 6%, transparent 94%, #F7F9FB 100%)",
-        }}
-      />
     </section>
   );
 }
