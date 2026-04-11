@@ -10,9 +10,7 @@
 import HeroSection from "@/components/sections/HeroSection";
 import AboutHeroSection from "@/components/sections/AboutHeroSection";
 import ServicesSection from "@/components/sections/ServicesSection";
-import HowItWorksSection from "@/components/sections/HowItWorksSection";
-import WhyUsSection from "@/components/sections/WhyUsSection";
-import ContactSection from "@/components/sections/ContactSection";
+import BelowFoldSections from "@/components/sections/BelowFoldSections";
 import SiteFooter from "@/components/SiteFooter";
 import Navbar from "@/components/Navbar";
 import { DotPattern } from "@/components/ui/dot-pattern";
@@ -55,16 +53,8 @@ export default async function HomePage() {
         <div id="services">
           <ServicesSection />
         </div>
-        <div id="how-it-works">
-          <HowItWorksSection />
-        </div>
-        <div id="why-us">
-          <WhyUsSection />
-        </div>
-        <div id="contact">
-          <ContactSection />
-          <SiteFooter />
-        </div>
+        <BelowFoldSections />
+        <SiteFooter />
       </div>
     </>
   );

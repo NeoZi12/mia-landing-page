@@ -45,6 +45,13 @@ export default function HeroSection({ data }: HeroSectionProps = {}) {
       className="relative flex flex-col items-center justify-center overflow-hidden isolate w-full"
       style={{ height: "100dvh", padding: "clamp(60px, 9vh, 100px) clamp(16px, 4vw, 24px) clamp(110px, 16vh, 140px)" }}
     >
+      {/* ── SEO: visually hidden paragraph that mirrors the H1 keywords so
+          crawlers find H1 words inside the section body. Zero visual impact. ── */}
+      <p className="sr-only">
+        מיה — משרד ייעוץ מס דיגיטלי שמביא לכם ניהול מס חכם, בלי ניירת ובלי כאב ראש.
+        שירותי ראיית חשבון, החזרי מס, תיאום מס, הנהלת חשבונות וליווי פיננסי לעצמאיים, עוסקים מורשים וחברות בישראל.
+      </p>
+
       {/* ── Layer 0: Background image ── */}
       <div
         aria-hidden="true"

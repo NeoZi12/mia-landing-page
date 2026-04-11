@@ -1,6 +1,54 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getServiceBySlug } from "@/lib/servicesData";
+import { getServiceBySlug, SERVICES } from "@/lib/servicesData";
 import ServiceExplanationSection from "@/components/sections/ServiceExplanationSection";
+
+export function generateStaticParams() {
+  return SERVICES.map((s) => ({ slug: s.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const service = getServiceBySlug(slug);
+
+  if (!service) {
+    return {
+      title: "שירות לא נמצא",
+    };
+  }
+
+  // Trim primaryText to a clean meta-description (≤160 chars).
+  const description =
+    service.primaryText.length > 160
+      ? `${service.primaryText.slice(0, 157).trimEnd()}...`
+      : service.primaryText;
+
+  const canonical = `/services/${service.slug}`;
+
+  return {
+    title: service.title,
+    description,
+    alternates: {
+      canonical,
+    },
+    openGraph: {
+      type: "article",
+      locale: "he_IL",
+      title: `${service.title} | מיה`,
+      description,
+      url: canonical,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${service.title} | מיה`,
+      description,
+    },
+  };
+}
 
 export default async function ServicePage({
   params,

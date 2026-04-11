@@ -41,7 +41,7 @@ export default function AboutHeroSection({ data }: AboutHeroSectionProps = {}) {
 
             {/* Heading + description */}
             <div className="flex flex-col items-end gap-5 lg:gap-8 w-full">
-              <h1
+              <h2
                 className="font-bold text-[#1E3A5F] text-right w-full"
                 style={{
                   fontSize: "clamp(26px, 3.2vw, 42px)",
@@ -51,7 +51,7 @@ export default function AboutHeroSection({ data }: AboutHeroSectionProps = {}) {
               >
                 הניסיון שלנו,{" "}
                 <span style={{ color: "#3B6FD8" }}>השקט שלכם</span>
-              </h1>
+              </h2>
               <p
                 className="font-normal text-[#496177] text-right w-full"
                 style={{
