@@ -139,8 +139,8 @@ function getServiceIcon(slug: string, color: string) {
 
 function WhatsAppIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="white"/>
     </svg>
   );
 }
@@ -254,7 +254,7 @@ export default function ServiceExplanationSection({ service }: Props) {
     <section dir="rtl" className="w-full bg-[#F7F9FB]">
 
       {/* ══ 1. Hero Header ══════════════════════════════════════════ */}
-      <div className="relative w-full overflow-hidden" style={{ background: "#002069", paddingBottom: 64 }}>
+      <div className="relative w-full overflow-hidden" style={{ background: "#0D2049", paddingBottom: 64 }}>
         {/* Office background image */}
         <Image
           src="/images/office-pic2.webp"
@@ -270,26 +270,33 @@ export default function ServiceExplanationSection({ service }: Props) {
           className="relative z-[1] w-full max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-[60px] xl:px-[130px]"
           style={{ paddingTop: 104 }}
         >
-          {/* Back link */}
-          <Link
-            href="/#services"
-            className="inline-flex flex-row items-center"
-            style={{ gap: 8, textDecoration: "none", marginBottom: 40 }}
-          >
-            <svg width="16" height="12" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M1 7H17M11 1L17 7L11 13" stroke="rgba(255,255,255,0.5)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            <span
+          {/* Back link — min 44px tap target for mobile */}
+          <div style={{ marginBottom: 28 }}>
+            <Link
+              href="/#services"
+              className="inline-flex flex-row items-center"
               style={{
-                fontFamily: "var(--font-heebo), sans-serif",
-                fontWeight: 500,
-                fontSize: 14,
-                color: "rgba(255,255,255,0.6)",
+                gap: 10,
+                textDecoration: "none",
+                padding: "10px 4px",
+                minHeight: 44,
               }}
             >
-              חזרה לכל השירותים
-            </span>
-          </Link>
+              <svg width="20" height="16" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M1 7H17M11 1L17 7L11 13" stroke="rgba(255,255,255,0.7)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span
+                style={{
+                  fontFamily: "var(--font-heebo), sans-serif",
+                  fontWeight: 600,
+                  fontSize: 15,
+                  color: "rgba(255,255,255,0.75)",
+                }}
+              >
+                חזרה לכל השירותים
+              </span>
+            </Link>
+          </div>
 
           {/* Title row: icon (right) + title (left) in RTL — icon first in DOM = right side */}
           <div className="flex flex-row items-start" style={{ gap: 20 }}>
@@ -540,11 +547,12 @@ export default function ServiceExplanationSection({ service }: Props) {
 
               {/* Dark CTA card */}
               <div
-                className="cta-card relative overflow-hidden"
+                className="cta-card relative overflow-hidden isolate"
                 style={{
-                  background: "#002069",
-                  borderRadius: 16,
+                  background: "#0D2049",
+                  borderRadius: 20,
                   padding: "clamp(20px, 2vw, 28px)",
+                  boxShadow: "0px 4px 6px -1px rgba(0,0,0,0.12), 0px 2px 4px -2px rgba(0,0,0,0.08)",
                 }}
               >
                 <Image
@@ -553,7 +561,7 @@ export default function ServiceExplanationSection({ service }: Props) {
                   fill
                   sizes="380px"
                   className="object-cover pointer-events-none select-none"
-                  style={{ mixBlendMode: "overlay", opacity: 0.2 }}
+                  style={{ mixBlendMode: "overlay", opacity: 0.25 }}
                   aria-hidden="true"
                 />
                 <div className="relative z-[1]">
@@ -561,9 +569,10 @@ export default function ServiceExplanationSection({ service }: Props) {
                   className="text-right"
                   style={{
                     fontFamily: "var(--font-heebo), sans-serif",
-                    fontWeight: 700,
+                    fontWeight: 800,
                     fontSize: "clamp(18px, 1.6vw, 20px)",
                     color: "#FFFFFF",
+                    lineHeight: "1.27",
                     marginBottom: 8,
                   }}
                 >
@@ -573,9 +582,10 @@ export default function ServiceExplanationSection({ service }: Props) {
                   className="text-right"
                   style={{
                     fontFamily: "var(--font-heebo), sans-serif",
-                    fontWeight: 400,
+                    fontWeight: 500,
                     fontSize: "clamp(13px, 1vw, 15px)",
-                    color: "rgba(219, 234, 254, 0.8)",
+                    lineHeight: "1.5",
+                    color: "rgba(219,234,254,0.85)",
                     marginBottom: 24,
                   }}
                 >
@@ -583,49 +593,55 @@ export default function ServiceExplanationSection({ service }: Props) {
                 </p>
 
                 <div className="flex flex-col" style={{ gap: 12 }}>
-                  {/* Primary CTA — accent blue */}
+                  {/* Primary CTA */}
                   <a
                     href="/#contact"
                     className="flex items-center justify-center w-full"
                     style={{
-                      background: "#3B6FD8",
-                      borderRadius: 12,
-                      padding: "14px 0",
+                      background: "transparent",
+                      border: "1.5px solid rgba(255,255,255,0.6)",
+                      borderRadius: 14,
+                      height: "clamp(50px, 6.2vh, 64px)",
                       fontFamily: "var(--font-heebo), sans-serif",
-                      fontWeight: 700,
-                      fontSize: "clamp(14px, 1.2vw, 16px)",
+                      fontWeight: 800,
+                      fontSize: "clamp(14px, 1.3vw, 17px)",
                       color: "#FFFFFF",
+                      whiteSpace: "nowrap",
                       textDecoration: "none",
-                      transition: "background 0.2s ease",
+                      flexShrink: 0,
+                      transition: "background 0.2s ease, border-color 0.2s ease",
                     }}
-                    onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#2E5CB8"; }}
-                    onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#3B6FD8"; }}
+                    onMouseEnter={(e) => { const el = e.currentTarget as HTMLAnchorElement; el.style.background = "rgba(255,255,255,0.08)"; el.style.borderColor = "rgba(255,255,255,0.9)"; }}
+                    onMouseLeave={(e) => { const el = e.currentTarget as HTMLAnchorElement; el.style.background = "transparent"; el.style.borderColor = "rgba(255,255,255,0.6)"; }}
                   >
                     בואו נתחיל
                   </a>
 
-                  {/* WhatsApp — green */}
+                  {/* WhatsApp */}
                   <a
                     href="https://wa.me/972584087061"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full"
+                    className="whatsapp-cta flex items-center justify-center gap-3 w-full"
                     style={{
-                      background: "#22C55E",
-                      borderRadius: 12,
-                      padding: "14px 0",
+                      background: "transparent",
+                      border: "1.5px solid rgba(255,255,255,0.6)",
+                      borderRadius: 14,
+                      height: "clamp(50px, 6.2vh, 64px)",
                       fontFamily: "var(--font-heebo), sans-serif",
-                      fontWeight: 700,
-                      fontSize: "clamp(14px, 1.2vw, 16px)",
+                      fontWeight: 800,
+                      fontSize: "clamp(14px, 1.3vw, 17px)",
                       color: "#FFFFFF",
+                      whiteSpace: "nowrap",
                       textDecoration: "none",
-                      transition: "background 0.2s ease",
+                      flexShrink: 0,
+                      transition: "background 0.2s ease, border-color 0.2s ease",
                     }}
-                    onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#16A34A"; }}
-                    onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#22C55E"; }}
+                    onMouseEnter={(e) => { const el = e.currentTarget as HTMLAnchorElement; el.style.background = "rgba(255,255,255,0.08)"; el.style.borderColor = "rgba(255,255,255,0.9)"; }}
+                    onMouseLeave={(e) => { const el = e.currentTarget as HTMLAnchorElement; el.style.background = "transparent"; el.style.borderColor = "rgba(255,255,255,0.6)"; }}
                   >
                     <WhatsAppIcon />
-                    וואטסאפ
+                    פנייה בוואטסאפ
                   </a>
                 </div>
                 </div>

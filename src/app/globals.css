@@ -80,15 +80,36 @@ body {
               box-shadow 0.35s ease;
 }
 
-.service-card svg path,
-.service-card svg rect {
+.service-card-icon svg path,
+.service-card-icon svg rect {
   transition: stroke 0.2s ease;
+}
+
+.service-card-arrow path {
+  transition: stroke 0.2s ease;
+}
+
+.service-card-learn-more {
+  transition: color 0.2s ease;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .service-card:hover {
     transform: translateY(-7px);
     box-shadow: 0px 22px 44px -8px rgba(0, 32, 105, 0.18) !important;
+  }
+
+  .service-card:hover .service-card-icon svg path,
+  .service-card:hover .service-card-icon svg rect {
+    stroke: #3B6FD8;
+  }
+
+  .service-card:hover .service-card-arrow path {
+    stroke: #3B6FD8;
+  }
+
+  .service-card:hover .service-card-learn-more {
+    color: #3B6FD8;
   }
 }
 

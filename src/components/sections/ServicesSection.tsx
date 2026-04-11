@@ -1,7 +1,6 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useState } from "react";
 import Link from "next/link";
 import { FadeUpItem, StaggerContainer } from "@/components/motion";
 
@@ -294,11 +293,11 @@ function IconCustomConsultation({ color = "#FFFFFF" }: { color?: string }) {
 
 /* ─── Learn More Link ───────────────────────────────────────── */
 
-function LearnMore({ color = "#002069", arrowColor }: { color?: string; arrowColor?: string }) {
-  const arrow = arrowColor ?? color;
+function LearnMore({ color = "#002069" }: { color?: string }) {
   return (
     <div className="flex items-center gap-2 mt-auto w-full">
       <span
+        className="service-card-learn-more"
         style={{
           fontFamily: "var(--font-heebo), sans-serif",
           fontWeight: 600,
@@ -316,11 +315,11 @@ function LearnMore({ color = "#002069", arrowColor }: { color?: string; arrowCol
         viewBox="0 0 16 16"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        style={{ transition: "stroke 0.2s ease" }}
+        className="service-card-arrow"
       >
         <path
           d="M10 12L6 8L10 4"
-          stroke={arrow}
+          stroke={color}
           strokeWidth="1.8"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -340,9 +339,6 @@ interface CardProps {
 }
 
 function ServiceCard({ icon, title, body, slug }: CardProps) {
-  const [hovered, setHovered] = useState(false);
-  const iconColor = hovered ? "#3B6FD8" : "#002069";
-
   return (
     <Link
       href={`/services/${slug}`}
@@ -356,20 +352,17 @@ function ServiceCard({ icon, title, body, slug }: CardProps) {
           padding: "clamp(14px, 1.6vw, 24px)",
           gap: "clamp(8px, 0.8vh, 14px)",
         }}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
       >
         {/* Icon badge */}
         <div
-          className="flex items-center justify-center rounded-lg flex-shrink-0"
+          className="service-card-icon flex items-center justify-center rounded-lg flex-shrink-0"
           style={{
             width: 44,
             height: 44,
             background: "rgba(196, 207, 255, 0.22)",
-            transition: "background 0.2s ease",
           }}
         >
-          {icon(iconColor)}
+          {icon("#002069")}
         </div>
 
         {/* Title */}
@@ -398,7 +391,7 @@ function ServiceCard({ icon, title, body, slug }: CardProps) {
           {body}
         </p>
 
-        <LearnMore color="#002069" arrowColor={iconColor} />
+        <LearnMore color="#002069" />
       </div>
     </Link>
   );
@@ -421,10 +414,10 @@ function FeaturedCard() {
           gap: "clamp(8px, 0.8vh, 14px)",
         }}
       >
-        {/* Blur blob — bottom-left */}
+        {/* Blur blob — bottom-left (hidden on mobile to avoid GPU jank) */}
         <div
           aria-hidden="true"
-          className="absolute pointer-events-none rounded-xl"
+          className="hidden sm:block absolute pointer-events-none rounded-xl"
           style={{
             width: 160,
             height: 160,
@@ -435,10 +428,10 @@ function FeaturedCard() {
             zIndex: 0,
           }}
         />
-        {/* Blur blob — top-right */}
+        {/* Blur blob — top-right (hidden on mobile to avoid GPU jank) */}
         <div
           aria-hidden="true"
-          className="absolute pointer-events-none rounded-xl"
+          className="hidden sm:block absolute pointer-events-none rounded-xl"
           style={{
             width: 160,
             height: 160,
@@ -517,7 +510,7 @@ export default function ServicesSection() {
       >
         {/* ── Header — choreographed: heading first, subtitle second ── */}
         <div className="flex flex-col items-center" style={{ gap: 12 }}>
-          <FadeUpItem standalone delay={0}>
+          <FadeUpItem standalone delay={0} duration={0.55}>
             <h2
               className="text-[#1E3A5F] text-center"
               style={{
@@ -534,7 +527,7 @@ export default function ServicesSection() {
             </h2>
           </FadeUpItem>
 
-          <FadeUpItem standalone delay={0.14}>
+          <FadeUpItem standalone delay={0.1} duration={0.55}>
             <p
               className="text-[#496177] text-center max-w-[768px]"
               style={{
@@ -559,8 +552,8 @@ export default function ServicesSection() {
         <StaggerContainer
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
           style={{ gap: "clamp(12px, 1.5vw, 20px)" }}
-          delayChildren={0.32}
-          staggerChildren={0.13}
+          delayChildren={0.18}
+          staggerChildren={0.08}
         >
           <FadeUpItem duration={0.8}>
             <ServiceCard

@@ -3,11 +3,12 @@ import type { Variants } from "framer-motion";
 /** easeOutExpo — snappy start, buttery settle */
 export const EASE = [0.22, 1, 0.36, 1] as const;
 
-/** Base transition duration */
-export const DUR = 0.75;
+/** Base transition duration — desktop */
+export const DUR = 0.65;
 
-/** Trigger when element is 100px into the viewport, only once */
-export const viewport = { once: true, margin: "-100px 0px" } as const;
+/** Trigger when element is 60px into the viewport, only once.
+ *  Smaller margin so elements animate sooner on short mobile viewports. */
+export const viewport = { once: true, margin: "-60px 0px" } as const;
 
 /** Fade up — default for most content elements */
 export const fadeUp: Variants = {

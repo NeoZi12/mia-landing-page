@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [new URL('https://cdn.sanity.io/**')],
     // Prefer AVIF (smallest) then WebP for all optimised images.
     formats: ['image/avif', 'image/webp'],
+    qualities: [60, 75],
     // Cache optimised variants for 1 year.
     minimumCacheTTL: 31536000,
   },
