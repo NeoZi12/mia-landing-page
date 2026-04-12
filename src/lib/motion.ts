@@ -4,7 +4,7 @@ import type { Variants } from "framer-motion";
 export const EASE = [0.22, 1, 0.36, 1] as const;
 
 /** Base transition duration — desktop */
-export const DUR = 0.65;
+export const DUR = 0.45;
 
 /** Trigger when element is 60px into the viewport, only once.
  *  Smaller margin so elements animate sooner on short mobile viewports. */
@@ -12,32 +12,32 @@ export const viewport = { once: true, margin: "-60px 0px" } as const;
 
 /** Fade up — default for most content elements */
 export const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 14 },
   show:   { opacity: 1, y: 0, transition: { duration: DUR, ease: EASE } },
 };
 
 /** Fade from left — left-column content in split layouts */
 export const fadeLeft: Variants = {
-  hidden: { opacity: 0, x: -24 },
+  hidden: { opacity: 0, x: -16 },
   show:   { opacity: 1, x: 0,  transition: { duration: DUR, ease: EASE } },
 };
 
 /** Fade from right — right-column content in split layouts */
 export const fadeRight: Variants = {
-  hidden: { opacity: 0, x: 24 },
+  hidden: { opacity: 0, x: 16 },
   show:   { opacity: 1, x: 0,  transition: { duration: DUR, ease: EASE } },
 };
 
 /** Standard stagger — for sections with 3–6 children */
 export const stagger: Variants = {
   hidden: {},
-  show:   { transition: { staggerChildren: 0.16, delayChildren: 0.1 } },
+  show:   { transition: { staggerChildren: 0.10, delayChildren: 0.06 } },
 };
 
 /** Fast stagger — for many small items (badges, links, icons) */
 export const staggerFast: Variants = {
   hidden: {},
-  show:   { transition: { staggerChildren: 0.08, delayChildren: 0.06 } },
+  show:   { transition: { staggerChildren: 0.05, delayChildren: 0.03 } },
 };
 
 /** Builds a transition with optional delay — for explicit sequential ordering */

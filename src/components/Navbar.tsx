@@ -136,14 +136,14 @@ export default function Navbar({ alwaysVisible = false, standalone = false }: { 
         "fixed left-1/2 -translate-x-1/2 z-50",
         "transition-all duration-300 ease-in-out",
         visible
-          ? "opacity-100 translate-y-0 pointer-events-auto"
+          ? "opacity-100 translate-y-0 pointer-events-none"
           : "opacity-0 -translate-y-4 pointer-events-none",
       ].join(" ")}
       style={{ top: 16, width: "calc(100% - 32px)", maxWidth: 1216 }}
     >
       {/* ══ Navbar bar ══════════════════════════════════════════════════════ */}
       <div
-        className="w-full rounded-xl border border-[rgba(196,197,213,0.15)] shadow-[0px_8px_32px_rgba(25,28,30,0.06)]"
+        className="pointer-events-auto w-full rounded-xl border border-[rgba(196,197,213,0.15)] shadow-[0px_8px_32px_rgba(25,28,30,0.06)]"
         style={{ ...GLASS, height: 72 }}
       >
         <div className="flex flex-row-reverse lg:flex-row justify-between items-center w-full h-full px-5 lg:px-8">
