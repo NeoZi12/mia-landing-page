@@ -45,6 +45,15 @@ function EnvelopeIcon({ color = "#002069" }: { color?: string }) {
   );
 }
 
+function MapPinIcon() {
+  return (
+    <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M10 1C6.13 1 3 4.13 3 8c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <circle cx="10" cy="8" r="2.5" stroke="white" strokeWidth="1.5"/>
+    </svg>
+  );
+}
+
 function InstagramIcon({ color = "#002069" }: { color?: string }) {
   return (
     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -159,6 +168,52 @@ function InfoStack() {
           </div>
         </a>
       ))}
+
+      {/* Address block */}
+      <div
+        dir="rtl"
+        className="relative z-[1] flex flex-row items-start w-full"
+        style={{
+          padding: "clamp(10px, 1.2vh, 16px) clamp(12px, 1.5vw, 18px)",
+          gap: "clamp(12px, 1.5vw, 16px)",
+          borderRadius: 12,
+          background: "rgba(13,32,73,0.55)",
+          backdropFilter: "blur(2px)",
+          WebkitBackdropFilter: "blur(2px)",
+        }}
+      >
+        <div
+          className="flex items-center justify-center flex-shrink-0 rounded-xl"
+          style={{ width: 40, height: 40, background: "rgba(255,255,255,0.1)", marginTop: 2 }}
+        >
+          <MapPinIcon />
+        </div>
+        <div className="flex flex-col items-start flex-1" style={{ gap: 6 }}>
+          <div className="flex flex-col items-start" style={{ gap: 1 }}>
+            <span style={{ fontFamily: "var(--font-heebo), sans-serif", fontWeight: 700, fontSize: "clamp(13px, 1.2vw, 15px)", color: "#FFFFFF", direction: "rtl" }}>
+              משרד ראשי
+            </span>
+            <span style={{ fontFamily: "var(--font-heebo), sans-serif", fontWeight: 400, fontSize: "clamp(11px, 1vw, 13px)", color: "rgba(219,234,254,0.75)", direction: "rtl" }}>
+              לאה גולדברג 1, קריית מוצקין
+            </span>
+          </div>
+          <div
+            style={{
+              width: "100%",
+              height: 1,
+              background: "rgba(255,255,255,0.1)",
+            }}
+          />
+          <div className="flex flex-col items-start" style={{ gap: 1 }}>
+            <span style={{ fontFamily: "var(--font-heebo), sans-serif", fontWeight: 700, fontSize: "clamp(13px, 1.2vw, 15px)", color: "rgba(219,234,254,0.9)", direction: "rtl" }}>
+              ימי רביעי — קבלת קהל
+            </span>
+            <span style={{ fontFamily: "var(--font-heebo), sans-serif", fontWeight: 400, fontSize: "clamp(11px, 1vw, 13px)", color: "rgba(219,234,254,0.75)", direction: "rtl" }}>
+              חטיבת עציוני 60, כרמיאל
+            </span>
+          </div>
+        </div>
+      </div>
 
       {/* WhatsApp outline CTA */}
       <a

@@ -3,20 +3,12 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { fadeRight, fadeLeft, viewport } from "@/lib/motion";
-import type { HomePageData } from "@/lib/queries";
-
 const PHOTO_PATH = "/images/miaprofile.jpg";
 
-interface AboutHeroSectionProps {
-  /** Content from Sanity. Falls back to hardcoded strings when null/undefined. */
-  data?: HomePageData | null;
-}
-
-export default function AboutHeroSection({ data }: AboutHeroSectionProps = {}) {
-  const heading     = data?.aboutHeading     ?? null;
-  const body        = data?.aboutBody        ?? "משרד ייעוץ מס אונליין מקריית מוצקין, עם ניסיון של למעלה מ־30 שנה — מטפל בכל ההתנהלות מול הרשויות ללא ניירת, ועובד מול לקוחות מכל הארץ. אנחנו משלבים ניסיון מקצועי עשיר עם פתרונות מתקדמים, כדי לחסוך לכם זמן, לייעל תהליכים, ולדאוג שהכל מתנהל בצורה מדויקת, שקופה ונוחה.";
-  const orgsLabel   = data?.aboutOrgsLabel   ?? "עובדים מול הגופים המובילים בישראל";
-  const orgs        = data?.aboutOrgs        ?? "רשות המסים · ביטוח לאומי · משרד האוצר";
+export default function AboutHeroSection() {
+  const body        ="משרד ייעוץ מס אונליין מקריית מוצקין, עם ניסיון של למעלה מ־30 שנה — מטפל בכל ההתנהלות מול הרשויות ללא ניירת, ועובד מול לקוחות מכל הארץ. חברה בלשכת יועצי המס, משתתפת בהשתלמויות מקצועיות שוטפות ומקפידה על עדכניות מלאה בכל שינויי החקיקה והרגולציה — כדי לתת לכם את הייעוץ המדויק ביותר. אנחנו משלבים ניסיון עשיר עם פתרונות מתקדמים, כדי לחסוך לכם זמן ולדאוג שהכל מתנהל בדיוק, שקיפות ונוחות.";
+  const orgsLabel   = "מייצגים אותך ברשויות המס";
+  const orgs        = "מע״מ · מס הכנסה · ביטוח לאומי";
   return (
     <section
       className="relative w-full overflow-hidden flex flex-col justify-center items-center isolate h-auto lg:h-[100dvh]"
@@ -98,25 +90,41 @@ export default function AboutHeroSection({ data }: AboutHeroSectionProps = {}) {
             initial="hidden"
             whileInView="show"
             viewport={viewport}
-            className="relative flex-shrink-0 block lg:hidden rounded-[32px] overflow-hidden shadow-xl border border-[rgba(255,255,255,0.4)]"
-            style={{ width: "min(200px, 55vw)", height: "min(250px, 68.75vw)" }}
+            className="flex flex-col items-center gap-2 flex-shrink-0 block lg:hidden"
           >
-            <Image
-              src={PHOTO_PATH}
-              alt="מיה זינו - יועצת מס ורואת חשבון, קריית מוצקין"
-              fill
-              sizes="(max-width: 1024px) 55vw, 0px"
-              className="object-cover object-top"
-              priority
-            />
             <div
-              aria-hidden="true"
-              className="absolute inset-0 z-10"
+              className="relative rounded-[32px] overflow-hidden shadow-xl border border-[rgba(255,255,255,0.4)]"
+              style={{ width: "min(200px, 55vw)", height: "min(250px, 68.75vw)" }}
+            >
+              <Image
+                src={PHOTO_PATH}
+                alt="מיה זינו - יועצת מס, קריית מוצקין"
+                fill
+                sizes="(max-width: 1024px) 55vw, 0px"
+                className="object-cover object-top"
+                priority
+              />
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 z-10"
+                style={{
+                  background:
+                    "linear-gradient(0deg, rgba(0, 51, 153, 0.2) 0%, rgba(0, 51, 153, 0) 100%)",
+                }}
+              />
+            </div>
+            <p
+              className="text-center"
               style={{
-                background:
-                  "linear-gradient(0deg, rgba(0, 51, 153, 0.2) 0%, rgba(0, 51, 153, 0) 100%)",
+                fontFamily: "var(--font-heebo), sans-serif",
+                fontWeight: 700,
+                fontSize: 14,
+                color: "#1E3A5F",
+                letterSpacing: "-0.2px",
               }}
-            />
+            >
+              מיה זינו — יועצת מס
+            </p>
           </motion.div>
 
           {/* Tablet/Desktop — full tilted card */}
@@ -125,11 +133,16 @@ export default function AboutHeroSection({ data }: AboutHeroSectionProps = {}) {
             initial="hidden"
             whileInView="show"
             viewport={viewport}
-            className="relative flex-shrink-0 hidden lg:block"
+            className="flex-shrink-0 hidden lg:flex flex-col items-center gap-3"
+            style={{
+              marginLeft: "clamp(24px, 5vw, 80px)",
+            }}
+          >
+          <div
+            className="relative"
             style={{
               width: "clamp(220px, 24vw, 320px)",
               height: "clamp(275px, 30vw, 400px)",
-              marginLeft: "clamp(24px, 5vw, 80px)",
             }}
           >
             {/* Layer 1: Elegant background shape — slight clockwise skew */}
@@ -176,6 +189,19 @@ export default function AboutHeroSection({ data }: AboutHeroSectionProps = {}) {
                 }}
               />
             </div>
+          </div>
+            <p
+              className="text-center"
+              style={{
+                fontFamily: "var(--font-heebo), sans-serif",
+                fontWeight: 700,
+                fontSize: 15,
+                color: "#1E3A5F",
+                letterSpacing: "-0.2px",
+              }}
+            >
+              מיה זינו — יועצת מס
+            </p>
           </motion.div>
 
         </div>

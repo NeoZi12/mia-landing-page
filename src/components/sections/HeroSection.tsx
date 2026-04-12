@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+
 import { motion, useReducedMotion } from "framer-motion";
 import { generatePapers, type PaperConfig } from "@/lib/papers";
 import styles from "./HeroSection.module.css";
-import type { HomePageData } from "@/lib/queries";
 import { DUR, EASE } from "@/lib/motion";
 
 const heroInitial = { opacity: 0, y: 16 };
@@ -15,20 +15,13 @@ function heroTransition(delay: number) {
   return { duration: DUR, ease: EASE, delay };
 }
 
-interface HeroSectionProps {
-  /** Content from Sanity. Falls back to hardcoded strings when null/undefined. */
-  data?: HomePageData | null;
-}
-
-export default function HeroSection({ data }: HeroSectionProps = {}) {
-  const badge       = data?.heroBadge       ?? "ייעוץ מס דיגיטלי | קריית מוצקין";
-  const line1       = data?.heroLine1       ?? "ניהול מס חכם";
-  const line2       = data?.heroLine2       ?? "בלי ניירת";
-  const line3       = data?.heroLine3       ?? "בלי כאב ראש";
-  const subtitle    = data?.heroSubtitle    ?? "משרד ייעוץ מס דיגיטלי שמטפל בכל ההתנהלות מול הרשויות ללא ניירת.\nאנחנו חוסכים לכם זמן ומתמודדים עם הבירוקרטיה בשבילכם.";
-  const ctaLabel    = data?.heroCtaLabel    ?? "בואו נתחיל";
-  const ctaUrl      = data?.heroCtaUrl      ?? "/contact";
-  const scrollLabel = data?.heroScrollLabel ?? "גלו עוד עלינו";
+export default function HeroSection() {
+  const badge       = "משרד ללא נייר";
+  const line1       = "ייעוץ מס חכם";
+  const line2       = "בלי ניירת";
+  const line3       = "בלי כאב ראש";
+  const subtitle    = "משרד ייעוץ מס דיגיטלי שמטפל בכל ההתנהלות מול הרשויות ללא ניירת.\nאנחנו חוסכים לכם זמן ומתמודדים עם הבירוקרטיה בשבילכם.";
+  const scrollLabel = "גלו עוד עלינו";
 
   const prefersReduced = useReducedMotion();
   const [papers, setPapers] = useState<PaperConfig[]>([]);
@@ -140,6 +133,35 @@ export default function HeroSection({ data }: HeroSectionProps = {}) {
         className="relative flex flex-col items-center"
         style={{ gap: "clamp(14px, 2.5vh, 28px)", width: 896, maxWidth: "100%", zIndex: 4 }}
       >
+        {/* Logo + brand name */}
+        <motion.div
+          initial={prefersReduced ? undefined : heroInitial}
+          animate={prefersReduced ? undefined : heroAnimate}
+          transition={heroTransition(0.05)}
+          className="flex items-center justify-center gap-2 lg:gap-3"
+        >
+          <Image
+            src="/images/maya logo 2.png"
+            alt=""
+            width={60}
+            height={60}
+            className="object-contain brightness-0 invert w-10 h-10 lg:w-[60px] lg:h-[60px]"
+            aria-hidden="true"
+          />
+          <span
+            style={{
+              fontFamily: "var(--font-heebo), sans-serif",
+              fontWeight: 700,
+              fontSize: "clamp(20px, 4vw, 30px)",
+              letterSpacing: "-0.4px",
+              color: "rgba(255,255,255,0.88)",
+              whiteSpace: "nowrap",
+            }}
+          >
+            מיה — משרד ייעוץ מס
+          </span>
+        </motion.div>
+
         {/* Eyebrow badge */}
         <motion.div
           initial={prefersReduced ? undefined : heroInitial}

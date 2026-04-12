@@ -16,7 +16,7 @@ export default function SiteFooter() {
       dir="rtl"
       className="relative w-full flex-shrink-0"
       style={{
-        background: "#002069",
+        background: "#0D2049",
         borderTop: "1px solid rgba(255,255,255,0.08)",
       }}
     >
