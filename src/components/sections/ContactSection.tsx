@@ -211,6 +211,9 @@ function InfoStack() {
             <span style={{ fontFamily: "var(--font-heebo), sans-serif", fontWeight: 400, fontSize: "clamp(11px, 1vw, 13px)", color: "rgba(219,234,254,0.75)", direction: "rtl" }}>
               חטיבת עציוני 60, כרמיאל
             </span>
+            <span style={{ fontFamily: "var(--font-heebo), sans-serif", fontWeight: 400, fontSize: "clamp(11px, 1vw, 13px)", color: "rgba(219,234,254,0.6)", direction: "rtl" }}>
+              (בתיאום מראש)
+            </span>
           </div>
         </div>
       </div>
