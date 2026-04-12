@@ -521,9 +521,9 @@ export default function ServicesSection() {
                 letterSpacing: "-1.5px",
               }}
             >
-              שירותי ייעוץ מס,{" "}
-              <span style={{ color: "#3B6FD8" }}>החזרי מס</span>{" "}
-              והנהלת חשבונות
+              השירותים{" "}
+              <span style={{ color: "#3B6FD8" }}>המקצועיים</span>{" "}
+              שלנו
             </h2>
           </FadeUpItem>
 

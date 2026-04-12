@@ -41,7 +41,7 @@ export default function AboutHeroSection() {
                   letterSpacing: "-0.03em",
                 }}
               >
-                30 שנות ניסיון בייעוץ מס —{" "}
+                הניסיון שלנו,{" "}
                 <span style={{ color: "#3B6FD8" }}>השקט שלכם</span>
               </h2>
               <p
