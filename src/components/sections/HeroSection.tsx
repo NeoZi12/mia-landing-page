@@ -21,7 +21,7 @@ interface HeroSectionProps {
 }
 
 export default function HeroSection({ data }: HeroSectionProps = {}) {
-  const badge       = data?.heroBadge       ?? "משרד ללא נייר";
+  const badge       = data?.heroBadge       ?? "ייעוץ מס דיגיטלי | קריית מוצקין";
   const line1       = data?.heroLine1       ?? "ניהול מס חכם";
   const line2       = data?.heroLine2       ?? "בלי ניירת";
   const line3       = data?.heroLine3       ?? "בלי כאב ראש";
@@ -45,13 +45,6 @@ export default function HeroSection({ data }: HeroSectionProps = {}) {
       className="relative flex flex-col items-center justify-center overflow-hidden isolate w-full"
       style={{ height: "100dvh", padding: "clamp(60px, 9vh, 100px) clamp(16px, 4vw, 24px) clamp(110px, 16vh, 140px)" }}
     >
-      {/* ── SEO: visually hidden paragraph that mirrors the H1 keywords so
-          crawlers find H1 words inside the section body. Zero visual impact. ── */}
-      <p className="sr-only">
-        מיה — משרד ייעוץ מס דיגיטלי שמביא לכם ניהול מס חכם, בלי ניירת ובלי כאב ראש.
-        שירותי ראיית חשבון, החזרי מס, תיאום מס, הנהלת חשבונות וליווי פיננסי לעצמאיים, עוסקים מורשים וחברות בישראל.
-      </p>
-
       {/* ── Layer 0: Background image ── */}
       <div
         aria-hidden="true"

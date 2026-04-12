@@ -32,7 +32,7 @@ export default function SiteFooter() {
         >
           <Image
             src="/images/maya logo 2.png"
-            alt="לוגו מיה"
+            alt="לוגו מיה - משרד ייעוץ מס ורואי חשבון"
             width={36}
             height={36}
             className="object-contain brightness-0 invert"
@@ -74,18 +74,31 @@ export default function SiteFooter() {
           ))}
         </nav>
 
-        {/* Copyright — left (RTL end) */}
-        <p
-          style={{
-            fontFamily: "var(--font-heebo), sans-serif",
-            fontWeight: 400,
-            fontSize: 12,
-            color: "rgba(255,255,255,0.35)",
-            whiteSpace: "nowrap",
-          }}
-        >
-          © {new Date().getFullYear()} מיה. כל הזכויות שמורות.
-        </p>
+        {/* Location + Copyright — left (RTL end) */}
+        <div className="flex flex-col items-center lg:items-end gap-0.5">
+          <p
+            style={{
+              fontFamily: "var(--font-heebo), sans-serif",
+              fontWeight: 500,
+              fontSize: 12,
+              color: "rgba(255,255,255,0.5)",
+              whiteSpace: "nowrap",
+            }}
+          >
+            משרד ייעוץ מס | קריית מוצקין | שירות לכלל הארץ
+          </p>
+          <p
+            style={{
+              fontFamily: "var(--font-heebo), sans-serif",
+              fontWeight: 400,
+              fontSize: 12,
+              color: "rgba(255,255,255,0.35)",
+              whiteSpace: "nowrap",
+            }}
+          >
+            © {new Date().getFullYear()} מיה. כל הזכויות שמורות.
+          </p>
+        </div>
       </div>
     </footer>
   );

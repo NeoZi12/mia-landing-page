@@ -14,7 +14,7 @@ interface AboutHeroSectionProps {
 
 export default function AboutHeroSection({ data }: AboutHeroSectionProps = {}) {
   const heading     = data?.aboutHeading     ?? null;
-  const body        = data?.aboutBody        ?? "משרד ייעוץ מס דיגיטלי עם ניסיון של למעלה מ־30 שנה, המתמחה בניהול והתנהלות מול כל הרשויות — ללא ניירת, ללא כאב ראש. אנחנו משלבים ניסיון מקצועי עשיר עם פתרונות מתקדמים, כדי לחסוך לכם זמן, לייעל תהליכים, ולדאוג שהכל מתנהל בצורה מדויקת, שקופה ונוחה.";
+  const body        = data?.aboutBody        ?? "משרד ייעוץ מס אונליין מקריית מוצקין, עם ניסיון של למעלה מ־30 שנה — מטפל בכל ההתנהלות מול הרשויות ללא ניירת, ועובד מול לקוחות מכל הארץ. אנחנו משלבים ניסיון מקצועי עשיר עם פתרונות מתקדמים, כדי לחסוך לכם זמן, לייעל תהליכים, ולדאוג שהכל מתנהל בצורה מדויקת, שקופה ונוחה.";
   const orgsLabel   = data?.aboutOrgsLabel   ?? "עובדים מול הגופים המובילים בישראל";
   const orgs        = data?.aboutOrgs        ?? "רשות המסים · ביטוח לאומי · משרד האוצר";
   return (
@@ -49,7 +49,7 @@ export default function AboutHeroSection({ data }: AboutHeroSectionProps = {}) {
                   letterSpacing: "-0.03em",
                 }}
               >
-                הניסיון שלנו,{" "}
+                30 שנות ניסיון בייעוץ מס —{" "}
                 <span style={{ color: "#3B6FD8" }}>השקט שלכם</span>
               </h2>
               <p
@@ -103,7 +103,7 @@ export default function AboutHeroSection({ data }: AboutHeroSectionProps = {}) {
           >
             <Image
               src={PHOTO_PATH}
-              alt="מיה זינו"
+              alt="מיה זינו - יועצת מס ורואת חשבון, קריית מוצקין"
               fill
               sizes="(max-width: 1024px) 55vw, 0px"
               className="object-cover object-top"
@@ -159,7 +159,7 @@ export default function AboutHeroSection({ data }: AboutHeroSectionProps = {}) {
               {/* Photo — fills the card */}
               <Image
                 src={PHOTO_PATH}
-                alt="מיה זינו"
+                alt="מיה זינו - יועצת מס ורואת חשבון, קריית מוצקין"
                 fill
                 sizes="(max-width: 1024px) 0px, 24vw"
                 className="object-cover object-top"

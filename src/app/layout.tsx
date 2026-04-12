@@ -109,6 +109,8 @@ const jsonLd = {
       priceRange: "₪₪",
       address: {
         "@type": "PostalAddress",
+        addressLocality: "קריית מוצקין",
+        addressRegion: "חיפה",
         addressCountry: "IL",
       },
       openingHoursSpecification: [
