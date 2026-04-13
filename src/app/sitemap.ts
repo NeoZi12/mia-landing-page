@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SERVICES } from "@/lib/servicesData";
 
-const SITE_URL = "https://mia-landing-page-swart.vercel.app";
+const SITE_URL = "https://mia-tax.co.il";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

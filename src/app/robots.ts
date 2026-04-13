@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const SITE_URL = "https://mia-landing-page-swart.vercel.app";
+const SITE_URL = "https://mia-tax.co.il";
 
 export default function robots(): MetadataRoute.Robots {
   return {
