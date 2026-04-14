@@ -571,7 +571,7 @@ export default function ContactSection() {
         SVC_ID,
         TPL_ID,
         { from_name: form.name, reply_to: form.email, phone: form.phone, message: form.message },
-        PUB_KEY
+        { publicKey: PUB_KEY }
       );
       lastSubmitAt = Date.now();
       setStatus("success");
