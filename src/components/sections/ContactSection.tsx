@@ -6,9 +6,9 @@ import { motion } from "framer-motion";
 import { fadeUp, fadeLeft, fadeRight, stagger, viewport } from "@/lib/motion";
 
 /* ─── EmailJS env vars ───────────────────────────────────────── */
-const SVC_ID  = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID  ?? "";
-const TPL_ID  = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? "";
-const PUB_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY  ?? "";
+const SVC_ID  = (process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID  ?? "").trim();
+const TPL_ID  = (process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? "").trim();
+const PUB_KEY = (process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY  ?? "").trim();
 
 /* ─── Icon SVGs ─────────────────────────────────────────────── */
 
@@ -567,16 +567,7 @@ export default function ContactSection() {
       // Dynamic import keeps the ~10 KB EmailJS client out of the initial bundle;
       // it only loads the first time the user actually submits the form.
       const { default: emailjs } = await import("@emailjs/browser");
-      // DEBUG — remove after confirming production env vars
-      console.log("[EmailJS debug]", {
-        SVC_ID,
-        TPL_ID,
-        PUB_KEY: PUB_KEY ? PUB_KEY.slice(0, 4) + "..." + `(len:${PUB_KEY.length})` : "(empty)",
-        SVC_type: typeof SVC_ID,
-        TPL_type: typeof TPL_ID,
-        KEY_type: typeof PUB_KEY,
-      });
-      await emailjs.send(
+await emailjs.send(
         SVC_ID,
         TPL_ID,
         { from_name: form.name, reply_to: form.email, phone: form.phone, message: form.message },
