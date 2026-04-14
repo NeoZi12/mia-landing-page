@@ -6,7 +6,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { getPostBySlug, getAllSlugs } from "@/lib/blogQueries";
 
-export const revalidate = 300;
+export const revalidate = 60;
 
 const SITE_URL = "https://mia-tax.co.il";
 

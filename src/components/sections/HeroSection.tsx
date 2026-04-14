@@ -20,7 +20,7 @@ export default function HeroSection() {
   const line1       = "ייעוץ מס חכם";
   const line2       = "בלי ניירת";
   const line3       = "בלי כאב ראש";
-  const subtitle    = "משרד ייעוץ מס דיגיטלי שמטפל בכל ההתנהלות מול הרשויות ללא ניירת.\nאנחנו חוסכים לכם זמן ומתמודדים עם הבירוקרטיה בשבילכם.";
+  const subtitle    = "משרד ייעוץ מס והנהלת חשבונות דיגיטלי באזור חיפה והקריות, המטפל בכל ההתנהלות מול הרשויות ללא ניירת.\nאנחנו חוסכים לכם זמן ומתמודדים עם הבירוקרטיה בשבילכם.";
   const scrollLabel = "גלו עוד עלינו";
 
   const prefersReduced = useReducedMotion();
@@ -158,7 +158,7 @@ export default function HeroSection() {
               whiteSpace: "nowrap",
             }}
           >
-            מיה — משרד ייעוץ מס
+            מיה — משרד ייעוץ מס והנהלת חשבונות
           </span>
         </motion.div>
 

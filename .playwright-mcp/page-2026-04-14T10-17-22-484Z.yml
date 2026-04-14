@@ -1,0 +1,44 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic:
+      - generic [ref=e4]:
+        - link "עבור לעמוד עלינו" [ref=e5] [cursor=pointer]:
+          - /url: /#about
+          - img "לוגו מיה - משרד ייעוץ מס ורואי חשבון" [ref=e6]
+        - button "פתח תפריט" [ref=e8]
+      - generic:
+        - navigation:
+          - link "ראשי":
+            - /url: /
+          - link "עלינו":
+            - /url: /#about
+          - link "שירותים":
+            - /url: /#services
+          - link "למה אנחנו":
+            - /url: /#why-us
+          - link "בלוג":
+            - /url: /blog
+          - link "צור קשר":
+            - /url: /#contact
+          - generic:
+            - link "שלחו לנו הודעה":
+              - /url: https://wa.me/972584087061
+              - img
+              - text: שלחו לנו הודעה
+    - main [ref=e12]:
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - paragraph [ref=e16]: בלוג מקצועי
+          - heading "מאמרים על מס וחשבונאות" [level=1] [ref=e17]
+          - paragraph [ref=e18]: תוכן מקצועי בעברית לעצמאיים, בעלי עסקים ושכירים שרוצים להבין את עולם המס.
+        - paragraph [ref=e20]: אין מאמרים עדיין. בקרוב יעלו תכנים חדשים!
+    - contentinfo [ref=e21]:
+      - generic [ref=e22]:
+        - link "עבור לעמוד עלינו" [ref=e23] [cursor=pointer]:
+          - /url: /#about
+          - img "לוגו מיה - משרד ייעוץ מס ורואי חשבון" [ref=e24]
+        - generic [ref=e25]:
+          - paragraph [ref=e26]: משרד ייעוץ מס | קריית מוצקין | שירות לכלל הארץ
+          - paragraph [ref=e27]: © 2026 מיה. כל הזכויות שמורות.
+  - button "Open Next.js Dev Tools" [ref=e33] [cursor=pointer]:
+    - img [ref=e34]

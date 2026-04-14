@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+export const revalidate = 60; // Refresh home page every minute to check for new posts
 import HeroSection from "@/components/sections/HeroSection";
 import AboutHeroSection from "@/components/sections/AboutHeroSection";
 import ServicesSection from "@/components/sections/ServicesSection";

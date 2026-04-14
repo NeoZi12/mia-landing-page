@@ -78,34 +78,27 @@ async function fetchAndUploadImage(imagePrompt: string, slug: string): Promise<s
 // control over wording. AI only chooses which sentence goes in which slot and
 // generates SEO metadata + image prompt.
 
-const SYSTEM_PROMPT = `You are a content classifier for the Hebrew blog of "מיה - ייעוץ מס והנהלת חשבונות".
+const SYSTEM_PROMPT = `You are a precision content extractor for the Hebrew blog of "מיה - ייעוץ מס והנהלת חשבונות".
 
-YOUR JOB: take the admin's raw Hebrew text and classify it into the structured fields below. The admin has full control over the wording.
+YOUR ROLE: You function as a high-fidelity mapping engine. Your goal is to take the admin's raw Hebrew text and place it into the correct structured fields WITHOUT CHANGING A SINGLE WORD.
 
-HARD RULES — read carefully:
-- DO NOT rewrite, paraphrase, shorten, translate, or embellish the admin's Hebrew text.
-- DO NOT add facts, examples, or commentary the admin did not write.
-- Use the admin's EXACT wording for: title, intro, points. Copy sentences verbatim.
-- Only acceptable edits: fix obvious typos, trim whitespace, split one long sentence into a natural single-line point.
-- If the admin gave labels (e.g. "כותרת:", "נקודה 1:"), use the labeled text as the field content — do not rewrite.
-- If content for a field is missing, pull the closest matching sentence from the admin's text. Never fabricate.
+STRICT RULES — MISSION CRITICAL:
+1. NO SHORTENING: Do not summarize, truncate, or shorten the admin's text. 
+2. NO REWRITING: Do not paraphrase, "improve", or translate the admin's Hebrew wording. Copy and paste exactly.
+3. FULL FIDELITY: Every piece of information provided by the admin must be preserved in either the 'intro' or the 'points' array.
+4. PARAGRAPHS ALLOWED: Points in the "points" array can be long paragraphs if that is how they are written. Do not force them into single sentences.
+5. FLEXIBLE COUNT: Provide as many points as there are logical sections or paragraphs in the original text (at least 1). DO NOT force exactly 5 points if the content doesn't warrant it.
 
-Return ONLY a raw JSON object with exactly these keys:
+Return ONLY a raw JSON object:
 {
-  "title":            "כותרת עד 70 תווים (מתוך הטקסט של המנהל)",
-  "intro":            "2-3 משפטי מבוא (מתוך הטקסט של המנהל)",
-  "points":           ["נקודה 1", "נקודה 2", "נקודה 3", "נקודה 4", "נקודה 5"],
-  "slug":             "english-url-slug-only",
-  "meta_description": "תיאור מטא עד 160 תווים בעברית (מתוך הטקסט של המנהל)",
-  "keywords":         ["מילת מפתח 1", "מילת מפתח 2", "..."],
-  "imagePrompt":      "concise English description for a vector illustration"
+  "title":            "The exact headline/title from the text",
+  "intro":            "The opening sentences or introduction paragraph exactly as written",
+  "points":           ["Exactly copied section/paragraph 1", "Exactly copied section/paragraph 2", "..."],
+  "slug":             "english-url-slug-based-on-title",
+  "meta_description": "A concise summary (max 160 chars) derived from the PROVIDED text",
+  "keywords":         ["4-7 Hebrew keywords relevant to the content"],
+  "imagePrompt":      "Concise English description for a professional flat vector illustration (corporate finance/tax style), no text, no faces"
 }
-
-Field rules:
-- points: EXACTLY 5 items. Each is a single short Hebrew sentence/line — not a paragraph.
-- slug: lowercase english, hyphens only, no spaces, no special chars. This is the ONLY field you may invent in english.
-- keywords: 5-8 Hebrew strings. These you may derive from the topic.
-- imagePrompt: English only, no text in image, no human faces. This you may invent.
 
 No markdown fences. No commentary. Raw JSON only.`;
 
@@ -130,18 +123,18 @@ function validateArticle(a: unknown): ClassifiedArticle {
     if (!obj[key]) throw new Error(`AI response missing field: ${key}`);
   }
 
-  if (!Array.isArray(obj.points) || obj.points.length !== 5) {
-    throw new Error(`AI must return exactly 5 points, got ${Array.isArray(obj.points) ? obj.points.length : "non-array"}`);
+  if (!Array.isArray(obj.points) || obj.points.length === 0) {
+    throw new Error("AI must return at least one point in the 'points' array");
   }
 
   return {
-    title:            String(obj.title),
-    intro:            String(obj.intro),
+    title:            String(obj.title).trim(),
+    intro:            String(obj.intro).trim(),
     points:           (obj.points as unknown[]).map((p) => String(p).trim()).filter(Boolean),
-    slug:             String(obj.slug ?? ""),
-    meta_description: String(obj.meta_description),
+    slug:             String(obj.slug ?? "").trim(),
+    meta_description: String(obj.meta_description).trim(),
     keywords:         Array.isArray(obj.keywords) ? obj.keywords.map(String) : [],
-    imagePrompt:      String(obj.imagePrompt),
+    imagePrompt:      String(obj.imagePrompt).trim(),
   };
 }
 

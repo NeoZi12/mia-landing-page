@@ -1,0 +1,13 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - link "מיה - ייעוץ מס פאנל ניהול" [ref=e3] [cursor=pointer]:
+      - /url: /
+      - img "מיה - ייעוץ מס" [ref=e4]
+      - generic [ref=e5]: פאנל ניהול
+    - generic [ref=e6]:
+      - heading "כניסה לאזור ניהול" [level=1] [ref=e7]
+      - paragraph [ref=e8]: הכניסי את הסיסמה על מנת להמשיך.
+      - textbox "סיסמה" [active] [ref=e9]
+      - button "כניסה" [ref=e10]
+  - button "Open Next.js Dev Tools" [ref=e16] [cursor=pointer]:
+    - img [ref=e17]

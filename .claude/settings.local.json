@@ -26,7 +26,26 @@
       "Bash(npx --prefix \"/c/Users/neo/Desktop/Web Projects/mia-landing-page\" tsc --noEmit --project \"/c/Users/neo/Desktop/Web Projects/mia-landing-page/tsconfig.json\")",
       "Bash(echo \"exit: $?\")",
       "Bash(find \"C:\\\\Users\\\\neo\\\\Desktop\\\\Web Projects\\\\mia-landing-page\\\\src\" -type f \\\\\\( -name \"*.tsx\" -o -name \"*.ts\" -o -name \"*.css\" \\\\\\) -exec wc -l {} +)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(taskkill:*)",
+      "Bash(git config:*)",
+      "Bash(claude mcp:*)",
+      "Bash(npx @playwright/mcp@latest --help)",
+      "Bash(npx @playwright/mcp@latest --version)",
+      "Skill(update-config)",
+      "Bash(npx playwright@latest:*)",
+      "Bash(npx playwright:*)",
+      "Bash(playwright install:*)",
+      "Bash(echo \"Exit: $?\")",
+      "Bash(node -e \"try { require\\('playwright'\\); console.log\\(require\\('playwright'\\).chromium.executablePath\\(\\)\\); } catch\\(e\\) { console.log\\('not found'\\); }\")",
+      "Bash(timeout 10 npx @playwright/mcp@latest)",
+      "Bash(where playwright-mcp:*)",
+      "Bash(where playwright:*)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_take_screenshot",
+      "mcp__playwright__browser_resize",
+      "Bash(echo \"---exit $?---\")",
+      "Bash(del:*)"
     ]
   }
 }

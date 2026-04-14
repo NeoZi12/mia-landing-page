@@ -1,0 +1,254 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic [ref=e3]:
+      - button [ref=e4] [cursor=pointer]:
+        - img [ref=e5]
+      - button [ref=e7]
+    - generic:
+      - navigation:
+        - link:
+          - /url: "#hero"
+          - text: ראשי
+        - link:
+          - /url: "#about"
+          - text: עלינו
+        - link:
+          - /url: "#services"
+          - text: שירותים
+        - link:
+          - /url: "#why-us"
+          - text: למה אנחנו
+        - link:
+          - /url: "#blog"
+          - text: בלוג
+        - link:
+          - /url: "#contact"
+          - text: צור קשר
+        - generic:
+          - link:
+            - /url: https://wa.me/972584087061
+            - img
+            - text: שלחו לנו הודעה
+  - generic [ref=e12]:
+    - img [ref=e14]
+    - generic [ref=e16]:
+      - generic [ref=e17]:
+        - img [ref=e18]
+        - generic [ref=e19]: מיה — משרד ייעוץ מס
+      - generic [ref=e21]: משרד ללא נייר
+      - heading "ייעוץ מס חכם בלי ניירת בלי כאב ראש" [level=1] [ref=e23]:
+        - generic [ref=e24]: ייעוץ מס חכם
+        - generic [ref=e25]: בלי ניירת
+        - generic [ref=e26]: בלי כאב ראש
+      - paragraph [ref=e28]: משרד ייעוץ מס דיגיטלי שמטפל בכל ההתנהלות מול הרשויות ללא ניירת. אנחנו חוסכים לכם זמן ומתמודדים עם הבירוקרטיה בשבילכם.
+      - link "בואו נתחיל" [ref=e30] [cursor=pointer]:
+        - /url: /#contact
+    - generic [ref=e31]:
+      - generic [ref=e32]: גלו עוד עלינו
+      - link "גלול לקטע עלינו" [ref=e33] [cursor=pointer]:
+        - /url: "#about"
+        - img [ref=e34]
+  - generic [ref=e36]:
+    - generic:
+      - img
+      - img
+    - generic [ref=e40]:
+      - generic [ref=e41]:
+        - generic [ref=e42]:
+          - heading "הניסיון שלנו, השקט שלכם" [level=2] [ref=e43]
+          - paragraph [ref=e44]: משרד ייעוץ מס אונליין מקריית מוצקין, עם ניסיון של למעלה מ־30 שנה — מטפל בכל ההתנהלות מול הרשויות ללא ניירת, ועובד מול לקוחות מכל הארץ. חברה בלשכת יועצי המס, משתתפת בהשתלמויות מקצועיות שוטפות ומקפידה על עדכניות מלאה בכל שינויי החקיקה והרגולציה — כדי לתת לכם את הייעוץ המדויק ביותר. אנחנו משלבים ניסיון עשיר עם פתרונות מתקדמים, כדי לחסוך לכם זמן ולדאוג שהכל מתנהל בדיוק, שקיפות ונוחות.
+        - generic [ref=e45]:
+          - paragraph [ref=e46]: מייצגים אותך ברשויות המס
+          - paragraph [ref=e47]: מע״מ · מס הכנסה · ביטוח לאומי
+      - generic [ref=e48]:
+        - img "מיה זינו - יועצת מס, קריית מוצקין" [ref=e50]
+        - paragraph [ref=e52]: מיה זינו — יועצת מס
+    - generic [ref=e55]:
+      - generic [ref=e56]:
+        - heading "השירותים המקצועיים שלנו" [level=2] [ref=e58]
+        - paragraph [ref=e60]: פתרונות מס מתקדמים בהתאמה אישית, עם ניסיון רב וגישה טכנולוגית לביטחון פיננסי מקסימלי.
+      - generic [ref=e61]:
+        - link "עסק זעיר ניהול עסק זעיר במקום אחד — חיסכון במס והתנהלות דיגיטלית נוחה. למידע נוסף" [ref=e63] [cursor=pointer]:
+          - /url: /services/small-business
+          - generic [ref=e64]:
+            - img [ref=e66]
+            - heading "עסק זעיר" [level=3] [ref=e72]
+            - paragraph [ref=e73]: ניהול עסק זעיר במקום אחד — חיסכון במס והתנהלות דיגיטלית נוחה.
+            - generic [ref=e74]:
+              - generic [ref=e75]: למידע נוסף
+              - img [ref=e76]
+        - link "עוסק מורשה ליווי דיגיטלי מקיף לעוסק מורשה — דיווחים שוטפים, ייצוג מול רשויות המס וניהול חכם דרך אפליקציה. למידע נוסף" [ref=e79] [cursor=pointer]:
+          - /url: /services/authorized-dealer
+          - generic [ref=e80]:
+            - img [ref=e82]
+            - heading "עוסק מורשה" [level=3] [ref=e88]
+            - paragraph [ref=e89]: ליווי דיגיטלי מקיף לעוסק מורשה — דיווחים שוטפים, ייצוג מול רשויות המס וניהול חכם דרך אפליקציה.
+            - generic [ref=e90]:
+              - generic [ref=e91]: למידע נוסף
+              - img [ref=e92]
+        - link "תכנון פרישה וקיבוע זכויות ליווי אישי ומקצועי לתכנון פרישה חכם — ניתוח פנסיוני, קיבוע זכויות ומיצוי מלא של הטבות מס. למידע נוסף" [ref=e95] [cursor=pointer]:
+          - /url: /services/retirement-planning
+          - generic [ref=e96]:
+            - img [ref=e98]
+            - heading "תכנון פרישה וקיבוע זכויות" [level=3] [ref=e103]
+            - paragraph [ref=e104]: ליווי אישי ומקצועי לתכנון פרישה חכם — ניתוח פנסיוני, קיבוע זכויות ומיצוי מלא של הטבות מס.
+            - generic [ref=e105]:
+              - generic [ref=e106]: למידע נוסף
+              - img [ref=e107]
+        - link "תיאום מס תיאום מס מדויק לשנה קדימה — מניעת ניכוי מס עודף, בדיקת נקודות זיכוי וחיסכון של מאות שקלים. למידע נוסף" [ref=e110] [cursor=pointer]:
+          - /url: /services/tax-coordination
+          - generic [ref=e111]:
+            - img [ref=e113]
+            - heading "תיאום מס" [level=3] [ref=e118]
+            - paragraph [ref=e119]: תיאום מס מדויק לשנה קדימה — מניעת ניכוי מס עודף, בדיקת נקודות זיכוי וחיסכון של מאות שקלים.
+            - generic [ref=e120]:
+              - generic [ref=e121]: למידע נוסף
+              - img [ref=e122]
+        - link "החזרי מס לשכירים מיצוי מלא של החזרי מס לשכירים — טיפול מול הרשויות, משיכת טופסי 106 וסימולציה לפני הגשה. למידע נוסף" [ref=e125] [cursor=pointer]:
+          - /url: /services/tax-refund-employees
+          - generic [ref=e126]:
+            - img [ref=e128]
+            - heading "החזרי מס לשכירים" [level=3] [ref=e133]
+            - paragraph [ref=e134]: מיצוי מלא של החזרי מס לשכירים — טיפול מול הרשויות, משיכת טופסי 106 וסימולציה לפני הגשה.
+            - generic [ref=e135]:
+              - generic [ref=e136]: למידע נוסף
+              - img [ref=e137]
+    - generic [ref=e141]:
+      - generic [ref=e142]:
+        - heading "איך זה עובד?" [level=2] [ref=e144]
+        - paragraph [ref=e146]: תהליך פשוט, מהיר ודיגיטלי — כדי לחסוך לכם זמן
+      - generic [ref=e147]:
+        - generic [ref=e149]:
+          - img [ref=e151] [cursor=pointer]
+          - generic [ref=e153]: שלב 1
+          - heading "יצירת קשר" [level=3] [ref=e154]
+          - paragraph [ref=e155]: פנו אלינו בטלפון, וואטסאפ או דרך הטופס
+        - generic [ref=e157]:
+          - img [ref=e159] [cursor=pointer]
+          - generic [ref=e161]: שלב 2
+          - heading "שיחת ייעוץ" [level=3] [ref=e162]
+          - paragraph [ref=e163]: שיחה קצרה להבנת הצרכים שלכם
+        - generic [ref=e165]:
+          - img [ref=e167] [cursor=pointer]
+          - generic [ref=e171]: שלב 3
+          - heading "שליחת מסמכים" [level=3] [ref=e172]
+          - paragraph [ref=e173]: שלחו מסמכים דיגיטלית — בקלות ובמהירות
+        - generic [ref=e175]:
+          - img [ref=e177] [cursor=pointer]
+          - generic [ref=e180]: שלב 4
+          - heading "טיפול וליווי מלא" [level=3] [ref=e181]
+          - paragraph [ref=e182]: אנחנו מטפלים בהכל מול הרשויות עבורכם, כולל ייפוי כוח
+      - generic [ref=e184]:
+        - img [ref=e185]
+        - generic [ref=e188]: הכל בצורה דיגיטלית, מסודרת וברורה — בלי להסתבך
+    - generic [ref=e191]:
+      - generic [ref=e192]:
+        - heading "למה לבחור דווקא בנו ?" [level=2] [ref=e194]
+        - paragraph [ref=e196]: כי אנחנו עושים את הדברים אחרת — יותר חכם, יותר מהר, יותר נוח
+      - generic [ref=e197]:
+        - generic [ref=e199]:
+          - img [ref=e201]
+          - generic [ref=e205]:
+            - heading "משרד ללא נייר" [level=3] [ref=e206]
+            - paragraph [ref=e207]: הכל דיגיטלי, ללא צורך בנייר או הגעה פיזית
+        - generic [ref=e209]:
+          - img [ref=e211]
+          - generic [ref=e214]:
+            - heading "ניסיון של מעל 30 שנה" [level=3] [ref=e215]
+            - paragraph [ref=e216]: עשרות שנים של מומחיות בתחום המיסוי
+        - generic [ref=e218]:
+          - img [ref=e220]
+          - generic [ref=e222]:
+            - heading "יחס אישי" [level=3] [ref=e223]
+            - paragraph [ref=e224]: כל לקוח מקבל תשומת לב מלאה ומענה מותאם
+        - generic [ref=e226]:
+          - img [ref=e228]
+          - generic [ref=e232]:
+            - heading "זמינות גבוהה" [level=3] [ref=e233]
+            - paragraph [ref=e234]: תמיד זמינים לשאלות, בקשות ועדכונים
+        - generic [ref=e236]:
+          - img [ref=e238]
+          - generic [ref=e241]:
+            - heading "שירות מכל מקום בארץ" [level=3] [ref=e242]
+            - paragraph [ref=e243]: לא משנה איפה אתם — אנחנו כאן בשבילכם
+        - generic [ref=e245]:
+          - img [ref=e247]
+          - generic [ref=e252]:
+            - heading "עבודה מול רשויות המס בישראל" [level=3] [ref=e253]
+            - paragraph [ref=e254]: טיפול שוטף מול רשות המסים, ביטוח לאומי וגופים רשמיים נוספים
+    - generic [ref=e257]:
+      - generic [ref=e258]:
+        - heading "צרו קשר לשיחת ייעוץ" [level=2] [ref=e259]
+        - paragraph [ref=e260]: נשמח לשמוע ממך. השאירו פרטים ונחזור אליכם בהקדם עם מענה מקצועי ומותאם אישית לצרכים שלכם.
+      - generic [ref=e261]:
+        - generic [ref=e263]:
+          - img
+          - generic [ref=e264]:
+            - heading "המקצוענות שלנו, השקט שלך." [level=3] [ref=e265]
+            - paragraph [ref=e266]: פגישת ייעוץ ראשונית ללא התחייבות
+          - link "טלפון 058-408-7061" [ref=e267] [cursor=pointer]:
+            - /url: tel:0584087061
+            - img [ref=e269]
+            - generic [ref=e271]:
+              - generic [ref=e272]: טלפון
+              - generic [ref=e273]: 058-408-7061
+          - link "אימייל maya@ethikaltd.co.il" [ref=e274] [cursor=pointer]:
+            - /url: mailto:maya@ethikaltd.co.il
+            - img [ref=e276]
+            - generic [ref=e279]:
+              - generic [ref=e280]: אימייל
+              - generic [ref=e281]: maya@ethikaltd.co.il
+          - link "אינסטגרם _mayazino@" [ref=e282] [cursor=pointer]:
+            - /url: https://www.instagram.com/mayazino_
+            - img [ref=e284]
+            - generic [ref=e288]:
+              - generic [ref=e289]: אינסטגרם
+              - generic [ref=e290]: _mayazino@
+          - generic [ref=e291]:
+            - img [ref=e293]
+            - generic [ref=e296]:
+              - generic [ref=e297]:
+                - generic [ref=e298]: משרד ראשי
+                - generic [ref=e299]: לאה גולדברג 1, קריית מוצקין
+              - generic [ref=e301]:
+                - generic [ref=e302]: ימי רביעי — קבלת קהל
+                - generic [ref=e303]: חטיבת עציוני 60, כרמיאל
+                - generic [ref=e304]: (בתיאום מראש)
+          - link "פנייה בוואטסאפ" [ref=e305] [cursor=pointer]:
+            - /url: https://wa.me/972584087061
+            - img [ref=e306]
+            - generic [ref=e308]: פנייה בוואטסאפ
+        - generic [ref=e311]:
+          - generic [ref=e312]:
+            - generic [ref=e313]:
+              - generic [ref=e314]: שם מלא
+              - textbox "שם מלא" [ref=e315]:
+                - /placeholder: השם המלא שלך
+            - generic [ref=e316]:
+              - generic [ref=e317]:
+                - generic [ref=e318]: כתובת אימייל
+                - textbox "כתובת אימייל" [ref=e319]:
+                  - /placeholder: your@email.co.il
+              - generic [ref=e320]:
+                - generic [ref=e321]: טלפון
+                - textbox "טלפון" [ref=e322]:
+                  - /placeholder: 05X-XXX-XXXX
+            - generic [ref=e323]:
+              - generic [ref=e324]: הודעה
+              - textbox "הודעה" [ref=e325]:
+                - /placeholder: ספרו לנו במה נוכל לעזור...
+              - generic [ref=e326]: 0/200
+          - button "שלח הודעה" [disabled] [ref=e329]:
+            - generic [ref=e330]: שלח הודעה
+            - img [ref=e331]
+    - contentinfo [ref=e333]:
+      - generic [ref=e334]:
+        - link "עבור לעמוד עלינו" [ref=e335] [cursor=pointer]:
+          - /url: /#about
+          - img "לוגו מיה - משרד ייעוץ מס ורואי חשבון" [ref=e336]
+          - generic [ref=e337]: מיה - ייעוץ מס והנהלת חשבונות
+        - generic [ref=e338]:
+          - paragraph [ref=e339]: משרד ייעוץ מס | קריית מוצקין | שירות לכלל הארץ
+          - paragraph [ref=e340]: © 2026 מיה. כל הזכויות שמורות.
+  - button "Open Next.js Dev Tools" [ref=e346] [cursor=pointer]:
+    - img [ref=e347]

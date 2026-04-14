@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getAllPosts } from "@/lib/blogQueries";
 
-export const revalidate = 300;
+export const revalidate = 60;
 
 const SITE_URL = "https://mia-tax.co.il";
 

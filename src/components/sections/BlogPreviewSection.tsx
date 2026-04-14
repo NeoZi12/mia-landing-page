@@ -16,7 +16,7 @@ function ArticleCard({ post }: { post: BlogPost }) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group flex flex-col rounded-2xl overflow-hidden border border-[rgba(0,51,153,0.09)] bg-white transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_40px_rgba(0,51,153,0.13)]"
+      className="group flex flex-col h-full rounded-2xl overflow-hidden border border-[rgba(0,51,153,0.09)] bg-white transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_40px_rgba(0,51,153,0.13)]"
       style={{
         boxShadow: "0 2px 16px rgba(0,51,153,0.06)",
         textDecoration: "none",
@@ -101,7 +101,7 @@ export default async function BlogPreviewSection() {
               className="inline-block mb-3 rounded-full px-4 py-1 text-sm font-semibold"
               style={{ background: "rgba(0,51,153,0.07)", color: "#003399" }}
             >
-              מאמרים אחרונים
+              מדריכי מס וטיפים פיננסיים
             </p>
           </FadeUpItem>
 
@@ -146,7 +146,7 @@ export default async function BlogPreviewSection() {
           staggerChildren={0.13}
         >
           {posts.map((post) => (
-            <FadeUpItem key={post.slug}>
+            <FadeUpItem key={post.slug} className="h-full">
               <ArticleCard post={post} />
             </FadeUpItem>
           ))}
