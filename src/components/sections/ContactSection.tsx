@@ -567,6 +567,15 @@ export default function ContactSection() {
       // Dynamic import keeps the ~10 KB EmailJS client out of the initial bundle;
       // it only loads the first time the user actually submits the form.
       const { default: emailjs } = await import("@emailjs/browser");
+      // DEBUG — remove after confirming production env vars
+      console.log("[EmailJS debug]", {
+        SVC_ID,
+        TPL_ID,
+        PUB_KEY: PUB_KEY ? PUB_KEY.slice(0, 4) + "..." + `(len:${PUB_KEY.length})` : "(empty)",
+        SVC_type: typeof SVC_ID,
+        TPL_type: typeof TPL_ID,
+        KEY_type: typeof PUB_KEY,
+      });
       await emailjs.send(
         SVC_ID,
         TPL_ID,
