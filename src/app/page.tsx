@@ -1,7 +1,9 @@
+import { Suspense } from "react";
 import HeroSection from "@/components/sections/HeroSection";
 import AboutHeroSection from "@/components/sections/AboutHeroSection";
 import ServicesSection from "@/components/sections/ServicesSection";
 import BelowFoldSections from "@/components/sections/BelowFoldSections";
+import BlogPreviewSection from "@/components/sections/BlogPreviewSection";
 import SiteFooter from "@/components/SiteFooter";
 import Navbar from "@/components/Navbar";
 import { DotPattern } from "@/components/ui/dot-pattern";
@@ -29,7 +31,13 @@ export default function HomePage() {
         <div id="services">
           <ServicesSection />
         </div>
-        <BelowFoldSections />
+        <BelowFoldSections>
+          <div id="blog">
+            <Suspense fallback={null}>
+              <BlogPreviewSection />
+            </Suspense>
+          </div>
+        </BelowFoldSections>
         <SiteFooter />
       </div>
     </>

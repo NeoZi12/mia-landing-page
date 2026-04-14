@@ -16,6 +16,7 @@ const NAV_LINKS = [
   { label: "עלינו",   id: "about",    url: "/about-us", hash: "/#about"   },
   { label: "שירותים",   id: "services", url: "/services", hash: "/#services" },
   { label: "למה אנחנו", id: "why-us",  url: "/why-us",  hash: "/#why-us"   },
+  { label: "מאמרים",      id: "blog",    url: "/blog",    hash: "/#blog"     },
   { label: "צור קשר",   id: "contact",  url: "/contact",  hash: "/#contact"  },
 ];
 
@@ -61,15 +62,18 @@ export default function Navbar({ alwaysVisible = false, standalone = false }: { 
     window.history.replaceState(null, "", NAV_LINKS.find((l) => l.id === activeSection)?.url ?? "/");
   }, [activeSection, standalone]);
 
-  /* ── On direct load to a path (e.g. /services), scroll to that section ─── */
+  /* ── On direct load to a path or hash, scroll to that section ──────────── */
   useEffect(() => {
+    if (standalone) return;
     const pathToId: Record<string, string> = {
       "/about-us": "about",
       "/services":  "services",
       "/why-us":    "why-us",
+      "/blog":      "blog",
       "/contact":   "contact",
     };
-    const id = pathToId[window.location.pathname];
+    // Support both path-based (/about-us) and hash-based (/#blog) navigation
+    const id = pathToId[window.location.pathname] ?? window.location.hash.slice(1);
     if (!id) return;
     const go = () => {
       const el = document.getElementById(id);
@@ -78,7 +82,7 @@ export default function Navbar({ alwaysVisible = false, standalone = false }: { 
     // Small delay lets the page fully render before scrolling
     const t = setTimeout(go, 300);
     return () => clearTimeout(t);
-  }, []);
+  }, [standalone]);
 
   /* ── Show / hide navbar ─────────────────────────────────────────────────── */
   useEffect(() => {
@@ -95,7 +99,7 @@ export default function Navbar({ alwaysVisible = false, standalone = false }: { 
   /* ── Active section tracking ────────────────────────────────────────────── */
   useEffect(() => {
     if (standalone) return;
-    const ids = ["hero", "about", "services", "why-us", "contact"];
+    const ids = ["hero", "about", "services", "why-us", "blog", "contact"];
     const observers: IntersectionObserver[] = [];
     ids.forEach((id) => {
       const el = document.getElementById(id);
@@ -188,7 +192,12 @@ export default function Navbar({ alwaysVisible = false, standalone = false }: { 
                   key={id}
                   ref={(el) => { linkRefs.current[i] = el; }}
                   href={standalone ? hash : `#${id}`}
-                  onClick={standalone ? undefined : (e) => { e.preventDefault(); scrollToSection(id); }}
+                  onClick={standalone ? undefined : (e) => {
+                    const el = document.getElementById(id);
+                    if (!el) return; // no matching section → follow href naturally
+                    e.preventDefault();
+                    scrollToSection(id);
+                  }}
                   className="nav-link relative flex items-center rounded-lg cursor-pointer select-none"
                   style={{
                     padding:        "6px 12px",
@@ -286,7 +295,13 @@ export default function Navbar({ alwaysVisible = false, standalone = false }: { 
               <a
                 key={id}
                 href={standalone ? hash : `#${id}`}
-                onClick={standalone ? closeMenu : (e) => { e.preventDefault(); scrollToSection(id); closeMenu(); }}
+                onClick={standalone ? closeMenu : (e) => {
+                  const el = document.getElementById(id);
+                  if (!el) { closeMenu(); return; } // no matching section → follow href
+                  e.preventDefault();
+                  scrollToSection(id);
+                  closeMenu();
+                }}
                 className="flex items-center justify-between transition-colors duration-150"
                 style={{
                   fontFamily:     "var(--font-heebo), sans-serif",

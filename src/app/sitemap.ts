@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
 import { SERVICES } from "@/lib/servicesData";
+import { getAllPosts } from "@/lib/blogQueries";
 
 const SITE_URL = "https://mia-tax.co.il";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -12,6 +13,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly",
       priority: 1,
+    },
+    {
+      url: `${SITE_URL}/all-articles`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.9,
     },
   ];
 
@@ -22,5 +29,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...serviceRoutes];
+  const posts = await getAllPosts().catch(() => []);
+  const blogRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
+    url: `${SITE_URL}/blog/${post.slug}`,
+    lastModified: new Date(post.published_at),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  return [...staticRoutes, ...serviceRoutes, ...blogRoutes];
 }

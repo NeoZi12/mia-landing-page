@@ -17,7 +17,7 @@ const HowItWorksSection = dynamic(() => import("./HowItWorksSection"));
 const WhyUsSection = dynamic(() => import("./WhyUsSection"));
 const ContactSection = dynamic(() => import("./ContactSection"));
 
-export default function BelowFoldSections() {
+export default function BelowFoldSections({ children }: { children?: React.ReactNode }) {
   return (
     <>
       <div id="how-it-works">
@@ -26,6 +26,7 @@ export default function BelowFoldSections() {
       <div id="why-us">
         <WhyUsSection />
       </div>
+      {children}
       <div id="contact">
         <ContactSection />
       </div>

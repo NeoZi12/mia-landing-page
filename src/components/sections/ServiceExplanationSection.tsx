@@ -268,7 +268,7 @@ export default function ServiceExplanationSection({ service }: Props) {
         />
         <div
           className="relative z-[1] w-full max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-[60px] xl:px-[130px]"
-          style={{ paddingTop: 104 }}
+          style={{ paddingTop: 40 }}
         >
           {/* Back link — min 44px tap target for mobile */}
           <div style={{ marginBottom: 28 }}>
@@ -288,8 +288,8 @@ export default function ServiceExplanationSection({ service }: Props) {
               <span
                 style={{
                   fontFamily: "var(--font-heebo), sans-serif",
-                  fontWeight: 600,
-                  fontSize: 15,
+                  fontWeight: 700,
+                  fontSize: 17,
                   color: "rgba(255,255,255,0.75)",
                 }}
               >
