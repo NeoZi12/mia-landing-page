@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { getServiceBySlug, SERVICES } from "@/lib/servicesData";
 import ServiceExplanationSection from "@/components/sections/ServiceExplanationSection";
 
+const SITE_URL = "https://mia-tax.co.il";
+
 export function generateStaticParams() {
   return SERVICES.map((s) => ({ slug: s.slug }));
 }
@@ -62,5 +64,49 @@ export default async function ServicePage({
     notFound();
   }
 
-  return <ServiceExplanationSection service={service} />;
+  const serviceUrl = `${SITE_URL}/services/${service.slug}`;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        "@id": `${serviceUrl}#service`,
+        name: service.title,
+        description: service.primaryText,
+        url: serviceUrl,
+        provider: { "@id": `${SITE_URL}/#organization` },
+        areaServed: { "@type": "Country", name: "Israel" },
+        serviceType: "Tax Consulting and Accounting",
+        inLanguage: "he-IL",
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "דף הבית",
+            item: SITE_URL,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: service.title,
+            item: serviceUrl,
+          },
+        ],
+      },
+    ],
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <ServiceExplanationSection service={service} />
+    </>
+  );
 }

@@ -30,10 +30,48 @@ function formatDate(iso: string): string {
   });
 }
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": `${SITE_URL}/all-articles`,
+      name: "כל המאמרים | מיה",
+      url: `${SITE_URL}/all-articles`,
+      description:
+        "מאמרים מקצועיים על ייעוץ מס, החזרי מס, הנהלת חשבונות ותכנון פיננסי לעצמאיים ובעלי עסקים.",
+      inLanguage: "he-IL",
+      isPartOf: { "@id": `${SITE_URL}/#website` },
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "דף הבית",
+          item: SITE_URL,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "כל המאמרים",
+          item: `${SITE_URL}/all-articles`,
+        },
+      ],
+    },
+  ],
+};
+
 export default async function AllArticlesPage() {
   const posts = await getAllPosts();
 
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     <section dir="rtl" className="w-full pt-[104px] pb-20 px-4">
       <div className="max-w-6xl mx-auto">
 
@@ -145,5 +183,6 @@ export default async function AllArticlesPage() {
 
       </div>
     </section>
+    </>
   );
 }

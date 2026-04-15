@@ -71,31 +71,57 @@ export default async function BlogPostPage({
   const hasStructured =
     Array.isArray(post.points) && post.points.length > 0 && post.intro !== null;
 
+  // Build articleBody from available content fields
+  const articleBody = hasStructured
+    ? [post.intro, ...(post.points ?? [])].filter(Boolean).join(" ")
+    : (post.content_md ?? post.excerpt ?? "");
+
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.title,
-    description: post.meta_description,
-    image: post.image_url,
-    datePublished: post.published_at,
-    dateModified: post.published_at,
-    author: {
-      "@type": "Person",
-      name: "מיה זינו",
-      url: SITE_URL,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "מיה - ייעוץ מס והנהלת חשבונות",
-      url: SITE_URL,
-      logo: `${SITE_URL}/og-image.jpg`,
-    },
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": `${SITE_URL}/blog/${slug}`,
-    },
-    keywords: post.keywords.join(", "),
-    inLanguage: "he-IL",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": `${SITE_URL}/blog/${slug}#article`,
+        headline: post.title,
+        description: post.meta_description,
+        articleBody,
+        image: post.image_url,
+        datePublished: post.published_at,
+        dateModified: post.published_at,
+        author: { "@id": `${SITE_URL}/#person` },
+        publisher: { "@id": `${SITE_URL}/#organization` },
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": `${SITE_URL}/blog/${slug}`,
+          url: `${SITE_URL}/blog/${slug}`,
+        },
+        keywords: post.keywords.join(", "),
+        inLanguage: "he-IL",
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "דף הבית",
+            item: SITE_URL,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "כל המאמרים",
+            item: `${SITE_URL}/all-articles`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: post.title,
+            item: `${SITE_URL}/blog/${slug}`,
+          },
+        ],
+      },
+    ],
   };
 
   return (
@@ -281,35 +307,35 @@ export default async function BlogPostPage({
 
             {/* Content sits above the image */}
             <div className="relative z-10">
-            <h3
-              style={{
-                fontFamily: "var(--font-heebo), sans-serif",
-                fontWeight: 700,
-                fontSize: 20,
-                color: "#fff",
-                marginBottom: 8,
-              }}
-            >
-              יש שאלות? נשמח לעזור
-            </h3>
-            <p style={{ fontSize: 14, color: "rgba(255,255,255,0.8)", marginBottom: 20 }}>
-              צרו קשר לייעוץ ראשוני ללא עלות.
-            </p>
-            <a
-              href="https://wa.me/972584087061"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl px-6 py-3 transition-colors duration-150 hover:bg-[#f0f4ff]"
-              style={{
-                background: "#fff",
-                color: "#003399",
-                fontWeight: 700,
-                fontSize: 15,
-                textDecoration: "none",
-              }}
-            >
-              שלחו לנו הודעה בוואטסאפ
-            </a>
+              <h3
+                style={{
+                  fontFamily: "var(--font-heebo), sans-serif",
+                  fontWeight: 700,
+                  fontSize: 20,
+                  color: "#fff",
+                  marginBottom: 8,
+                }}
+              >
+                יש שאלות? נשמח לעזור
+              </h3>
+              <p style={{ fontSize: 14, color: "rgba(255,255,255,0.8)", marginBottom: 20 }}>
+                צרו קשר לייעוץ ראשוני ללא עלות.
+              </p>
+              <a
+                href="https://wa.me/972584087061"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-xl px-6 py-3 transition-colors duration-150 hover:bg-[#f0f4ff]"
+                style={{
+                  background: "#fff",
+                  color: "#003399",
+                  fontWeight: 700,
+                  fontSize: 15,
+                  textDecoration: "none",
+                }}
+              >
+                שלחו לנו הודעה בוואטסאפ
+              </a>
             </div>{/* end z-10 content wrapper */}
           </div>
 

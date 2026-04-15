@@ -83,7 +83,7 @@ export const viewport: Viewport = {
   themeColor: "#002069",
 };
 
-// Structured data — Organization + LocalBusiness (AccountingService).
+// Structured data — Organization + Person + AccountingService + WebSite.
 // Emitted once on the root layout so every page inherits it.
 const jsonLd = {
   "@context": "https://schema.org",
@@ -93,10 +93,57 @@ const jsonLd = {
       "@id": `${SITE_URL}/#organization`,
       name: SITE_NAME,
       url: SITE_URL,
-      logo: `${SITE_URL}/og-image.jpg`,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/og-image.jpg`,
+        width: 1200,
+        height: 630,
+      },
       description: SITE_DESCRIPTION,
       telephone: "+972584087061",
       areaServed: "IL",
+      founder: { "@id": `${SITE_URL}/#person` },
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: "+972584087061",
+        contactType: "customer service",
+        availableLanguage: "Hebrew",
+        areaServed: "IL",
+      },
+      sameAs: [
+        "https://www.instagram.com/mayazino_/",
+      ],
+      knowsAbout: [
+        "ייעוץ מס",
+        "הנהלת חשבונות",
+        "החזרי מס",
+        "תיאום מס",
+        "תכנון פרישה",
+        "קיבוע זכויות",
+        "עוסק מורשה",
+        "עסק זעיר",
+        "Israeli Tax Law",
+        "Accounting",
+      ],
+    },
+    {
+      "@type": "Person",
+      "@id": `${SITE_URL}/#person`,
+      name: "מיה זינו",
+      jobTitle: "יועצת מס ומנהלת חשבונות",
+      url: SITE_URL,
+      worksFor: { "@id": `${SITE_URL}/#organization` },
+      sameAs: [
+        "https://www.instagram.com/mayazino_/",
+      ],
+      knowsAbout: [
+        "ייעוץ מס",
+        "הנהלת חשבונות",
+        "החזרי מס",
+        "תיאום מס",
+        "תכנון פרישה",
+        "Israeli Tax Law",
+      ],
     },
     {
       "@type": "AccountingService",
@@ -107,6 +154,7 @@ const jsonLd = {
       description: SITE_DESCRIPTION,
       telephone: "+972584087061",
       priceRange: "₪₪",
+      provider: { "@id": `${SITE_URL}/#organization` },
       address: {
         "@type": "PostalAddress",
         addressLocality: "קריית מוצקין",
