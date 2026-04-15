@@ -158,6 +158,7 @@ const jsonLd = {
       provider: { "@id": `${SITE_URL}/#organization` },
       address: {
         "@type": "PostalAddress",
+        streetAddress: "לאה גולדברג 1",
         addressLocality: "קריית מוצקין",
         addressRegion: "חיפה",
         addressCountry: "IL",
