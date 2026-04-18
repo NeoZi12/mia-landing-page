@@ -304,7 +304,7 @@ export default function HeroSection() {
                 "linear-gradient(135deg, #002069 0%, #00339a 100%)";
             }}
           >
-            בואו נתחיל
+            לשיחת ייעוץ
           </Link>
         </motion.div>
       </div>
