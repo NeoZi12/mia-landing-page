@@ -264,33 +264,6 @@ function IconAuthorizedDealer({ color = "#002069" }: { color?: string }) {
   );
 }
 
-function IconCustomConsultation({ color = "#FFFFFF" }: { color?: string }) {
-  return (
-    <svg
-      width="21"
-      height="25"
-      viewBox="0 0 21 25"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle cx="10.5" cy="6" r="5" stroke={color} strokeWidth="1.5" />
-      <path
-        d="M1 24C1 19.029 5.253 15 10.5 15C15.747 15 20 19.029 20 24"
-        stroke={color}
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M16 3L17.5 1M17.5 1L19 3M17.5 1V5"
-        stroke={color}
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 /* ─── Learn More Link ───────────────────────────────────────── */
 
 function LearnMore({ color = "#002069" }: { color?: string }) {
@@ -392,104 +365,6 @@ function ServiceCard({ icon, title, body, slug }: CardProps) {
         </p>
 
         <LearnMore color="#002069" />
-      </div>
-    </Link>
-  );
-}
-
-/* ─── Featured Card ─────────────────────────────────────────── */
-
-function FeaturedCard() {
-  return (
-    <Link
-      href="/services/custom-consultation"
-      style={{ textDecoration: "none", display: "block", height: "100%" }}
-    >
-      <div
-        className="service-card-featured relative flex flex-col items-start h-full rounded-lg overflow-hidden isolate cursor-pointer"
-        style={{
-          background: "#002069",
-          boxShadow: "0px 10px 24px -4px rgba(0,20,80,0.25)",
-          padding: "clamp(14px, 1.6vw, 24px)",
-          gap: "clamp(8px, 0.8vh, 14px)",
-        }}
-      >
-        {/* Blur blob — bottom-left (hidden on mobile to avoid GPU jank) */}
-        <div
-          aria-hidden="true"
-          className="hidden sm:block absolute pointer-events-none rounded-xl"
-          style={{
-            width: 160,
-            height: 160,
-            left: -40,
-            bottom: -40,
-            background: "rgba(0, 51, 154, 0.3)",
-            filter: "blur(32px)",
-            zIndex: 0,
-          }}
-        />
-        {/* Blur blob — top-right (hidden on mobile to avoid GPU jank) */}
-        <div
-          aria-hidden="true"
-          className="hidden sm:block absolute pointer-events-none rounded-xl"
-          style={{
-            width: 160,
-            height: 160,
-            right: -40,
-            top: -40,
-            background: "rgba(138, 164, 255, 0.2)",
-            filter: "blur(32px)",
-            zIndex: 1,
-          }}
-        />
-
-        {/* Content (above blobs) */}
-        <div
-          className="relative flex flex-col items-start w-full"
-          style={{ gap: "clamp(8px, 0.8vh, 14px)", zIndex: 2 }}
-        >
-          {/* Icon badge */}
-          <div
-            className="flex items-center justify-center rounded-lg flex-shrink-0"
-            style={{
-              width: 44,
-              height: 44,
-              background: "rgba(255, 255, 255, 0.1)",
-            }}
-          >
-            <IconCustomConsultation color="#FFFFFF" />
-          </div>
-
-          {/* Title */}
-          <h3
-            className="w-full text-right text-white"
-            style={{
-              fontFamily: "var(--font-heebo), sans-serif",
-              fontWeight: 700,
-              fontSize: "clamp(15px, 1.2vw, 18px)",
-              lineHeight: "28px",
-            }}
-          >
-            ייעוץ מותאם אישית
-          </h3>
-
-          {/* Body */}
-          <p
-            className="w-full text-right"
-            style={{
-              fontFamily: "var(--font-heebo), sans-serif",
-              fontWeight: 400,
-              fontSize: "clamp(12px, 0.9vw, 14px)",
-              lineHeight: "22px",
-              color: "rgba(220, 225, 255, 0.8)",
-            }}
-          >
-            זקוק לפתרון מורכב? נשמח לבחון את התיק הפיננסי שלך ולהציע את הדרכים
-            היעילות ביותר לחיסכון במס המותאמות במדויק לפעילותך.
-          </p>
-
-          <LearnMore color="#FFFFFF" />
-        </div>
       </div>
     </Link>
   );
