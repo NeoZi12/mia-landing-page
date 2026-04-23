@@ -98,7 +98,7 @@ export default function AboutHeroSection() {
             >
               <Image
                 src={PHOTO_PATH}
-                alt="מיה זינו - יועצת מס, קריית מוצקין"
+                alt="מיה זינו — יועצת מס והנהלת חשבונות בקריית מוצקין, חיפה והקריות"
                 fill
                 sizes="(max-width: 1024px) 55vw, 0px"
                 className="object-cover object-top"
@@ -172,7 +172,7 @@ export default function AboutHeroSection() {
               {/* Photo — fills the card */}
               <Image
                 src={PHOTO_PATH}
-                alt="מיה זינו - יועצת מס ורואת חשבון, קריית מוצקין"
+                alt="מיה זינו — יועצת מס והנהלת חשבונות בקריית מוצקין, חיפה והקריות"
                 fill
                 sizes="(max-width: 1024px) 0px, 24vw"
                 className="object-cover object-top"
