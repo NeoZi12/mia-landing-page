@@ -42,3 +42,6 @@ next-env.d.ts
 
 # claude code
 .claude/settings.local.json
+
+# personal reference docs (not part of the shipped project)
+*.pdf
