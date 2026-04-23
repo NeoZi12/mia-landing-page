@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { SITE_NAME } from "@/lib/siteConstants";
 
 type Phase = "auth" | "auth-loading" | "compose" | "loading" | "error";
 
@@ -143,7 +144,7 @@ export default function NewPostPage() {
       <a href="/" className="mb-10 flex items-center gap-3 group">
         <Image
           src="/images/maya logo 2.png"
-          alt="מיה זינו — ייעוץ מס"
+          alt={`לוגו ${SITE_NAME}`}
           width={40}
           height={40}
           className="object-contain"

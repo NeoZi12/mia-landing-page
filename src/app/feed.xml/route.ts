@@ -1,7 +1,6 @@
 import { getAllPosts } from "@/lib/blogQueries";
+import { SITE_URL, SITE_NAME, PERSON_NAME } from "@/lib/siteConstants";
 
-const SITE_URL = "https://mia-tax.co.il";
-const CANONICAL_NAME = "מיה זינו — ייעוץ מס והנהלת חשבונות";
 const FEED_TITLE = "מאמרים | מיה";
 const FEED_DESCRIPTION =
   "מאמרים מקצועיים על ייעוץ מס, החזרי מס, הנהלת חשבונות ותכנון פיננסי לעצמאיים ובעלי עסקים.";
@@ -33,7 +32,7 @@ export async function GET() {
         `<updated>${iso}</updated>`,
         `<published>${iso}</published>`,
         `<summary type="html">${esc(p.excerpt)}</summary>`,
-        "<author><name>מיה זינו</name></author>",
+        `<author><name>${esc(PERSON_NAME)}</name></author>`,
         "</entry>",
       ].join("");
     })
@@ -48,7 +47,7 @@ export async function GET() {
     `<link href="${SITE_URL}/"/>`,
     `<id>${SITE_URL}/</id>`,
     `<updated>${new Date(latest).toISOString()}</updated>`,
-    `<author><name>${esc(CANONICAL_NAME)}</name></author>`,
+    `<author><name>${esc(SITE_NAME)}</name></author>`,
     entries,
     "</feed>",
   ].join("");

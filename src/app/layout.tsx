@@ -3,6 +3,20 @@ import { Heebo } from "next/font/google";
 import "./globals.css";
 import MotionProvider from "@/components/MotionProvider";
 import { Analytics } from "@vercel/analytics/next";
+import {
+  SITE_URL,
+  SITE_NAME,
+  LEGAL_NAME,
+  ALTERNATE_NAMES,
+  PERSON_NAME,
+  PERSON_JOB_TITLE,
+  PHONE_E164,
+  ADDRESS_STREET,
+  ADDRESS_LOCALITY,
+  ADDRESS_REGION,
+  ADDRESS_COUNTRY,
+  INSTAGRAM_URL,
+} from "@/lib/siteConstants";
 
 const heebo = Heebo({
   variable: "--font-heebo",
@@ -11,9 +25,6 @@ const heebo = Heebo({
   display: "swap",
 });
 
-// NOTE: Update this constant if the final production domain differs.
-const SITE_URL = "https://mia-tax.co.il";
-const SITE_NAME = "מיה זינו — ייעוץ מס והנהלת חשבונות";
 const SITE_DESCRIPTION =
   "יועצת מס והנהלת חשבונות בקריית מוצקין — שירות דיגיטלי לעצמאיים וחברות בכל הקריות, חיפה והסביבה. ייעוץ מס, החזרי מס, תיאום מס. שיחת ייעוץ ראשונית.";
 
@@ -25,8 +36,11 @@ export const metadata: Metadata = {
   },
   description: SITE_DESCRIPTION,
   keywords: [
+    "מיה",
+    "מיה זינו",
     "ייעוץ מס",
     "הנהלת חשבונות",
+    "יועצת מס",
     "רואה חשבון",
     "החזרי מס",
     "תיאום מס",
@@ -35,9 +49,9 @@ export const metadata: Metadata = {
     "תכנון פרישה",
     "קיבוע זכויות",
     "ניהול פיננסי",
-    "מיה זינו",
+    "קריית מוצקין",
   ],
-  authors: [{ name: "מיה זינו" }],
+  authors: [{ name: PERSON_NAME }],
   creator: SITE_NAME,
   publisher: SITE_NAME,
   alternates: {
@@ -87,7 +101,7 @@ export const viewport: Viewport = {
   themeColor: "#002069",
 };
 
-// Structured data — Organization + Person + AccountingService + WebSite.
+// Structured data — Organization + Person + LocalBusiness + WebSite + WebPage.
 // Emitted once on the root layout so every page inherits it.
 const jsonLd = {
   "@context": "https://schema.org",
@@ -96,6 +110,8 @@ const jsonLd = {
       "@type": "Organization",
       "@id": `${SITE_URL}/#organization`,
       name: SITE_NAME,
+      legalName: LEGAL_NAME,
+      alternateName: ALTERNATE_NAMES,
       url: SITE_URL,
       logo: {
         "@type": "ImageObject",
@@ -104,19 +120,17 @@ const jsonLd = {
         height: 630,
       },
       description: SITE_DESCRIPTION,
-      telephone: "+972584087061",
+      telephone: PHONE_E164,
       areaServed: "IL",
       founder: { "@id": `${SITE_URL}/#person` },
       contactPoint: {
         "@type": "ContactPoint",
-        telephone: "+972584087061",
+        telephone: PHONE_E164,
         contactType: "customer service",
         availableLanguage: "Hebrew",
         areaServed: "IL",
       },
-      sameAs: [
-        "https://www.instagram.com/mayazino_/",
-      ],
+      sameAs: [INSTAGRAM_URL],
       knowsAbout: [
         "ייעוץ מס",
         "הנהלת חשבונות",
@@ -139,13 +153,11 @@ const jsonLd = {
     {
       "@type": "Person",
       "@id": `${SITE_URL}/#person`,
-      name: "מיה זינו",
-      jobTitle: "יועצת מס ומנהלת חשבונות",
+      name: PERSON_NAME,
+      jobTitle: PERSON_JOB_TITLE,
       url: SITE_URL,
       worksFor: { "@id": `${SITE_URL}/#organization` },
-      sameAs: [
-        "https://www.instagram.com/mayazino_/",
-      ],
+      sameAs: [INSTAGRAM_URL],
       knowsAbout: [
         "ייעוץ מס",
         "הנהלת חשבונות",
@@ -169,6 +181,8 @@ const jsonLd = {
       "@type": ["LocalBusiness", "ProfessionalService", "AccountingService"],
       "@id": `${SITE_URL}/#business`,
       name: SITE_NAME,
+      legalName: LEGAL_NAME,
+      alternateName: ALTERNATE_NAMES,
       url: SITE_URL,
       image: [
         `${SITE_URL}/og-image.jpg`,
@@ -177,15 +191,15 @@ const jsonLd = {
         `${SITE_URL}/images/office-pic3.webp`,
       ],
       description: SITE_DESCRIPTION,
-      telephone: "+972584087061",
+      telephone: PHONE_E164,
       priceRange: "₪₪",
       provider: { "@id": `${SITE_URL}/#organization` },
       address: {
         "@type": "PostalAddress",
-        streetAddress: "לאה גולדברג 1",
-        addressLocality: "קריית מוצקין",
-        addressRegion: "חיפה",
-        addressCountry: "IL",
+        streetAddress: ADDRESS_STREET,
+        addressLocality: ADDRESS_LOCALITY,
+        addressRegion: ADDRESS_REGION,
+        addressCountry: ADDRESS_COUNTRY,
       },
       geo: {
         "@type": "GeoCoordinates",

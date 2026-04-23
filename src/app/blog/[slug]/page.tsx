@@ -5,10 +5,9 @@ import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { getPostBySlug, getAllSlugs } from "@/lib/blogQueries";
+import { SITE_URL, PERSON_NAME, PHONE_WA } from "@/lib/siteConstants";
 
 export const revalidate = 60;
-
-const SITE_URL = "https://mia-tax.co.il";
 
 export async function generateStaticParams() {
   const slugs = await getAllSlugs();
@@ -29,7 +28,7 @@ export async function generateMetadata({
     title: post.title,
     description: post.meta_description,
     keywords: post.keywords,
-    authors: [{ name: "מיה זינו" }],
+    authors: [{ name: PERSON_NAME }],
     alternates: { canonical: `/blog/${slug}` },
     openGraph: {
       type: "article",
@@ -39,7 +38,7 @@ export async function generateMetadata({
       description: post.meta_description,
       images: [{ url: post.image_url, width: 1200, height: 630, alt: post.title }],
       publishedTime: post.published_at,
-      authors: ["מיה זינו"],
+      authors: [PERSON_NAME],
     },
     twitter: {
       card: "summary_large_image",
@@ -194,7 +193,7 @@ export default async function BlogPostPage({
               {formatDate(post.published_at)}
             </time>
             <span style={{ fontSize: 13, color: "#94a3b8" }}>·</span>
-            <span style={{ fontSize: 13, color: "#94a3b8" }}>מיה זינו</span>
+            <span style={{ fontSize: 13, color: "#94a3b8" }}>{PERSON_NAME}</span>
           </div>
 
           {/* Title */}
@@ -334,7 +333,7 @@ export default async function BlogPostPage({
                 צרו קשר לייעוץ ראשוני ללא עלות.
               </p>
               <a
-                href="https://wa.me/972584087061"
+                href={PHONE_WA}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl px-6 py-3 transition-colors duration-150 hover:bg-[#f0f4ff]"

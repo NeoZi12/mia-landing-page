@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { fadeUp, stagger, viewport } from "@/lib/motion";
+import { SITE_NAME } from "@/lib/siteConstants";
 
 export default function VideoIntroSection() {
   return (
@@ -40,7 +41,7 @@ export default function VideoIntroSection() {
               letterSpacing: "-1.5px",
             }}
           >
-            הכירו את מיה ייעוץ מס
+            הכירו את {SITE_NAME}
           </motion.h2>
 
           {/* Subtitle */}

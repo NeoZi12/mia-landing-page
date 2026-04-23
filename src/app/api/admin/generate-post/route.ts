@@ -1,5 +1,6 @@
 import Groq from "groq-sdk";
 import { createClient } from "@supabase/supabase-js";
+import { SITE_NAME } from "@/lib/siteConstants";
 
 // ── Env validation ────────────────────────────────────────────────────────────
 
@@ -78,7 +79,7 @@ async function fetchAndUploadImage(imagePrompt: string, slug: string): Promise<s
 // control over wording. AI only chooses which sentence goes in which slot and
 // generates SEO metadata + image prompt.
 
-const SYSTEM_PROMPT = `You are a precision content extractor for the Hebrew blog of "מיה זינו — ייעוץ מס והנהלת חשבונות".
+const SYSTEM_PROMPT = `You are a precision content extractor for the Hebrew blog of "${SITE_NAME}".
 
 YOUR ROLE: You function as a high-fidelity mapping engine. Your goal is to take the admin's raw Hebrew text and place it into the correct structured fields WITHOUT CHANGING A SINGLE WORD.
 

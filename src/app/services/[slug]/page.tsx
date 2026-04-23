@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getServiceBySlug, SERVICES } from "@/lib/servicesData";
 import ServiceExplanationSection from "@/components/sections/ServiceExplanationSection";
-
-const SITE_URL = "https://mia-tax.co.il";
+import { SITE_URL } from "@/lib/siteConstants";
 
 export function generateStaticParams() {
   return SERVICES.map((s) => ({ slug: s.slug }));

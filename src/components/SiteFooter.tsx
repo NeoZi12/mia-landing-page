@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { SITE_NAME, ADDRESS_FULL } from "@/lib/siteConstants";
 
 const NAV_LINKS = [
   { label: "ראשי",    href: "/"          },
@@ -32,7 +33,7 @@ export default function SiteFooter() {
         >
           <Image
             src="/images/maya logo 2.png"
-            alt="לוגו מיה זינו — ייעוץ מס והנהלת חשבונות"
+            alt={`לוגו ${SITE_NAME}`}
             width={36}
             height={36}
             className="object-contain brightness-0 invert"
@@ -47,7 +48,7 @@ export default function SiteFooter() {
               letterSpacing: "-0.3px",
             }}
           >
-            מיה זינו — ייעוץ מס והנהלת חשבונות
+            {SITE_NAME}
           </span>
         </Link>
 
@@ -85,7 +86,7 @@ export default function SiteFooter() {
               whiteSpace: "nowrap",
             }}
           >
-            משרד ייעוץ מס | קריית מוצקין | שירות לכלל הארץ
+            משרד ייעוץ מס | {ADDRESS_FULL} | שירות לכלל הארץ
           </p>
           <p
             style={{

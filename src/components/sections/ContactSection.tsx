@@ -4,6 +4,13 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { fadeUp, fadeLeft, fadeRight, stagger, viewport } from "@/lib/motion";
+import {
+  PHONE_DISPLAY,
+  PHONE_TEL,
+  PHONE_WA,
+  ADDRESS_FULL,
+  INSTAGRAM_URL,
+} from "@/lib/siteConstants";
 
 /* ─── EmailJS env vars ───────────────────────────────────────── */
 const SVC_ID  = (process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID  ?? "").trim();
@@ -84,9 +91,9 @@ const NAVY_ROW_STYLE: React.CSSProperties = {
 
 function InfoStack() {
   const rows = [
-    { icon: <PhoneIcon color="white" />, label: "טלפון", sublabel: "058-408-7061", href: "tel:0584087061" },
+    { icon: <PhoneIcon color="white" />, label: "טלפון", sublabel: PHONE_DISPLAY, href: PHONE_TEL },
     { icon: <EnvelopeIcon color="white" />, label: "אימייל", sublabel: "maya@ethikaltd.co.il", href: "mailto:maya@ethikaltd.co.il" },
-    { icon: <InstagramIcon color="white" />, label: "אינסטגרם", sublabel: "_mayazino@", href: "https://www.instagram.com/mayazino_" },
+    { icon: <InstagramIcon color="white" />, label: "אינסטגרם", sublabel: "_mayazino@", href: INSTAGRAM_URL },
   ];
 
   return (
@@ -194,7 +201,7 @@ function InfoStack() {
               משרד ראשי
             </span>
             <span style={{ fontFamily: "var(--font-heebo), sans-serif", fontWeight: 400, fontSize: "clamp(11px, 1vw, 13px)", color: "rgba(219,234,254,0.75)", direction: "rtl" }}>
-              לאה גולדברג 1, קריית מוצקין
+              {ADDRESS_FULL}
             </span>
           </div>
           <div
@@ -220,7 +227,7 @@ function InfoStack() {
 
       {/* WhatsApp outline CTA */}
       <a
-        href="https://wa.me/972584087061"
+        href={PHONE_WA}
         target="_blank"
         rel="noopener noreferrer"
         dir="rtl"

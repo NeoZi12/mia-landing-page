@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { SITE_NAME, PHONE_WA } from "@/lib/siteConstants";
 
 function WhatsAppIcon() {
   return (
@@ -16,7 +17,7 @@ const NAV_LINKS = [
   { label: "עלינו",   id: "about",    url: "/about-us", hash: "/#about"   },
   { label: "שירותים",   id: "services", url: "/services", hash: "/#services" },
   { label: "למה אנחנו", id: "why-us",  url: "/why-us",  hash: "/#why-us"   },
-  { label: "מאמרים",      id: "blog",    url: "/blog",    hash: "/#blog"     },
+  { label: "מאמרים",      id: "blog",    url: "/all-articles", hash: "/all-articles" },
   { label: "צור קשר",   id: "contact",  url: "/contact",  hash: "/#contact"  },
 ];
 
@@ -155,7 +156,7 @@ export default function Navbar({ alwaysVisible = false, standalone = false }: { 
           {/* ── Logo ── */}
           {standalone ? (
             <a href="/#about" aria-label="עבור לעמוד עלינו" className="flex-shrink-0">
-              <Image src="/images/maya logo 2.png" alt="לוגו מיה זינו — ייעוץ מס והנהלת חשבונות" width={48} height={48} className="object-contain" priority />
+              <Image src="/images/maya logo 2.png" alt={`לוגו ${SITE_NAME}`} width={48} height={48} className="object-contain" priority />
             </a>
           ) : (
             <button
@@ -163,7 +164,7 @@ export default function Navbar({ alwaysVisible = false, standalone = false }: { 
               className="flex-shrink-0 cursor-pointer bg-transparent border-none p-0"
               aria-label="עבור לעמוד עלינו"
             >
-              <Image src="/images/maya logo 2.png" alt="לוגו מיה זינו — ייעוץ מס והנהלת חשבונות" width={48} height={48} className="object-contain" priority />
+              <Image src="/images/maya logo 2.png" alt={`לוגו ${SITE_NAME}`} width={48} height={48} className="object-contain" priority />
             </button>
           )}
 
@@ -232,7 +233,7 @@ export default function Navbar({ alwaysVisible = false, standalone = false }: { 
 
             {/* WhatsApp CTA — desktop */}
             <a
-              href="https://wa.me/972584087061"
+              href={PHONE_WA}
               target="_blank"
               rel="noopener noreferrer"
               className="hidden lg:flex flex-shrink-0 items-center gap-2 rounded-xl transition-colors duration-150"
@@ -325,7 +326,7 @@ export default function Navbar({ alwaysVisible = false, standalone = false }: { 
 
           <div className="pt-3 pb-2">
             <a
-              href="https://wa.me/972584087061"
+              href={PHONE_WA}
               target="_blank"
               rel="noopener noreferrer"
               onClick={closeMenu}

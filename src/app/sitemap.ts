@@ -1,8 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SERVICES } from "@/lib/servicesData";
 import { getAllPosts } from "@/lib/blogQueries";
-
-const SITE_URL = "https://mia-tax.co.il";
+import { SITE_URL } from "@/lib/siteConstants";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();

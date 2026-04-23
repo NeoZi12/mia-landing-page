@@ -8,6 +8,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { generatePapers, type PaperConfig } from "@/lib/papers";
 import styles from "./HeroSection.module.css";
 import { DUR, EASE } from "@/lib/motion";
+import { SITE_NAME } from "@/lib/siteConstants";
 
 const heroInitial = { opacity: 0, y: 16 };
 const heroAnimate = { opacity: 1, y: 0 };
@@ -159,7 +160,7 @@ export default function HeroSection() {
               margin: 0,
             }}
           >
-            מיה זינו — ייעוץ מס והנהלת חשבונות
+            {SITE_NAME}
           </h1>
         </motion.div>
 

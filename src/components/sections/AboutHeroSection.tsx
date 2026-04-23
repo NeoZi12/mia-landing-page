@@ -3,7 +3,10 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { fadeRight, fadeLeft, viewport } from "@/lib/motion";
+import { PERSON_NAME, PERSON_JOB_TITLE } from "@/lib/siteConstants";
 const PHOTO_PATH = "/images/miaprofile.jpg";
+const PHOTO_ALT = `${PERSON_NAME}, ${PERSON_JOB_TITLE} בקריית מוצקין, חיפה והקריות`;
+const PHOTO_CAPTION = `${PERSON_NAME}, ${PERSON_JOB_TITLE}`;
 
 export default function AboutHeroSection() {
   const body        ="משרד ייעוץ מס והנהלת חשבונות לעצמאיים באזור חיפה והקריות, עם ניסיון של למעלה מ־30 שנה — מטפל בכל ההתנהלות מול הרשויות ללא ניירת, ועובד מול לקוחות מכל הארץ. חברה בלשכת יועצי המס, משתתפת בהשתלמויות מקצועיות שוטפות ומקפידה על עדכניות מלאה בכל שינויי החקיקה והרגולציה — כדי לתת לכם את הייעוץ המדויק ביותר. אנחנו משלבים ניסיון עשיר עם פתרונות מתקדמים, כדי לחסוך לכם זמן ולדאוג שהכל מתנהל בדיוק, שקיפות ונוחות.";
@@ -98,7 +101,7 @@ export default function AboutHeroSection() {
             >
               <Image
                 src={PHOTO_PATH}
-                alt="מיה זינו — יועצת מס והנהלת חשבונות בקריית מוצקין, חיפה והקריות"
+                alt={PHOTO_ALT}
                 fill
                 sizes="(max-width: 1024px) 55vw, 0px"
                 className="object-cover object-top"
@@ -123,7 +126,7 @@ export default function AboutHeroSection() {
                 letterSpacing: "-0.2px",
               }}
             >
-              מיה זינו — יועצת מס
+              {PHOTO_CAPTION}
             </p>
           </motion.div>
 
@@ -172,7 +175,7 @@ export default function AboutHeroSection() {
               {/* Photo — fills the card */}
               <Image
                 src={PHOTO_PATH}
-                alt="מיה זינו — יועצת מס והנהלת חשבונות בקריית מוצקין, חיפה והקריות"
+                alt={PHOTO_ALT}
                 fill
                 sizes="(max-width: 1024px) 0px, 24vw"
                 className="object-cover object-top"
@@ -200,7 +203,7 @@ export default function AboutHeroSection() {
                 letterSpacing: "-0.2px",
               }}
             >
-              מיה זינו — יועצת מס
+              {PHOTO_CAPTION}
             </p>
           </motion.div>
 

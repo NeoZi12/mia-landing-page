@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { getAllPosts } from "@/lib/blogQueries";
+import { SITE_URL } from "@/lib/siteConstants";
 
 export const revalidate = 60;
-
-const SITE_URL = "https://mia-tax.co.il";
 
 export const metadata: Metadata = {
   title: "כל המאמרים | מיה",

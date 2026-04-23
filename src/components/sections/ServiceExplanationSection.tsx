@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { SERVICES, type ServiceData } from "@/lib/servicesData";
 import { DotPattern } from "@/components/ui/dot-pattern";
+import { PHONE_WA } from "@/lib/siteConstants";
 
 /* ─── Icon SVGs ─────────────────────────────────────────────── */
 
@@ -619,7 +620,7 @@ export default function ServiceExplanationSection({ service }: Props) {
 
                   {/* WhatsApp */}
                   <a
-                    href="https://wa.me/972584087061"
+                    href={PHONE_WA}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="whatsapp-cta flex items-center justify-center gap-3 w-full"

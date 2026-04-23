@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
-
-const SITE_URL = "https://mia-tax.co.il";
+import { SITE_URL } from "@/lib/siteConstants";
 
 export default function robots(): MetadataRoute.Robots {
   return {
