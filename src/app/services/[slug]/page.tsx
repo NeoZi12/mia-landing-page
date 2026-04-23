@@ -23,11 +23,12 @@ export async function generateMetadata({
     };
   }
 
-  // Trim primaryText to a clean meta-description (≤160 chars).
-  const description =
-    service.primaryText.length > 160
-      ? `${service.primaryText.slice(0, 157).trimEnd()}...`
+  // Trim primaryText to leave room for the locality anchor, keep ≤160 chars total.
+  const baseDescription =
+    service.primaryText.length > 140
+      ? `${service.primaryText.slice(0, 137).trimEnd()}...`
       : service.primaryText;
+  const description = `${baseDescription} שירות מקריית מוצקין לכל הארץ.`.slice(0, 160);
 
   const canonical = `/services/${service.slug}`;
 
