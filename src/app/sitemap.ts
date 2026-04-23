@@ -13,12 +13,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: now,
       changeFrequency: "monthly",
       priority: 1,
+      images: [`${SITE_URL}/og-image.jpg`],
     },
     {
       url: `${SITE_URL}/all-articles`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
+      images: [`${SITE_URL}/og-image.jpg`],
     },
     {
       url: `${SITE_URL}/feed.xml`,
@@ -33,6 +35,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: now,
     changeFrequency: "monthly",
     priority: 0.8,
+    images: [`${SITE_URL}/og-image.jpg`],
   }));
 
   const posts = await getAllPosts().catch(() => []);
@@ -41,6 +44,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: new Date(post.published_at),
     changeFrequency: "monthly",
     priority: 0.7,
+    images: post.image_url ? [post.image_url] : undefined,
   }));
 
   return [...staticRoutes, ...serviceRoutes, ...blogRoutes];
