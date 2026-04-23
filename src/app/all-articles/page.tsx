@@ -45,6 +45,7 @@ const jsonLd = {
     },
     {
       "@type": "BreadcrumbList",
+      "@id": `${SITE_URL}/all-articles#breadcrumb`,
       itemListElement: [
         {
           "@type": "ListItem",

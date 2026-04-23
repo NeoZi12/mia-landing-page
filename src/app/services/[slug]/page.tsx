@@ -92,6 +92,7 @@ export default async function ServicePage({
       },
       {
         "@type": "BreadcrumbList",
+        "@id": `${serviceUrl}#breadcrumb`,
         itemListElement: [
           {
             "@type": "ListItem",
@@ -119,6 +120,17 @@ export default async function ServicePage({
           name: step,
           text: step,
         })),
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${serviceUrl}#webpage`,
+        url: serviceUrl,
+        name: `${service.title} | מיה`,
+        description: service.primaryText,
+        isPartOf: { "@id": `${SITE_URL}/#website` },
+        about: { "@id": `${serviceUrl}#service` },
+        inLanguage: "he-IL",
+        breadcrumb: { "@id": `${serviceUrl}#breadcrumb` },
       },
     ],
   };

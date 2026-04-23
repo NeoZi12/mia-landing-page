@@ -100,6 +100,7 @@ export default async function BlogPostPage({
       },
       {
         "@type": "BreadcrumbList",
+        "@id": `${SITE_URL}/blog/${slug}#breadcrumb`,
         itemListElement: [
           {
             "@type": "ListItem",
@@ -120,6 +121,17 @@ export default async function BlogPostPage({
             item: `${SITE_URL}/blog/${slug}`,
           },
         ],
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${SITE_URL}/blog/${slug}#webpage`,
+        url: `${SITE_URL}/blog/${slug}`,
+        name: `${post.title} | מיה`,
+        description: post.meta_description,
+        isPartOf: { "@id": `${SITE_URL}/#website` },
+        about: { "@id": `${SITE_URL}/blog/${slug}#article` },
+        inLanguage: "he-IL",
+        breadcrumb: { "@id": `${SITE_URL}/blog/${slug}#breadcrumb` },
       },
     ],
   };
