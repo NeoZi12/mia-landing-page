@@ -97,6 +97,19 @@ export default async function ServicePage({
           },
         ],
       },
+      {
+        "@type": "HowTo",
+        "@id": `${serviceUrl}#howto`,
+        name: `איך עובד התהליך — ${service.title}`,
+        description: service.primaryText,
+        inLanguage: "he-IL",
+        step: service.steps.map((step, i) => ({
+          "@type": "HowToStep",
+          position: i + 1,
+          name: step,
+          text: step,
+        })),
+      },
     ],
   };
 
