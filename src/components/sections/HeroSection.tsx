@@ -148,7 +148,7 @@ export default function HeroSection() {
             className="object-contain brightness-0 invert w-10 h-10 lg:w-[60px] lg:h-[60px]"
             aria-hidden="true"
           />
-          <span
+          <h1
             style={{
               fontFamily: "var(--font-heebo), sans-serif",
               fontWeight: 700,
@@ -156,10 +156,11 @@ export default function HeroSection() {
               letterSpacing: "-0.4px",
               color: "rgba(255,255,255,0.88)",
               whiteSpace: "nowrap",
+              margin: 0,
             }}
           >
             מיה זינו — ייעוץ מס והנהלת חשבונות
-          </span>
+          </h1>
         </motion.div>
 
         {/* Eyebrow badge */}
@@ -198,7 +199,7 @@ export default function HeroSection() {
           transition={heroTransition(0.42)}
           className="flex flex-col items-center w-full"
         >
-          <h1
+          <p
             className="flex flex-col items-center text-center"
             style={{
               fontFamily: "var(--font-heebo), sans-serif",
@@ -206,6 +207,7 @@ export default function HeroSection() {
               fontSize: "clamp(36px, min(7vw, 9vh), 80px)",
               lineHeight: 1.05,
               letterSpacing: "-0.03em",
+              margin: 0,
             }}
           >
             {/* Line 1 — white */}
@@ -242,7 +244,7 @@ export default function HeroSection() {
             >
               {line3}
             </span>
-          </h1>
+          </p>
         </motion.div>
 
         {/* Subtitle */}
