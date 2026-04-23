@@ -215,6 +215,16 @@ const jsonLd = {
       inLanguage: "he-IL",
       publisher: { "@id": `${SITE_URL}/#organization` },
     },
+    {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/#webpage`,
+      url: SITE_URL,
+      name: SITE_NAME,
+      description: SITE_DESCRIPTION,
+      isPartOf: { "@id": `${SITE_URL}/#website` },
+      about: { "@id": `${SITE_URL}/#business` },
+      inLanguage: "he-IL",
+    },
   ],
 };
 
