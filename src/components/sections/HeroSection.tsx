@@ -158,7 +158,7 @@ export default function HeroSection() {
               whiteSpace: "nowrap",
             }}
           >
-            מיה זינו — משרד ייעוץ מס והנהלת חשבונות
+            מיה זינו — ייעוץ מס והנהלת חשבונות
           </span>
         </motion.div>
 
