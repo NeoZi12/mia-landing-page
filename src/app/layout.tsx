@@ -150,11 +150,16 @@ const jsonLd = {
       ],
     },
     {
-      "@type": "AccountingService",
+      "@type": ["LocalBusiness", "ProfessionalService", "AccountingService"],
       "@id": `${SITE_URL}/#business`,
       name: SITE_NAME,
       url: SITE_URL,
-      image: `${SITE_URL}/og-image.jpg`,
+      image: [
+        `${SITE_URL}/og-image.jpg`,
+        `${SITE_URL}/images/office-pic1.webp`,
+        `${SITE_URL}/images/office-pic2.webp`,
+        `${SITE_URL}/images/office-pic3.webp`,
+      ],
       description: SITE_DESCRIPTION,
       telephone: "+972584087061",
       priceRange: "₪₪",
@@ -166,16 +171,16 @@ const jsonLd = {
         addressRegion: "חיפה",
         addressCountry: "IL",
       },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 32.8518355,
+        longitude: 35.0864072,
+      },
+      hasMap: "https://www.google.com/maps/place/%D7%9C%D7%90%D7%94+%D7%92%D7%95%D7%9C%D7%93%D7%91%D7%A8%D7%92+1,+Kiryat+Motskin/@32.8518355,35.0864072,17z/data=!3m1!4b1!4m6!3m5!1s0x151db654424e3f65:0x1bef89d0e49530ae!8m2!3d32.8518355!4d35.0864072!16s%2Fg%2F11xn4m4jfj",
       openingHoursSpecification: [
         {
           "@type": "OpeningHoursSpecification",
-          dayOfWeek: [
-            "Sunday",
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-          ],
+          dayOfWeek: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
           opens: "09:00",
           closes: "17:00",
         },
