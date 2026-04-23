@@ -155,7 +155,7 @@ export default function Navbar({ alwaysVisible = false, standalone = false }: { 
           {/* ── Logo ── */}
           {standalone ? (
             <a href="/#about" aria-label="עבור לעמוד עלינו" className="flex-shrink-0">
-              <Image src="/images/maya logo 2.png" alt="לוגו מיה - משרד ייעוץ מס ורואי חשבון" width={48} height={48} className="object-contain" priority />
+              <Image src="/images/maya logo 2.png" alt="לוגו מיה זינו — ייעוץ מס והנהלת חשבונות" width={48} height={48} className="object-contain" priority />
             </a>
           ) : (
             <button
@@ -163,7 +163,7 @@ export default function Navbar({ alwaysVisible = false, standalone = false }: { 
               className="flex-shrink-0 cursor-pointer bg-transparent border-none p-0"
               aria-label="עבור לעמוד עלינו"
             >
-              <Image src="/images/maya logo 2.png" alt="לוגו מיה - משרד ייעוץ מס ורואי חשבון" width={48} height={48} className="object-contain" priority />
+              <Image src="/images/maya logo 2.png" alt="לוגו מיה זינו — ייעוץ מס והנהלת חשבונות" width={48} height={48} className="object-contain" priority />
             </button>
           )}
 

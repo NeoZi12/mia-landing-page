@@ -143,7 +143,7 @@ export default function NewPostPage() {
       <a href="/" className="mb-10 flex items-center gap-3 group">
         <Image
           src="/images/maya logo 2.png"
-          alt="מיה - ייעוץ מס"
+          alt="מיה זינו — ייעוץ מס"
           width={40}
           height={40}
           className="object-contain"

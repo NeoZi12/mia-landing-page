@@ -32,7 +32,7 @@ export default function SiteFooter() {
         >
           <Image
             src="/images/maya logo 2.png"
-            alt="לוגו מיה - משרד ייעוץ מס ורואי חשבון"
+            alt="לוגו מיה זינו — ייעוץ מס והנהלת חשבונות"
             width={36}
             height={36}
             className="object-contain brightness-0 invert"
@@ -47,7 +47,7 @@ export default function SiteFooter() {
               letterSpacing: "-0.3px",
             }}
           >
-            מיה - ייעוץ מס והנהלת חשבונות
+            מיה זינו — ייעוץ מס והנהלת חשבונות
           </span>
         </Link>
 

@@ -13,7 +13,7 @@ const heebo = Heebo({
 
 // NOTE: Update this constant if the final production domain differs.
 const SITE_URL = "https://mia-tax.co.il";
-const SITE_NAME = "מיה - ייעוץ מס והנהלת חשבונות";
+const SITE_NAME = "מיה זינו — ייעוץ מס והנהלת חשבונות";
 const SITE_DESCRIPTION =
   "שירותי ראיית חשבון, ייעוץ מס, החזרי מס וניהול פיננסי לעצמאיים וחברות — ממשרד בקריית מוצקין, שירות דיגיטלי לכל הארץ. צרו קשר לייעוץ ראשוני.";
 
