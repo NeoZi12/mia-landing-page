@@ -5,10 +5,11 @@ import Link from "next/link";
 import { SITE_NAME, ADDRESS_FULL } from "@/lib/siteConstants";
 
 const NAV_LINKS = [
-  { label: "ראשי",    href: "/"          },
-  { label: "עלינו",   href: "/#about"    },
-  { label: "שירותים", href: "/#services" },
-  { label: "צור קשר", href: "/#contact"  },
+  { label: "ראשי",    href: "/"             },
+  { label: "עלינו",   href: "/#about"       },
+  { label: "שירותים", href: "/#services"    },
+  { label: "מאמרים",  href: "/all-articles" },
+  { label: "צור קשר", href: "/#contact"     },
 ];
 
 export default function SiteFooter() {

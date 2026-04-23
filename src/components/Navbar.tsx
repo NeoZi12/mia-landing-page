@@ -17,7 +17,7 @@ const NAV_LINKS = [
   { label: "עלינו",   id: "about",    url: "/about-us", hash: "/#about"   },
   { label: "שירותים",   id: "services", url: "/services", hash: "/#services" },
   { label: "למה אנחנו", id: "why-us",  url: "/why-us",  hash: "/#why-us"   },
-  { label: "מאמרים",      id: "blog",    url: "/all-articles", hash: "/all-articles" },
+  { label: "מאמרים",      id: "blog",    url: "/blog",    hash: "/#blog"     },
   { label: "צור קשר",   id: "contact",  url: "/contact",  hash: "/#contact"  },
 ];
 
