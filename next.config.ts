@@ -1,8 +1,13 @@
 import type { NextConfig } from "next";
 
+// React dev mode relies on eval() for debugging features (call-stack reconstruction).
+// Production React never uses eval — keep the prod CSP strict.
+const IS_DEV = process.env.NODE_ENV !== "production";
+const SCRIPT_SRC_EXTRAS = IS_DEV ? " 'unsafe-eval'" : "";
+
 const CSP_POLICY = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com https://api.emailjs.com https://challenges.cloudflare.com",
+  `script-src 'self' 'unsafe-inline'${SCRIPT_SRC_EXTRAS} https://va.vercel-scripts.com https://api.emailjs.com https://challenges.cloudflare.com`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https://*.supabase.co https://image.pollinations.ai",
   "font-src 'self' data:",
